@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+/* Import Font */
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+@import url(https://fonts.googleapis.com/css?family=Impact);
+
+:root {
+  --primary: #1C1C1C;
+  --secondary: #FFFFFF;
+  --positive: #008C30;
+  --negative: #C60202;
+  --neutral: #FFB800;
+  --link: #0085FF;
+  --main-font: "Impact";
+  --sub-font: "Ubuntu", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Custom CSS */
+html, body {
+  width: 100%; 
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+  font-size: 3vw;
+  background-color: var(--primary);
+	font-family: var(--sub-font);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#navbar {
+  position: fixed;
+  width: 100vw;
+  height: 10vh;
+  background-color: var(--neutral);
+  overflow: hidden;
+	font-family: var(--main-font);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#main {
+  position: fixed;
+  width: 100vw;
+  height: 79vh;
+  top: 10vh;
+  overflow: scroll; 
 }
 
-.App-link {
-  color: #61dafb;
+#footer {
+  position: fixed;
+  width: 98vw;
+  height: 10vh;
+  bottom: 1vh;
+  left: 1vw;
+  overflow: hidden; 
+  border: 0.5vw;
+  border-style: solid;
+  border-radius: 2vw;
+  border-color: var(--neutral);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a {
+	color: var(--primary);
+	text-decoration: none;
+}
+
+a:hover {
+  color: var(--link);
 }

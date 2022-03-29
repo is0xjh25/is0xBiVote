@@ -1,0 +1,53 @@
+#navbar-frame {
+	position: relative;
+	width: 100%;
+	height: 90%;
+	top: 10%;
+}
+
+#navbar-left {
+	width: 50%;
+	height: 100%;
+	float: left;
+	padding-left: 5%;
+}
+
+#navbar-right {
+	display: flex;
+	flex-direction: row;
+	width: 50%;
+	height: 100%;
+	float: right;
+}
+
+.navbar-link {
+	position: relative;
+	flex: 3;
+	top: 10%;
+	text-align: end;
+}
+
+#navbar-logo-image {
+	position: absolute;
+	bottom:0;
+	height: 100%;
+	border-radius: 1vw 1vw 0 0;
+}
+
+#navbar-logo-text {
+	position: absolute;
+	margin-left: 6%;
+	font-size: 4vw;
+}
+
+#navbar-logo-text > span:first-child {
+	color: var(--positive);
+}
+
+#navbar-logo-text > span:nth-child(2) {
+	color: var(--negative);
+}
+
+#navbar-left a:hover  span {
+	color: var(--link);
+}
