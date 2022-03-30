@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import NavBar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './home/Home';
-import Login from './login/Login';
+import NavBar from './components/Navbar.js';
+import Footer from './components/Footer.js';
+import Home from './home/Home.js';
+import Profile from './profile/Profile.js'
+import Login from './login/Login.js';
 
 class App extends Component {
   
@@ -38,8 +39,8 @@ class App extends Component {
           { window.location.pathname!=='/login' ?
             <main>
               <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/profile' element={<Home />} />
+                <Route exact path='/' element={<Home />} />
+                <Route path='/profile' element={<Profile />} />
                 <Route path='/history' element={<Home />} />
                 <Route path='/vote' element={<Home />} />
               </Routes>

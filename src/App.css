@@ -14,6 +14,44 @@
   --desktop-font-size: 3vw;
 }
 
+/* Boostrap Color theme */
+.btn, .btn:hover {
+  font-weight: bold;
+  border: 0.2vw solid;
+  color: var(--secondary);
+}
+
+.btn-outline-success {
+  border-color: var(--positive);
+}
+
+.btn-outline-success:hover {
+  background-color: var(--positive);
+}
+
+.btn-outline-danger {
+  border-color: var(--negative);
+}
+
+.btn-outline-danger:hover {
+  background-color: var(--negative);
+}
+
+.btn-outline-info {
+  border-color: var(--link);
+}
+
+.btn-outline-info:hover {
+  background-color: var(--link);
+}
+
+.btn-outline-warning {
+  border-color: var(--neutral);
+}
+
+.btn-outline-warning:hover {
+  background-color: var(--neutral);
+}
 /* Custom CSS */
 html, body {
   width: 100%; 

@@ -5,7 +5,7 @@ import './Footer.css';
 const Footer = () => {
   return (
 	<div id='footer-frame'>
-		<div class='footer-section'>
+		<div className='footer-section'>
 			<div>
 				ON GITHUB - <a href="https://github.com/users/is0xjh25/projects/11" target="_blank">is0xjh25/BiVote</a>
 			</div>
@@ -13,7 +13,7 @@ const Footer = () => {
 				CONTACT US - <a href="mailto:is0.jimhsiao@gmail.com">is0xTeam</a>
 			</div>
 		</div>
-		<div class='footer-section'>
+		<div className='footer-section'>
 			<div>
 				DEVELOPED BY - <a href="https://is0xjh25.github.io" target="_blank">is0xjh25</a>
 			</div>

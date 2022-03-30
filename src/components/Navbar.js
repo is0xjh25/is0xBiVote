@@ -8,7 +8,7 @@ const NavBar = (props) => {
   return (
 	<div id='navbar-frame'>
 		<div id='navbar-left'>
-			<a id='navbar-logo' href="#">
+			<a id='navbar-logo' href="/">
 				<img id='navbar-logo-image' src={Logo} alt="BiVote-logo"/>
 				<span id='navbar-logo-text'>
 					<span>B</span>
@@ -18,25 +18,25 @@ const NavBar = (props) => {
 			</a>
 		</div>
 		<div id='navbar-right'>
-			<div class='navbar-link' style={{flex: 2}}>
+			<div className='navbar-link' style={{flex: 2}}>
 				<a href="#">
 					VOTE
 					<MdHowToVote/>
 				</a>
 			</div>
-			<div class='navbar-link'>
+			<div className='navbar-link'>
 				<a href="#">
 					HISTORY
 					<MdHistoryEdu/>
 				</a>
 			</div>
-			<div class='navbar-link'>
-				<a href="#">
+			<div className='navbar-link'>
+				<a href="/profile">
 					{props.user}
 					<MdAccountBox/>				
 				</a>
 			</div>
-			<div class='navbar-link' style={{flex: 1, textAlign: "center"}}>
+			<div className='navbar-link' style={{flex: 1, textAlign: "center"}}>
 				<a href="#">
 					<CgDarkMode />				
 				</a>
