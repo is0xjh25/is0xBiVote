@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import NavBar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './containers/Home';
+import Home from './home/Home';
+import Login from './login/Login';
 
 class App extends Component {
   
@@ -32,19 +33,26 @@ class App extends Component {
   render() {
     return (
       <>
-        <div id='navbar'>
-          <NavBar user={this.state.user} />
-        </div>
+        { window.location.pathname!=='/login' ? <header><NavBar user={this.state.user}/> </header>: null}
         <Router>
-          <div id='main'>
-            <Routes>
-              <Route path='/' element={<Home />} />
-            </Routes>
-          </div>
+          { window.location.pathname!=='/login' ?
+            <main>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/profile' element={<Home />} />
+                <Route path='/history' element={<Home />} />
+                <Route path='/vote' element={<Home />} />
+              </Routes>
+            </main>
+          :
+            <main style={{height: "100vh", top:0}}>
+              <Routes>
+                <Route exact path='/login' element={<Login />} />
+              </Routes>
+            </main>
+          }
         </Router>
-        <div id='footer'>
-          <Footer />
-        </div>
+        { window.location.pathname!=='/login' ? <footer><Footer/></footer>: null}
       </>
     );
   }

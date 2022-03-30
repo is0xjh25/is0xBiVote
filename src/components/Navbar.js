@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../images/Bivote-logo.png';
 import { MdHowToVote, MdHistoryEdu, MdAccountBox } from 'react-icons/md';
-import { BiWorld } from 'react-icons/bi';
+import { CgDarkMode } from 'react-icons/cg';
 import './Navbar.css';
 
 const NavBar = (props) => {
@@ -38,7 +38,7 @@ const NavBar = (props) => {
 			</div>
 			<div class='navbar-link' style={{flex: 1, textAlign: "center"}}>
 				<a href="#">
-					<BiWorld/>				
+					<CgDarkMode />				
 				</a>
 			</div>
 		</div>

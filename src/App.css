@@ -7,7 +7,7 @@
   --secondary: #FFFFFF;
   --positive: #008C30;
   --negative: #C60202;
-  --neutral: #FFB800;
+  --neutral: #ffc107;
   --link: #0085FF;
   --main-font: "Impact";
   --sub-font: "Ubuntu", sans-serif;
@@ -25,7 +25,7 @@ html, body {
 	font-family: var(--sub-font);
 }
 
-#navbar {
+header {
   position: fixed;
   width: 100vw;
   height: 10vh;
@@ -35,7 +35,7 @@ html, body {
 	font-family: var(--main-font);
 }
 
-#main {
+main {
   position: fixed;
   width: 100vw;
   height: 79vh;
@@ -44,7 +44,7 @@ html, body {
   color: var(--secondary); 
 }
 
-#footer {
+footer {
   position: fixed;
   width: 98vw;
   height: 10vh;
