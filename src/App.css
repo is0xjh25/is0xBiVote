@@ -12,6 +12,8 @@
   --main-font: "Impact";
   --sub-font: "Ubuntu", sans-serif;
   --desktop-font-size: 3vw;
+  --tablet-font-size: 3vh;
+  --mobile-font-size: 3vh;
 }
 
 /* Boostrap Color theme */
@@ -52,6 +54,7 @@
 .btn-outline-warning:hover {
   background-color: var(--neutral);
 }
+
 /* Custom CSS */
 html, body {
   width: 100%; 
@@ -61,39 +64,6 @@ html, body {
   font-size: var(--desktop-font-size);
   background-color: var(--primary);
 	font-family: var(--sub-font);
-}
-
-header {
-  position: fixed;
-  width: 100vw;
-  height: 10vh;
-  background-color: var(--neutral);
-  overflow: hidden;
-  color: var(--primary); 
-	font-family: var(--main-font);
-}
-
-main {
-  position: fixed;
-  width: 100vw;
-  height: 79vh;
-  top: 10vh;
-  overflow: scroll;
-  color: var(--secondary); 
-}
-
-footer {
-  position: fixed;
-  width: 98vw;
-  height: 10vh;
-  bottom: 1vh;
-  left: 1vw;
-  overflow: hidden; 
-  color: var(--primary); 
-  border: 0.5vw;
-  border-style: solid;
-  border-radius: 2vw;
-  border-color: var(--neutral);
 }
 
 a {
@@ -110,4 +80,102 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--sub-font);
   font-weight: 900;
 	text-align: center;
+}
+
+/* Mobile */
+@media screen and (max-width: 375px) {
+
+  :root {
+    font-size: var(--mobile-font-size);
+  }
+}
+
+/* Tablet */
+@media screen and (max-width: 1080px) {
+  
+  :root {
+    font-size: var(--tablet-font-size);
+  }
+
+  header {
+    position: fixed;
+    width: 100vw;
+    height: 7.5vh;
+    background-color: var(--neutral);
+    overflow: hidden;
+    color: var(--primary); 
+    font-family: var(--main-font);
+    z-index: 1;
+  }
+  
+  main {
+    position: relative;
+    width: 100vw;
+    top: 7.5vh;
+    color: var(--secondary); 
+  }
+  
+  footer {
+    position: relative;
+    width: 90vw;
+    left: 5vw;
+    padding-top: 2.5%;
+    margin-top: 15%;
+    margin-bottom: 5%;
+    color: var(--primary);
+    border-top: 0.2vw;
+    border-top-style: solid;
+    border-color: var(--secondary);
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1080px) {
+  
+  :root {
+    font-size: var(--desktop-font-size);
+  }
+
+  header {
+    position: fixed;
+    width: 100vw;
+    height: 10vh;
+    background-color: var(--neutral);
+    overflow: hidden;
+    color: var(--primary); 
+    font-family: var(--main-font);
+  }
+  
+  main {
+    position: fixed;
+    width: 100vw;
+    height: 79vh;
+    top: 10vh;
+    overflow: scroll;
+    color: var(--secondary); 
+  }
+  
+  footer {
+    position: fixed;
+    width: 98vw;
+    height: 10vh;
+    bottom: 1vh;
+    left: 1vw;
+    overflow: hidden; 
+    color: var(--primary); 
+    border: 0.5vw;
+    border-style: solid;
+    border-radius: 2vw;
+    border-color: var(--neutral);
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 375px) {
+}
+/* Tablet */
+@media screen and (max-width: 1080px) {
+}
+/* Desktop */
+@media screen and (min-width: 1080px) {
 }

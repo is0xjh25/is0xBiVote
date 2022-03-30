@@ -12,15 +12,15 @@ const Login = () => {
 	return (
 	<div id='login-frame'>
 		<div id='login-left'>
-			<img id='login-logo-image' src={Favicon} alt="BiVote-favicon"></img>
+			<img id='login-logo-image' src={Favicon} alt="BiVote-favicon"/>
 		</div>
 		<div id='login-right'>
 			{page === 'main' ? (
-					<Main setPage={setPage} />
+					<Main setPage={setPage}/>
 				) : page === 'register' ? (
-					<Register setPage={setPage} />
+					<Register setPage={setPage}/>
 				) : page === 'rescue' ? (
-					<Rescue setPage={setPage} />
+					<Rescue setPage={setPage}/>
 				) : null 
 			}
 		</div>
