@@ -11,6 +11,7 @@
   --link: #0085FF;
   --main-font: "Impact";
   --sub-font: "Ubuntu", sans-serif;
+  --desktop-font-size: 3vw;
 }
 
 /* Custom CSS */
@@ -19,7 +20,7 @@ html, body {
   height: 100%; 
   margin: 0;
   padding: 0;
-  font-size: 3vw;
+  font-size: var(--desktop-font-size);
   background-color: var(--primary);
 	font-family: var(--sub-font);
 }
@@ -30,6 +31,7 @@ html, body {
   height: 10vh;
   background-color: var(--neutral);
   overflow: hidden;
+  color: var(--primary); 
 	font-family: var(--main-font);
 }
 
@@ -38,7 +40,8 @@ html, body {
   width: 100vw;
   height: 79vh;
   top: 10vh;
-  overflow: scroll; 
+  overflow: scroll;
+  color: var(--secondary); 
 }
 
 #footer {
@@ -48,6 +51,7 @@ html, body {
   bottom: 1vh;
   left: 1vw;
   overflow: hidden; 
+  color: var(--primary); 
   border: 0.5vw;
   border-style: solid;
   border-radius: 2vw;
@@ -61,4 +65,11 @@ a {
 
 a:hover {
   color: var(--link);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--neutral);
+  font-family: var(--sub-font);
+  font-weight: 900;
+	text-align: center;
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import NavBar from './components/Navbar';
 import Footer from './components/Footer';
+import Home from './containers/Home';
 
 class App extends Component {
   
@@ -34,17 +35,13 @@ class App extends Component {
         <div id='navbar'>
           <NavBar user={this.state.user} />
         </div>
-        <div id='main'>
-          main
-        </div>
-        {/* <Router>
-        <div id='main'>
-          main
+        <Router>
+          <div id='main'>
             <Routes>
               <Route path='/' element={<Home />} />
             </Routes>
           </div>
-        </Router> */}
+        </Router>
         <div id='footer'>
           <Footer />
         </div>

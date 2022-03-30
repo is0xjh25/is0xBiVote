@@ -27,17 +27,34 @@
 	text-align: end;
 }
 
+#navbar-logo {
+	position: relative;
+	display: block;
+	top: 10%;
+	height: 90%;
+	width: 40%;
+	border: 0.25vw;
+	border-style: solid;
+	border-bottom-style: none;
+	border-radius: 1.5vw 1.5vw 0 0;
+	background-color: var(--primary);
+	overflow: hidden;
+}
+
 #navbar-logo-image {
-	position: absolute;
-	bottom:0;
+	position: relative;
+	left: 0;
+	bottom: 0;
 	height: 100%;
-	border-radius: 1vw 1vw 0 0;
+	overflow: hidden;
 }
 
 #navbar-logo-text {
-	position: absolute;
-	margin-left: 6%;
-	font-size: 4vw;
+	position: relative;
+	left: 10%;
+	color: var(--secondary);
+	border-style: solid;
+	border-color: var(--primary);
 }
 
 #navbar-logo-text > span:first-child {

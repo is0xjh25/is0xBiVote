@@ -8,7 +8,7 @@ const NavBar = (props) => {
   return (
 	<div id='navbar-frame'>
 		<div id='navbar-left'>
-			<a href="#">
+			<a id='navbar-logo' href="#">
 				<img id='navbar-logo-image' src={Logo} alt="BiVote-logo"/>
 				<span id='navbar-logo-text'>
 					<span>B</span>
