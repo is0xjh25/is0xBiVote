@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../images/Bivote-logo.png';
 import { MdHowToVote, MdHistoryEdu, MdAccountBox } from 'react-icons/md';
 import { CgDarkMode } from 'react-icons/cg';
+import { AiOutlineMenu } from 'react-icons/ai';
 import './Navbar.css';
 
 const NavBar = (props) => {
@@ -18,6 +19,11 @@ const NavBar = (props) => {
 				</a>
 			</div>
 			<div id='navbar-right'>
+				<span id='navbar-title'>
+					<span>B</span>
+					<span>i</span>
+					Vote
+				</span>
 				<div className='navbar-link' style={{flex: 2}}>
 					<a href="#">
 						VOTE
@@ -40,6 +46,16 @@ const NavBar = (props) => {
 					<a href="#">
 						<CgDarkMode/>				
 					</a>
+				</div>
+			</div>
+			<div id='navbar-dropdown' className="dropdown">
+				<button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<AiOutlineMenu/>
+				</button>
+				<div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+					<a className="dropdown-item" href="#">VOTE<MdHowToVote/></a>
+					<a className="dropdown-item" href="#">HISTORY<MdHistoryEdu/></a>
+					<a className="dropdown-item" href="#">{props.user}<MdAccountBox/></a>
 				</div>
 			</div>
 		</div>

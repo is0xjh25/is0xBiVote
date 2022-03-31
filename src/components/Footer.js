@@ -7,10 +7,10 @@ const Footer = () => {
 		<div id='footer-frame'>
 			<div className='footer-section'>
 				<div>
-					ON GITHUB -<a href="https://github.com/users/is0xjh25/projects/11" target="_blank">is0xjh25/BiVote</a>
+					CONTACT US -<a href="mailto:is0.jimhsiao@gmail.com">is0xTeam</a>
 				</div>
 				<div>
-					CONTACT US -<a href="mailto:is0.jimhsiao@gmail.com">is0xTeam</a>
+					ON GITHUB -<a href="https://github.com/users/is0xjh25/projects/11" target="_blank">is0xjh25/BiVote</a>
 				</div>
 			</div>
 			<div className='footer-section'>

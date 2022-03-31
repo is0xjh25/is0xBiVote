@@ -79,3 +79,23 @@
 	color: var(--secondary);
 }
 
+/* Mobile & Tablet */
+@media screen and (max-width: 1080px) {
+	#profile-frame {
+		flex-direction: column;
+		font-size: calc(var(--mobile-font-size) * 1.5);
+	}
+
+	.profile-left {
+		margin-top: 5%;
+	}
+
+	#profile-right-main {
+		margin-top: 5%;
+	}
+
+	.profile-section {
+		margin: 2vh;
+	}
+	
+}

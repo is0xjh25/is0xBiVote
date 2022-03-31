@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Rescue = (props) => {
 	return (
 		<div className='login-form'>
-			<h1>REGISTER</h1>
+			<h2>REGISTER</h2>
 			<form>
 				<div className="form-group">
 					<label htmlFor="register-email">email</label>

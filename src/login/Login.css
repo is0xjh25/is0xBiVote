@@ -5,7 +5,7 @@
 
 #login-left {
 	width: 50%;
-	height: 90%;
+	height: 92.5%;
 	float: left;
 }
 
@@ -15,7 +15,7 @@
     align-items: center;
     justify-content: center;
 	width: 100%;
-	height: 10%;
+	height: 7.5%;
 	bottom: 0;
 	font-size: smaller;
 }
@@ -24,9 +24,10 @@
 	display: flex;
 	flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 	width: 50%;
-	height: 90%;
+	height: 92.5%;
+	padding-top: 2.5%;
 	float: right;
 }
 
@@ -39,16 +40,16 @@
 	border-color: var(--secondary);
 }
 
-#login-frame h1, h2 {
+#login-frame h2 {
 	color: var(--secondary);
 	font-family: var(--main-font);
 }
 
 .login-nav {
 	position: relative;
-	bottom: 2.5%;
 	display: flex;
 	justify-content: space-between;
+	bottom: 2.5%;
 }
 
 .login-nav a{
@@ -64,24 +65,98 @@
 .login-form {
 	width: 80%;
 	height: 100%;
-	padding-top: 5%;
+	padding-top: 2.5%;
 	text-align: center;
 	overflow: scroll;
 }
 
 .login-form .form-group, .form-check {
-	margin-top: 2.5%;
+	margin-top: 1%;
 }
 
 .login-form input {
-	height: 5vw;
+	height: 4vw;
 }
 
 .login-submit {
-	margin-top: 5%;
 	margin-bottom: 5%;
 }
 
 .form-group small {
 	font-size: calc(var(--desktop-font-size) * 0.55);
+}
+
+/* Mobile & Tablet */
+@media screen and (max-width: 1080px) {
+
+	#login-frame {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: calc(var(--mobile-font-size) * 2);
+	}
+
+	#login-left {
+		padding-top: 5%;
+		max-height: 30vh;
+		text-align: center;
+		margin: 0 auto;
+		float: auto;
+	}
+	
+	#login-bot {
+		position: relative;
+		display: block;
+		text-align: center;
+		width: 100%;
+		font-size: calc(var(--mobile-font-size) * 0.75);
+	}
+	
+	#login-right {
+		width: 100%;
+		height: auto;
+		padding-top: 0%;
+	}
+
+	#login-logo-image {
+		display: block;
+		margin: 0 auto;
+		border-right-style: none;
+	}
+
+	.login-form {
+		width: 80%;
+		text-align: center;
+	}
+	
+	.login-form .form-group {
+		margin-top: 1vh;
+	}
+	
+	.login-form input {
+		height: 5vh;
+	}
+	
+	.login-submit {
+		margin-top: 2vh;
+		margin-bottom: 2vh;
+	}
+
+	.form-group small {
+		font-size: var(--mobile-font-size);
+	}
+
+	#login-frame h2 {
+		font-size: calc(var(--mobile-font-size) * 3);
+	}
+
+	.login-nav {
+		display: flex;
+		flex-direction: column;
+		font-size: calc(var(--mobile-font-size) * 1.8);
+	}
+
+	.login-nav > * {
+		margin-top: 5%;
+	}
 }

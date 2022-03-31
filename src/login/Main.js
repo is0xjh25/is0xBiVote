@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Main = (props) => {
 	return (
 		<div className='login-form'>
-			<h1>LOGIN</h1>
+			<h2>LOGIN</h2>
 			<form>
 				<div className="form-group">
 					<label htmlFor="main-username">username</label>

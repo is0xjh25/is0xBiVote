@@ -12,8 +12,7 @@
   --main-font: "Impact";
   --sub-font: "Ubuntu", sans-serif;
   --desktop-font-size: 3vw;
-  --tablet-font-size: 3vh;
-  --mobile-font-size: 3vh;
+  --mobile-font-size: 2.5vh;
 }
 
 /* Boostrap Color theme */
@@ -21,6 +20,16 @@
   font-weight: bold;
   border: 0.2vw solid;
   color: var(--secondary);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--secondary);
+}
+
+.btn-primary:hover {
+  background-color: var(--link);
+  border-color: var(--secondary);
 }
 
 .btn-outline-success {
@@ -73,6 +82,7 @@ a {
 
 a:hover {
   color: var(--link);
+	text-decoration: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -82,19 +92,12 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: center;
 }
 
-/* Mobile */
-@media screen and (max-width: 375px) {
 
-  :root {
-    font-size: var(--mobile-font-size);
-  }
-}
-
-/* Tablet */
+/* Mobile & Tablet */
 @media screen and (max-width: 1080px) {
   
   :root {
-    font-size: var(--tablet-font-size);
+    font-size: var(--mobile-font-size);
   }
 
   header {
@@ -102,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100vw;
     height: 7.5vh;
     background-color: var(--neutral);
-    overflow: hidden;
+    overflow: visible;
     color: var(--primary); 
     font-family: var(--main-font);
     z-index: 1;
@@ -168,14 +171,4 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 2vw;
     border-color: var(--neutral);
   }
-}
-
-/* Mobile */
-@media screen and (max-width: 375px) {
-}
-/* Tablet */
-@media screen and (max-width: 1080px) {
-}
-/* Desktop */
-@media screen and (min-width: 1080px) {
 }
