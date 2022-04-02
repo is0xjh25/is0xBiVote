@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import NavBar from './components/Navbar.js';
 import Footer from './components/Footer.js';
 import Home from './home/Home.js';
-import Profile from './profile/Profile.js'
+import Profile from './profile/Profile.js';
+import History from './history/History.js';
 import Login from './login/Login.js';
 
 class App extends Component {
@@ -39,10 +40,11 @@ class App extends Component {
           { window.location.pathname!=='/login' ?
             <main>
               <Routes>
-                <Route exact path='/' element={<Home />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='/history' element={<Home />} />
-                <Route path='/vote' element={<Home />} />
+                <Route exact path='/' element={<Home/>}/>
+                <Route exact path='/profile' element={<Profile/>}/>
+                <Route exact path='/history' element={<History/>}/>
+                <Route exact path='/history/find/:id' element={<History/>}/>
+                <Route path='/vote' element={<Home/>}/>
               </Routes>
             </main>
           :

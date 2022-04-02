@@ -15,7 +15,8 @@ const Login = () => {
 			<img id='login-logo-image' src={Favicon} alt="BiVote-favicon"/>
 		</div>
 		<div id='login-right'>
-			{page === 'main' ? (
+			{
+				page === 'main' ? (
 					<Main setPage={setPage}/>
 				) : page === 'register' ? (
 					<Register setPage={setPage}/>

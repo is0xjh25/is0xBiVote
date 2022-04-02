@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Profile.css';
 
 const Main = (props) => {

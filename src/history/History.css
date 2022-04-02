@@ -1,0 +1,259 @@
+#history-frame {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+	height: 100%;
+}
+
+#history-search-bar {
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 90%;
+	padding-top: 2.5%;
+}
+
+#history-search-bar button {
+	display: block;
+	flex: 1;
+	height: 80%;
+	text-align: center;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+    display: block;
+	width: 100%;
+	text-align: center;
+}
+
+.history-search-item {
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.history-search-item button {
+	flex: 1;
+	margin: 2%;
+	font-size: calc(var(--desktop-font-size) * 0.6);
+}
+
+.history-search-item-sub {
+	flex: 3;
+}
+
+#history-search-keyword {
+	width: 100%;
+	text-align: center;
+}
+
+#history-result {
+	flex: 4;
+	margin: 2%;
+	width: 90%;
+	overflow: scroll;
+}
+
+#history-result table {
+    table-layout: fixed;
+    width: 100%;
+	height: 100%;
+	text-align: center;
+	color: var(--secondary);
+	font-family: var(--sub-font);
+	font-size: calc(var(--desktop-font-size) * 0.75);
+	border-collapse: collapse;
+}
+
+.table-fix-head thead th { 
+	position: sticky; 
+	top: 0; 
+	z-index: 0; 
+	vertical-align: middle; 
+}
+
+.table-fix-head tbody tr td { 
+	vertical-align: middle; 
+}
+
+.table th {
+	padding: 2%;
+	border: none;
+}
+
+.table td {
+	padding: 1%;
+	border: none;
+	overflow-wrap: break-word;
+}
+
+.table-date {
+	width: 20%;
+}
+
+.table-topic {
+	width: 60%;
+}
+
+.table-detail {
+	width: 20%;
+}
+
+th { 
+	font-weight: bold;
+	color: var(--primary);
+	background-color: var(--neutral); 
+}
+
+tbody tr:hover {
+	font-weight: bold;
+	color: var(--primary);
+	background-color: var(--link); 
+}
+
+td button {
+	all:unset;
+}
+
+tbody tr td button {
+	font-size: calc(var(--desktop-font-size) * 1.25);
+	color: var(--secondary);
+}
+
+tbody tr:hover td button {
+	font-weight: bold;
+	color: var(--primary);
+}
+
+tbody tr td button:hover {
+	font-weight: bolder;
+	color: var(--neutral);
+}
+
+#history-no-results {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 50vh;
+	font-size: calc(var(--desktop-font-size) * 1.5);
+	text-align: center;
+}
+
+
+/* Mobile & Tablet */
+@media screen and (max-width: 1080px) {
+	#history-search-bar {
+		flex-direction: column;
+		font-size: calc(var(--mobile-font-size) * 1.2);
+	}
+
+	.history-search-item button {
+		font-size: calc(var(--mobile-font-size) * 0.8);
+	}
+
+	#history-result table {
+		font-size: calc(var(--mobile-font-size) * 0.75);
+		border-collapse: collapse;
+	}
+
+	tbody tr td button {
+		font-size: calc(var(--mobile-font-size) * 1.25);
+		color: var(--secondary);
+	}
+
+	.table-date {
+		width: 20%;
+	}
+	
+	.table-topic {
+		width: 60%;
+	}
+	
+	.table-detail {
+		width: 20%;
+	}
+
+	tbody .table-date {
+		font-size: calc(var(--mobile-font-size) * 0.5);
+	}
+
+	tbody .table-topic {
+		font-size: calc(var(--mobile-font-size) * 0.8);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Date Picker */
+.react-datepicker {
+	font-size: 0.8em !important;
+  }
+  .react-datepicker__header {
+	padding-top: 0.5em !important;
+  }
+  .react-datepicker__month {
+	margin: 0.2em 0.5em !important;
+  }
+  .react-datepicker__day-name, .react-datepicker__day {
+	width: 1.5em !important;
+	line-height: 1.3em !important;
+	margin: 0.2em !important;
+  }
+  .react-datepicker__current-month {
+	font-size: 0.8em !important;
+  }
+  .react-datepicker__navigation {
+	top: 0.25em !important;
+	line-height: 1.5em !important;
+	width: 1.5em !important;
+	height: 1.5em !important;
+	border: 0.2em solid var(--neutral) !important;
+	border-radius: 50% !important;
+  }
+  
+  .react-datepicker__navigation--previous {
+	left: 1em !important;
+	background-color: var(--link) !important;
+	border-radius: 50% !important;
+  }
+
+  .react-datepicker__navigation--next {
+	right: 1em !important;
+	background-color: var(--link) !important;
+	border-radius: 50% !important;
+  }
+
+
+
+
+

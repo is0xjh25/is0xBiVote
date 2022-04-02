@@ -31,7 +31,7 @@ const NavBar = (props) => {
 					</a>
 				</div>
 				<div className='navbar-link'>
-					<a href="#">
+					<a href="/history">
 						HISTORY
 						<MdHistoryEdu/>
 					</a>

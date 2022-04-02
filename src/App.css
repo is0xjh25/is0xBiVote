@@ -12,7 +12,7 @@
   --main-font: "Impact";
   --sub-font: "Ubuntu", sans-serif;
   --desktop-font-size: 3vw;
-  --mobile-font-size: 2.5vh;
+  --mobile-font-size: max(2.5vh, 3.5vw);
 }
 
 /* Boostrap Color theme */
@@ -92,6 +92,32 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: center;
 }
 
+.title-section {
+	width: 100%;
+	flex: 1;
+	padding: 1%;
+}
+  
+.main-section {
+	width: 100%;
+	flex: 5;
+	display: flex;
+	flex-direction: row;
+	padding: 1%;
+	background-color: red;
+}
+  
+.post-section {
+	flex: 3;
+	padding: 1%;
+	background-color: yellow;
+}
+  
+.info-section {
+	flex: 2;
+	padding: 1%;
+	background-color: blue;
+}
 
 /* Mobile & Tablet */
 @media screen and (max-width: 1080px) {
@@ -129,6 +155,15 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 0.2vw;
     border-top-style: solid;
     border-color: var(--secondary);
+  }
+
+  .title-section {
+    font-size: calc(var(--mobile-font-size) * 1.2) ;
+  }
+  
+  .main-section {
+    flex-direction: column;
+    min-height: 60vh;
   }
 }
 
@@ -172,3 +207,5 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--neutral);
   }
 }
+
+
