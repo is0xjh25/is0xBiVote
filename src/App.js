@@ -35,27 +35,29 @@ class App extends Component {
   render() {
     return (
       <>
-        { window.location.pathname!=='/login' ? <header><NavBar user={this.state.user}/> </header>: null}
+        { window.location.pathname !== '/login' ? <header><NavBar user={this.state.user}/> </header> : null }
         <Router>
-          { window.location.pathname!=='/login' ?
-            <main>
-              <Routes>
-                <Route exact path='/' element={<Home/>}/>
-                <Route exact path='/profile' element={<Profile/>}/>
-                <Route exact path='/history' element={<History/>}/>
-                <Route exact path='/history/find/:id' element={<History/>}/>
-                <Route path='/vote' element={<Home/>}/>
-              </Routes>
-            </main>
-          :
-            <main style={{height: "100vh", top:0}}>
-              <Routes>
-                <Route exact path='/login' element={<Login />} />
-              </Routes>
-            </main>
+          { 
+            window.location.pathname !== '/login' ? (
+              <main>
+                <Routes>
+                  <Route exact path='/' element={<Home/>}/>
+                  <Route exact path='/profile' element={<Profile/>}/>
+                  <Route exact path='/history' element={<History/>}/>
+                  <Route exact path='/history/find/:id' element={<History/>}/>
+                  <Route path='/vote' element={<Home/>}/>
+                </Routes>
+              </main>
+            ) : (
+              <main style={{height: '100vh', top:0}}>
+                <Routes>
+                  <Route exact path='/login' element={<Login/>} />
+                </Routes>
+              </main>
+            )
           }
         </Router>
-        { window.location.pathname!=='/login' ? <footer><Footer/></footer>: null}
+        { window.location.pathname !== '/login' ? <footer><Footer/></footer> : null }
       </>
     );
   }

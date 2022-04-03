@@ -4,23 +4,24 @@
 }
 
 #login-left {
+	float: left;
 	width: 50%;
 	height: 92.5%;
-	float: left;
 }
 
 #login-bot {
-	position: absolute;
 	display: flex;
     align-items: center;
     justify-content: center;
 	width: 100%;
 	height: 7.5%;
+	position: absolute;
 	bottom: 0;
 	font-size: smaller;
 }
 
 #login-right {
+	float: right;
 	display: flex;
 	flex-direction: column;
     align-items: center;
@@ -28,13 +29,12 @@
 	width: 50%;
 	height: 92.5%;
 	padding-top: 2.5%;
-	float: right;
 }
 
 #login-logo-image {
-	margin-top: 10%;
 	width: 100%;
 	height: 80%;
+	margin-top: 10%;
 	border-right: 0.2vw;
 	border-right-style: solid;
 	border-color: var(--secondary);
@@ -46,9 +46,9 @@
 }
 
 .login-nav {
-	position: relative;
 	display: flex;
 	justify-content: space-between;
+	position: relative;
 	bottom: 2.5%;
 }
 
@@ -88,7 +88,6 @@
 
 /* Mobile & Tablet */
 @media screen and (max-width: 1080px) {
-
 	#login-frame {
 		display: flex;
 		flex-direction: column;
@@ -97,18 +96,18 @@
 	}
 
 	#login-left {
-		padding-top: 5%;
-		max-height: 30vh;
-		text-align: center;
-		margin: 0 auto;
 		float: auto;
+		max-height: 30vh;
+		margin: 0 auto;
+		padding-top: 5%;
+		text-align: center;
 	}
 	
 	#login-bot {
-		position: relative;
 		display: block;
-		text-align: center;
 		width: 100%;
+		position: relative;
+		text-align: center;
 		font-size: calc(var(--mobile-font-size) * 0.75);
 	}
 	

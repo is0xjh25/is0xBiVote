@@ -26,22 +26,23 @@ const Profile = () => {
     // }
 
     return () => {
-      setPage("");
-      setUsername("");
-      setEmail("");
-      setPassword("");
+      setPage();
+      setUsername();
+      setEmail();
+      setPassword();
     }
   }, [])
 
 	return (
-		<div id='profile-frame'>
+		<>
 			{ 
-				page === 'main' ? 
-				<Main setPage={setPage} username={username} email={email} password={password}/> 
-				: 
-				<Edit setPage={setPage} setEmail={setEmail} setPassword={setPassword} username={username} email={email} password={password}/> 
+				page === 'main' ? (
+					<Main setPage={setPage} username={username} email={email} password={password}/> 
+				) : ( 
+					<Edit setPage={setPage} setEmail={setEmail} setPassword={setPassword} username={username} email={email} password={password}/> 
+				)
 			}
-		</div>
+		</>
   );
 }
 

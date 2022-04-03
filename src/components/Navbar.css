@@ -1,23 +1,23 @@
 #navbar-frame {
-	position: relative;
 	width: 100%;
 	height: 90%;
+	position: relative;
 	top: 10%;
 }
 
 #navbar-left {
+	float: left;
 	width: 50%;
 	height: 100%;
-	float: left;
 	padding-left: 5%;
 }
 
 #navbar-right {
+	float: right;
 	display: flex;
 	flex-direction: row;
 	width: 50%;
 	height: 100%;
-	float: right;
 }
 
 #navbar-dropdown {
@@ -25,31 +25,31 @@
 }
 
 .navbar-link {
-	position: relative;
 	flex: 3;
+	position: relative;
 	top: 10%;
 	text-align: end;
 }
 
 #navbar-logo {
-	position: relative;
 	display: block;
-	top: 10%;
-	height: 90%;
 	width: 40%;
+	height: 90%;
+	background-color: var(--primary);
+	position: relative;
+	top: 10%;
 	border: 0.25vw;
 	border-style: solid;
 	border-bottom-style: none;
 	border-radius: 1.5vw 1.5vw 0 0;
-	background-color: var(--primary);
 	overflow: hidden;
 }
 
 #navbar-logo-image {
+	height: 100%;
 	position: relative;
 	left: 0;
 	bottom: 0;
-	height: 100%;
 	overflow: hidden;
 }
 
@@ -106,8 +106,8 @@
 	#navbar-right {
 		flex: 2;
 		display: flex;
-		justify-content: center;
 		align-items: center;
+		justify-content: center;
 	}
 
 	#navbar-dropdown {

@@ -18,8 +18,8 @@
 }
 
 #history-search-bar button {
-	display: block;
 	flex: 1;
+	display: block;
 	height: 80%;
 	text-align: center;
 }
@@ -57,8 +57,8 @@
 
 #history-result {
 	flex: 4;
-	margin: 2%;
 	width: 90%;
+	margin: 2%;
 	overflow: scroll;
 }
 
@@ -108,15 +108,15 @@
 }
 
 th { 
-	font-weight: bold;
 	color: var(--primary);
 	background-color: var(--neutral); 
+	font-weight: bold;
 }
 
 tbody tr:hover {
-	font-weight: bold;
 	color: var(--primary);
 	background-color: var(--link); 
+	font-weight: bold;
 }
 
 td button {
@@ -124,18 +124,18 @@ td button {
 }
 
 tbody tr td button {
-	font-size: calc(var(--desktop-font-size) * 1.25);
 	color: var(--secondary);
+	font-size: calc(var(--desktop-font-size) * 1.25);
 }
 
 tbody tr:hover td button {
-	font-weight: bold;
 	color: var(--primary);
+	font-weight: bold;
 }
 
 tbody tr td button:hover {
-	font-weight: bolder;
 	color: var(--neutral);
+	font-weight: bolder;
 }
 
 #history-no-results {
@@ -147,7 +147,6 @@ tbody tr td button:hover {
 	font-size: calc(var(--desktop-font-size) * 1.5);
 	text-align: center;
 }
-
 
 /* Mobile & Tablet */
 @media screen and (max-width: 1080px) {
@@ -166,8 +165,8 @@ tbody tr td button:hover {
 	}
 
 	tbody tr td button {
-		font-size: calc(var(--mobile-font-size) * 1.25);
 		color: var(--secondary);
+		font-size: calc(var(--mobile-font-size) * 1.25);
 	}
 
 	.table-date {
@@ -191,69 +190,46 @@ tbody tr td button:hover {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Date Picker */
 .react-datepicker {
 	font-size: 0.8em !important;
-  }
-  .react-datepicker__header {
+}
+
+.react-datepicker__header {
 	padding-top: 0.5em !important;
-  }
-  .react-datepicker__month {
+}
+
+.react-datepicker__month {
 	margin: 0.2em 0.5em !important;
-  }
-  .react-datepicker__day-name, .react-datepicker__day {
+}
+
+.react-datepicker__day-name, .react-datepicker__day {
 	width: 1.5em !important;
 	line-height: 1.3em !important;
 	margin: 0.2em !important;
-  }
-  .react-datepicker__current-month {
+}
+
+.react-datepicker__current-month {
 	font-size: 0.8em !important;
-  }
-  .react-datepicker__navigation {
+}
+
+.react-datepicker__navigation {
 	top: 0.25em !important;
 	line-height: 1.5em !important;
 	width: 1.5em !important;
 	height: 1.5em !important;
 	border: 0.2em solid var(--neutral) !important;
 	border-radius: 50% !important;
-  }
+}
   
-  .react-datepicker__navigation--previous {
+.react-datepicker__navigation--previous {
 	left: 1em !important;
 	background-color: var(--link) !important;
 	border-radius: 50% !important;
-  }
+}
 
-  .react-datepicker__navigation--next {
+.react-datepicker__navigation--next {
 	right: 1em !important;
 	background-color: var(--link) !important;
 	border-radius: 50% !important;
-  }
-
-
-
-
-
+}

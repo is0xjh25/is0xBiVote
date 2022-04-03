@@ -1,9 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import Main from './Main.js';
 import Single from './Single.js';
 import './History.css';
+
+const demoVote = [
+	{
+		id: 1,
+		name: "Do aliens exists?",
+		date: "12/03/2021"
+	},
+	{
+		id: 2,
+		name: "Is Messi better than Ronaldo?",
+		date: "11/03/2021"
+	},
+	{
+		id: 3,
+		name: "Cat or Dog?",
+		date: "12/02/2021"
+	},
+	{
+		id: 4,
+		name: "Earth is flat.",
+		date: "11/01/2021"
+	},
+	{
+		id: 5,
+		name: "Pinapple on piazza?",
+		date: "12/03/2020"
+	}
+]
 
 const History = () => {
 	
@@ -14,64 +42,6 @@ const History = () => {
 	const [selected, setSelected] = useState();
   const navigate = useNavigate();
 	const { id } = useParams();
-
-	const demoVote = [
-		{
-			id: 1,
-			name: "Do aliens exists?",
-			date: "12/03/2021"
-		},
-		{
-			id: 2,
-			name: "Is Messi better than Ronaldo?",
-			date: "11/03/2021"
-		},
-		{
-			id: 3,
-			name: "Cat or Dog?",
-			date: "12/02/2021"
-		},
-		{
-			id: 4,
-			name: "Earth is flat.",
-			date: "11/01/2021"
-		},
-		{
-			id: 5,
-			name: "Pinapple on piazza?",
-			date: "12/03/2020"
-		},
-		{
-			id: 4,
-			name: "Earth is flat.",
-			date: "11/01/2021"
-		},
-		{
-			id: 4,
-			name: "Earth is flat.",
-			date: "11/01/2021"
-		},
-		{
-			id: 4,
-			name: "Earth is flat.",
-			date: "11/01/2021"
-		},
-		{
-			id: 4,
-			name: "Earth is flat.",
-			date: "11/01/2021"
-		},
-		{
-			id: 4,
-			name: "Earth is flat.",
-			date: "11/01/2021"
-		},
-		{
-			id: 4,
-			name: "Earth is flat.",
-			date: "11/01/2021"
-		},
-	]
 
 	const redirectPage = (page, url) => {
 		navigate(url);
@@ -107,12 +77,11 @@ const History = () => {
 			redirectPage('main', '/history');
 		} else {
 			setSelected(id);
-			alert(id);
 			setPage('single');
 		}
 
 		// initialize
-		setKeyword("");
+		setKeyword('');
 		setStartDate(new Date());
 		setList([]);
 
@@ -135,14 +104,15 @@ const History = () => {
   }, [])
 
 	return (
-		<div id='history-frame'>
+		<>
 			{
-				page === 'main' ? 
-				<Main redirectPage={redirectPage} handleOnChange={handleOnChange} handleOnSubmit={handleOnSubmit} list={list} startDate={startDate} keyword={keyword} setStartDate={setStartDate} setKeyword={setKeyword}/> 
-				: 
-				<Single redirectPage={redirectPage}/> 
+				page === 'main' ? (
+					<Main redirectPage={redirectPage} handleOnChange={handleOnChange} handleOnSubmit={handleOnSubmit} list={list} startDate={startDate} keyword={keyword} setStartDate={setStartDate} setKeyword={setKeyword}/> 
+				) : ( 
+					<Single redirectPage={redirectPage}/>
+				) 
 			}
-		</div>
+		</>
   );
 }
 

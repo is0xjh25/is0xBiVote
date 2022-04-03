@@ -19,20 +19,20 @@ const Home = () => {
 					</p>
 				</div>
 				<div className='home-description'>
-					<h6>Ready to go? Pick a topic!<FaHandPointRight /></h6>
+					<h6>Ready to go? Pick a topic!<FaHandPointRight/></h6>
 				</div>
 			</div>
 			<div id='home-right'>
-				<button className="home-options-1 btn btn-outline-warning shadow">
+				<button className='home-options-1 btn btn-outline-warning shadow'>
 					WORLD
 				</button>
-				<button className="home-options-2 btn btn-outline-warning shadow">
+				<button className='home-options-2 btn btn-outline-warning shadow'>
 					SPORT
 				</button>
-				<button className="home-options-1 btn btn-outline-warning shadow">
+				<button className='home-options-1 btn btn-outline-warning shadow'>
 					MYSTERY
 				</button>
-				<button className="home-options-2 btn btn-outline-warning shadow">
+				<button className='home-options-2 btn btn-outline-warning shadow'>
 					ENTERTAINMENT
 				</button>
 			</div>

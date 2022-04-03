@@ -3,8 +3,8 @@
 	flex-direction: row;
 	width: 100%;
 	height: 100%;
-	color: var(--secondary);
 	font-size: calc(var(--desktop-font-size) * 0.5);
+	color: var(--secondary);
 }
 
 .footer-section {
@@ -28,11 +28,11 @@
 }
 
 #footer-logo-image {
+	height: 80%;
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	margin: auto;
-	height: 80%;
 }
 
 #footer-frame a {
@@ -48,10 +48,8 @@
 	white-space: pre;
 }
 
-
 /* Mobile & Tablet */
 @media screen and (max-width: 1080px) {
-	
 	#footer-frame {
 		flex-direction: column;
 		font-size: calc(var(--mobile-font-size) * 0.8);
@@ -68,8 +66,8 @@
 	}
 		
 	#footer-logo-image {
+		width: 25%;
 		position: relative;
 		top: 10%;
-		width: 25%;
 	}
 }

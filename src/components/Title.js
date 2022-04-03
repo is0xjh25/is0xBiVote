@@ -3,13 +3,15 @@ import './Title.css';
 
 const Title = (props) => {
 	
-	const { id, name, type, status } = props;
+	const { info } = props;
 
 	return (
-		<div className='title'>
-			<span id='title-id'># {id}</span>
-			<span id='title-status'><strong>{status.toUpperCase()}</strong></span>
-			<span id='title-type-name'>[{type.toUpperCase()}] <strong>{name}</strong></span>
+		<div className='title-section'>
+			<div className='title'>
+				<span id='title-id'># {info.id}</span>
+				<span id='title-status'><strong>{info.status.toUpperCase()}</strong></span>
+				<span id='title-type-name'>[{info.type.toUpperCase()}] <strong>{info.name}</strong></span>
+			</div>
 		</div>
 	)
 }

@@ -11,7 +11,7 @@ render(
   anchorOrigin={{
     vertical: 'bottom',
     horizontal: 'center',
-    TransitionComponent: "Slide",
+    TransitionComponent: 'Slide',
   }}
   >
     <App />
