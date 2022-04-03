@@ -23,10 +23,15 @@ const demoAnalysis = {
 	hardToTell: 4
 }
 
-const Single = (props) => {
+const Vote = () => {
 	
-	const { redirectPage } = props;
 	const { id } = useParams();
+
+	const isValidID = (id) => {
+		id = parseInt(id);
+		if (id === NaN) return false;
+		return id < 10;
+	};
 
 	return (
 		<div id='history-frame'>
@@ -34,10 +39,10 @@ const Single = (props) => {
 			<div className='main-section'>
 				<div className='post-section'>
 				</div>
-				<Analysis info={demoAnalysis} redirectPage={redirectPage}/>
+				<Analysis info={demoAnalysis}/>
 			</div>
 		</div>
 	)
 }
 
-export default Single;
+export default Vote;

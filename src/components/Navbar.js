@@ -24,7 +24,13 @@ const NavBar = (props) => {
 					<span>i</span>
 					Vote
 				</span>
-				<div className='navbar-link' style={{flex: 2}}>
+				<div className='navbar-link' style={{flex: 4, textAlign: 'end'}}>
+					<a href='/profile'>
+						{props.user}
+						<MdAccountBox/>				
+					</a>
+				</div>
+				<div className='navbar-link'>
 					<a href='#'>
 						VOTE
 						<MdHowToVote/>
@@ -34,12 +40,6 @@ const NavBar = (props) => {
 					<a href='/history'>
 						HISTORY
 						<MdHistoryEdu/>
-					</a>
-				</div>
-				<div className='navbar-link'>
-					<a href='/profile'>
-						{props.user}
-						<MdAccountBox/>				
 					</a>
 				</div>
 				<div className='navbar-link' style={{flex: 1, textAlign: 'center'}}>
