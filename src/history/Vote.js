@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import Title from '../components/Title.js';
 import Analysis from '../components/Analysis.js';
 import './History.css';
@@ -25,13 +26,18 @@ const demoAnalysis = {
 
 const Vote = () => {
 	
+	const navigate = useNavigate();
 	const { id } = useParams();
 
 	const isValidID = (id) => {
 		id = parseInt(id);
-		if (id === NaN) return false;
+		if (isNaN(id)) return false;
 		return id < 10;
 	};
+
+	useEffect(() => {
+		if (!isValidID(id)) navigate('./history');
+	}, []);
 
 	return (
 		<div id='history-frame'>

@@ -24,7 +24,7 @@ const NavBar = (props) => {
 					<span>i</span>
 					Vote
 				</span>
-				<div className='navbar-link' style={{flex: 4, textAlign: 'end'}}>
+				<div className='navbar-link' style={{flex: 3, textAlign: 'end'}}>
 					<a href='/profile'>
 						{props.user}
 						<MdAccountBox/>				
