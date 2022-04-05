@@ -67,3 +67,19 @@
 	padding-top: 2%;
 	word-break: break-word;
 }
+
+/* Mobile & Tablet */
+@media screen and (max-width: 1080px) {
+	.single-post {
+		font-size: calc(var(--mobile-font-size) * 0.8);
+	}
+
+	.single-post-poster button {
+		font-size: calc(var(--mobile-font-size) * 0.8);
+	}
+
+	.single-post-poster button > * {
+		font-size: calc(var(--mobile-font-size) * 0.8);
+		pointer-events: none;
+	}
+}

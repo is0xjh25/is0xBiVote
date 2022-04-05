@@ -81,7 +81,7 @@ const SinglePost = (props) => {
 			<div className='single-post-content'>
 				{
 					isEmpty(info) ? (
-  					<textarea class="form-control" rows="4" id="comment"></textarea>
+  					<textarea className="form-control" rows="4" id="post-new-post"></textarea>
 					) : (
 						<p>{content}</p>
 					)

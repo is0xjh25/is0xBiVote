@@ -42,7 +42,7 @@
 		position: relative;
 		margin: 0 auto;
 		padding: 1.5%;
-		font-size: calc(var(--desktop-font-size) * 1.5);
+		font-size: calc(var(--mobile-font-size) * 1);
 	}
 
 	.analysis-data-mobile {
@@ -59,14 +59,14 @@
 	}
 
 	.analysis-section button {
-		font-size: calc(var(--desktop-font-size) * 1);
+		font-size: calc(var(--mobile-font-size) * 0.8);
 	}
 
 	.analysis-section .progress {
 		width: 100%;
 		font-weight: bold;
 		font-family: var(--sub-font);
-		border: calc(var(--desktop-font-size) * 0.1);
+		border: calc(var(--mobile-font-size) * 0.1);
 		border-style: solid;
 	}
 }

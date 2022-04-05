@@ -12,7 +12,7 @@ const Login = () => {
 	useEffect(() => {
 		setPage('main')
 
-		return = () => {
+		return () => {
 			setPage();
 		}
 	}, [])
