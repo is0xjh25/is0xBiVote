@@ -18,12 +18,17 @@
 	font-size: smaller;
 }
 
+#title-type-name strong{
+	font-style: italic;
+	font-size: larger;
+}
+
 #title-status {
 	flex: 2;
 }
 
 /* Mobile */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1080px) {
 	.title {
 		flex-direction: column;
 	}

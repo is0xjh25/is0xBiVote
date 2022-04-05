@@ -5,12 +5,13 @@ import './Profile.css';
 
 const Profile = () => {
 	
-	const [page, setPage] = useState();
-	const [username, setUsername] = useState();
-	const [email, setEmail] = useState();
-	const [password, setPassword] = useState();
+	const [page, setPage] = useState('');
+	const [username, setUsername] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
 	useEffect(() => {
+		
 		setPage('main');
 		setUsername("is0xjh25")
 		setEmail("is0.jimhsiao@gmail.com");

@@ -3,8 +3,9 @@ import './Profile.css';
 
 const Edit = (props) => {
 
-	const [emailTemp, setEmailTemp] = useState();
-	const [passwordTemp, setPasswordTemp] = useState();
+	const { setPage, setEmail, setPassword, username, email, password } = props;
+	const [emailTemp, setEmailTemp] = useState('');
+	const [passwordTemp, setPasswordTemp] = useState('');
 
 	const handleOnChange = (e) => {
 		if (e.target.name === 'email') {
@@ -16,14 +17,14 @@ const Edit = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		props.setEmail(emailTemp);
-		props.setPassword(passwordTemp);
-		props.setPage('main');
+		setEmail(emailTemp);
+		setPassword(passwordTemp);
+		setPage('main');
 	};
 
 	useEffect(() => {
-		setEmailTemp(props.email);
-		setPasswordTemp(props.password);
+		setEmailTemp(email);
+		setPasswordTemp(password);
     // const cookie= getCookie('token');
 
     // if (cookie === "") {
@@ -44,7 +45,7 @@ const Edit = (props) => {
 			<div className='profile-left'>
 				<div className='profile-section'>
 					<label htmlFor='profile-username'>username</label>
-					<input type='text' id='profile-username' value={props.username} disabled/>
+					<input type='text' id='profile-username' value={username} disabled/>
 				</div>
 				<div className='profile-section'>
 					<label htmlFor='profile-email'>email</label>
@@ -57,7 +58,7 @@ const Edit = (props) => {
 			</div>
 			<div id='profile-right-edit'>
 				<div className='profile-section profile-button-set'>
-					<button type='submit' className='btn btn-outline-danger shadow' id='profile-discard' onClick={()=>props.setPage('main')}>DISCARD</button>
+					<button type='submit' className='btn btn-outline-danger shadow' id='profile-discard' onClick={()=>setPage('main')}>DISCARD</button>
 					<button type='submit' className='btn btn-outline-success shadow' id='profile-update' onClick={handleSubmit}>UPDATE</button>
 				</div>
 			</div>

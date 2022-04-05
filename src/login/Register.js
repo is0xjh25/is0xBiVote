@@ -2,6 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Rescue = (props) => {
+
+	const { setPage } = props;
+	
 	return (
 		<div className='login-form'>
 			<h2>REGISTER</h2>
@@ -28,8 +31,8 @@ const Rescue = (props) => {
 				<button type='submit' className='btn btn-outline-warning shadow login-submit'>CONFIRM</button>
 			</form>
 			<div className='login-nav'>
-				<NavLink to='/login' onClick={()=>props.setPage('main')}>{"Login!"}</NavLink>
-				<NavLink to='/login' onClick={()=>props.setPage('rescue')}>{"Forgot Password?"}</NavLink>
+				<NavLink to='/login' onClick={()=>setPage('main')}>{"Login!"}</NavLink>
+				<NavLink to='/login' onClick={()=>setPage('rescue')}>{"Forgot Password?"}</NavLink>
 			</div>
 		</div>
 	)

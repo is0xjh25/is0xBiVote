@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Favicon from '../images/Bivote-favicon.png';
 import Main from './Main.js';
 import Register from './Register.js';
@@ -7,7 +7,15 @@ import './Login.css';
 
 const Login = () => {
 	
-	const [page, setPage] = useState('main');
+	const [page, setPage] = useState('');
+
+	useEffect(() => {
+		setPage('main')
+
+		return = () => {
+			setPage();
+		}
+	}, [])
 
 	return (
 		<div id='login-frame'>

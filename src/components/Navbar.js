@@ -6,6 +6,9 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import './Navbar.css';
 
 const NavBar = (props) => {
+	
+	const { user } = props;
+
   return (
 		<div id='navbar-frame'>
 			<div id='navbar-left'>
@@ -55,7 +58,7 @@ const NavBar = (props) => {
 				<div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuButton'>
 					<a className='dropdown-item' href='#'>VOTE<MdHowToVote/></a>
 					<a className='dropdown-item' href='/history'>HISTORY<MdHistoryEdu/></a>
-					<a className='dropdown-item' href='/profile'>{props.user}<MdAccountBox/></a>
+					<a className='dropdown-item' href='/profile'>{user}<MdAccountBox/></a>
 				</div>
 			</div>
 		</div>

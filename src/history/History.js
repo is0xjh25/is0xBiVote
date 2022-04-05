@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import Main from './Main.js';
-import DatePicker from 'react-datepicker';
 import { MdFindInPage } from 'react-icons/md';
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './History.css';
 
@@ -37,14 +36,14 @@ const demoVote = [
 
 const History = (props) => {
 	
+	const { history, setHistory } = props; 
+	const { id } = useParams();
   const navigate = useNavigate();
 	const [list, setList] = useState([]);
 	const [keyword, setKeyword] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
 	const [selected, setSelected] = useState(new Date());
 	const [firstVisit, setFirstVisit] = useState(false);
-	const { history, setHistory } = props; 
-	const { id } = useParams();
 
 	const handleOnChange = (e) => {
 		if (e.target.id === 'history-search-keyword') {
@@ -82,6 +81,7 @@ const History = (props) => {
 			setKeyword();
 			setStartDate();
 			setSelected();
+			setFirstVisit();
     }
   }, [])
 
@@ -117,7 +117,7 @@ const History = (props) => {
 								<tr key={vote.id}>
 									<td className='table-date' scope='row'>{vote.date}</td>
 									<td className='table-topic'>{vote.name}</td>
-									<td className='table-detail'><button onClick={()=>navigate(`/find/${vote.id}`)}><MdFindInPage/></button></td>
+									<td className='table-detail'><button onClick={()=>navigate(`/history/${vote.id}`)}><MdFindInPage/></button></td>
 								</tr>
 							))}
 							</tbody>

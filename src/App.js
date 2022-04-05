@@ -5,7 +5,7 @@ import Footer from './components/Footer.js';
 import Home from './home/Home.js';
 import Profile from './profile/Profile.js';
 import History from './history/History.js';
-import Vote from './history/Vote.js';
+import Result from './result/Result.js';
 import Login from './login/Login.js';
 
 class App extends Component {
@@ -42,8 +42,8 @@ class App extends Component {
   render() {
     return (
       <>
-      <Router>
-        { window.location.pathname !== '/login' ? <header><NavBar user={this.state.user}/> </header> : null }
+        { window.location.pathname !== '/login' ? <header><NavBar user={this.state.user}/></header> : null }
+        <Router>
           { 
             window.location.pathname !== '/login' ? (
               <main>
@@ -51,8 +51,8 @@ class App extends Component {
                   <Route exact path='/' element={<Home/>}/>
                   <Route exact path='/profile' element={<Profile/>}/>
                   <Route exact path='/history' element={<History history={this.state.history} setHistory={this.setHistory}/>}/>
-                  <Route exact path='/find/:id' element={<Vote/>}/>
-                  <Route path='/vote' element={<Home/>}/>
+                  <Route exact path='/history/:id' element={<Result/>}/>
+                  <Route exact path='/vote' element={<Home/>}/>
                 </Routes>
               </main>
             ) : (
@@ -63,8 +63,8 @@ class App extends Component {
               </main>
             )
           }
-        { window.location.pathname !== '/login' ? <footer><Footer/></footer> : null }
         </Router>
+        { window.location.pathname !== '/login' ? <footer><Footer/></footer> : null }
       </>
     );
   }
