@@ -7,6 +7,7 @@ import Profile from './profile/Profile.js';
 import History from './history/History.js';
 import Result from './result/Result.js';
 import Login from './login/Login.js';
+import VoteEntry from './vote/VoteEntry.js';
 
 class App extends Component {
   
@@ -52,7 +53,7 @@ class App extends Component {
                   <Route exact path='/profile' element={<Profile/>}/>
                   <Route exact path='/history' element={<History history={this.state.history} setHistory={this.setHistory}/>}/>
                   <Route exact path='/history/:id' element={<Result/>}/>
-                  <Route exact path='/vote' element={<Home/>}/>
+                  <Route exact path='/vote' element={<VoteEntry/>}/>
                 </Routes>
               </main>
             ) : (
@@ -68,6 +69,6 @@ class App extends Component {
       </>
     );
   }
-}
+};
 
 export default App;

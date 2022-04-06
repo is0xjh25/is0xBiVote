@@ -34,7 +34,7 @@ const NavBar = (props) => {
 					</a>
 				</div>
 				<div className='navbar-link'>
-					<a href='#'>
+					<a href='/vote'>
 						VOTE
 						<MdHowToVote/>
 					</a>
@@ -56,7 +56,8 @@ const NavBar = (props) => {
 					<AiOutlineMenu/>
 				</button>
 				<div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuButton'>
-					<a className='dropdown-item' href='#'>VOTE<MdHowToVote/></a>
+					<a className='dropdown-item' href='#'>MODE<CgDarkMode/></a>
+					<a className='dropdown-item' href='/vote'>VOTE<MdHowToVote/></a>
 					<a className='dropdown-item' href='/history'>HISTORY<MdHistoryEdu/></a>
 					<a className='dropdown-item' href='/profile'>{user}<MdAccountBox/></a>
 				</div>
