@@ -5,7 +5,7 @@ import './Post.css';
 
 const Post = (props) => {
 
-	const { info } = props;
+	const { info, ownedFN } = props;
 	const[page, setPage] = useState('');
 	const[yesPost, setYesPost] = useState([]);
 	const[noPost, setNoPost] = useState([]);
@@ -43,10 +43,14 @@ const Post = (props) => {
 						<input type='radio' className='btn-check' name='btnradio' id='btnradio2' autoComplete='off' value='no'/>
 						<span className='text-danger'>NO</span>
 					</span>
-					<span className='post-option'>
-						<input type='radio' className='btn-check' name='btnradio' id='btnradio3' autoComplete='off' value='owned'/>
-						<span className='text-info'>OWNED</span>
-					</span>
+					{
+						ownedFN ? (
+							<span className='post-option'>
+							<input type='radio' className='btn-check' name='btnradio' id='btnradio3' autoComplete='off' value='owned'/>
+							<span className='text-info'>OWNED</span>
+							</span>
+						) : null
+					}
 			</div>
 			<div id='post-main'>
 				{

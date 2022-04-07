@@ -57,18 +57,22 @@
 }
 
 .btn-outline-info {
+	color: var(--link);
   	border-color: var(--link);
 }
 
 .btn-outline-info:hover {
+	color: var(--secondary);
   	background-color: var(--link);
 }
 
 .btn-outline-warning {
+	color: var(--neutral);
   	border-color: var(--neutral);
 }
 
 .btn-outline-warning:hover {
+	color: var(--secondary);
   	background-color: var(--neutral);
 }
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import { countDown } from '../utilities/Utilities.js';
-import Title from '../components/Title.js';
 import './Vote.css';
 
 const VotePick = (props) => {
@@ -21,53 +20,56 @@ const VotePick = (props) => {
 	}, []);
 
 	return (
-		<div id='vote-pick-frame'>
-			<Title info={info}/>
-			<div id='vote-pick-desktop' className='main-section'>
+		<>
+			<div id='vote-pick-desktop'>
 				<div className='vote-pick-section' name='yes'>
 					<button type='submit' className='btn btn-outline-success shadow' name={status} value={'yes'} onClick={handleOnSubmit}>YES</button>
 				</div>
 				<div className='vote-pick-section' name='info'>
 					{
 						status === 'voteOne' ? (
-							<span><strong>1st VOTE</strong></span>
+							<span className='vote-title'><strong>1st VOTE</strong></span>
 						) : status === 'voteTwo' ? (
-							<span>2nd VOTE</span>
+							<span className='vote-title'><strong>2nd VOTE</strong></span>
 						) : null
 					}
-					<span>Time Remaining...</span>
+					<span>Clock is ticking...</span>
 					<span>{dueTime}</span>
 					<span className='vote-pick-sub-button-set'>
-						<button type='submit' className='' name={status} value={'noIdea'}>no idea</button>
-						<button type='submit' className='' name={status} value={'notInterested'} onClick={handleOnSubmit}>not interested</button>
+						<button type='submit' className='' name={status} value={'noIdea'} onClick={handleOnSubmit}>no idea</button>
+						{
+							status === 'voteOne' ? (
+								<button type='submit' className='' name={status} value={'notInterested'} onClick={handleOnSubmit}>not interested</button>
+							) : null
+						}
 					</span>
 				</div>
 				<div className='vote-pick-section' name='no'>
-					<button type='submit' className='btn btn-outline-danger shadow' name={status} value={'no'}>NO</button>
+					<button type='submit' className='btn btn-outline-danger shadow' name={status} value={'no'} onClick={handleOnSubmit}>NO</button>
 				</div>
 			</div>
-			<div id='vote-pick-mobile' className='main-section'>
+			<div id='vote-pick-mobile'>
 				<div className='vote-pick-main-button-set'>
 					<button type='submit' className='btn btn-outline-success shadow' name={status} value={'yes'} onClick={handleOnSubmit}>YES</button>
-					<button type='submit' className='btn btn-outline-danger shadow' name={status} value={'no'}>NO</button>
+					<button type='submit' className='btn btn-outline-danger shadow' name={status} value={'no'} onClick={handleOnSubmit}>NO</button>
 				</div>
 				<div className='vote-pick-section' name='info'>
 					{
 						status === 'voteOne' ? (
-							<span><strong>1st VOTE</strong></span>
+							<span className='vote-title'><strong>1st VOTE</strong></span>
 						) : status === 'voteTwo' ? (
-							<span>2nd VOTE</span>
+							<span className='vote-title'>2nd VOTE</span>
 						) : null
 					}
-					<span>Time Remaining...</span>
+					<span>Clock is ticking...</span>
 					<span>{dueTime}</span>
 					<span className='vote-pick-sub-button-set'>
-						<button type='submit' className='' name={status} value={'noIdea'}>no idea</button>
-						<button type='submit' className='' name={status} value={'notInterested'} onClick={handleOnSubmit}>not interested</button>
+						<button type='submit' name={status} value={'noIdea'} onClick={handleOnSubmit}>no idea</button>
+						<button type='submit' name={status} value={'notInterested'} onClick={handleOnSubmit}>not interested</button>
 					</span>
 				</div>
 			</div>
-		</div>
+		</>
 	)
 };
 

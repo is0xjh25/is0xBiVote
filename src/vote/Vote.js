@@ -1,8 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router';
+import Title from '../components/Title.js';
 import VotePick from './VotePick';
-import Result from '../result/Result.js';
+import ReadPost from './ReadPost';
 import './Vote.css';
 
 const demoVote = {
@@ -11,10 +12,11 @@ const demoVote = {
 	voteType: "mystery",
 	voteStatus: "progressing",
 	endTime: "April 8 2022 00:00:00",
-	preStatus: "voteOne"
+	preStatus: "start"
 }
 
 const demoPost = {
+	endTime: "April 8 2022 00:00:00",
 	yesPost: 
 	[
 		{
@@ -104,6 +106,7 @@ const Vote = () => {
 				//api preStatus: voteOne voteOne: e.target.value voteTwo: e.target.value
 				navigate(`/history/${demoVote.voteID}`)
 			} else {
+				
 				//api preStatus: voteOne voteOne: e.target.value
 				setPage('reading');
 			}
@@ -151,17 +154,20 @@ const Vote = () => {
 	}, []);
 
 	return (
-		<>
-			{	
-				page === 'voteOne' ? (
-					<VotePick info={info} status={page} handleOnSubmit={handleOnSubmit}/>
-				) : page === 'reading' ? (
-					<VotePick info={info} status={page}/>
-				) :	page === 'voteTwo' ? (
-					<VotePick info={info} status={page} handleOnSubmit={handleOnSubmit}/>
-				) : null
-			}
-		</>
+		<div id='vote-frame'>
+			<Title info={demoVote}/>
+			<div className='main-section'>
+				{	
+					page === 'voteOne' ? (
+						<VotePick info={info} status={page} handleOnSubmit={handleOnSubmit}/>
+					) : page === 'reading' ? (
+						<ReadPost info={demoPost} status={page} handleOnSubmit={handleOnSubmit}/>
+					) :	page === 'voteTwo' ? (
+						<VotePick info={info} status={page} handleOnSubmit={handleOnSubmit}/>
+					) : null
+				}
+			</div>
+		</div>
 	)
 };
 

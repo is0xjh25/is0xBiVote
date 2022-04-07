@@ -11,7 +11,7 @@ const demoTitle = {
 	voteID: 1,
 	voteName: "Do aliens exists?",
 	voteType: "mystery", 
-	voteStatus: "progressing" //closed
+	voteStatus: "closed" //closed
 }
 
 const demoAnalysis = {
@@ -25,7 +25,7 @@ const demoAnalysis = {
 	changeMind: 50,
 	inspiredByOthers: 10,
 	hardToTell: 4,
-	voteStatus: "progressing" //closed
+	voteStatus: "closed" //closed
 }
 
 const demoPost = {
@@ -123,7 +123,7 @@ const Result = () => {
 			<Title info={demoTitle}/>
 			<div className='main-section'>
 				<Analysis info={demoAnalysis}/>
-				<Post info={demoPost}/>
+				<Post info={demoPost} ownedFN={true}/>
 			</div>
 		</div>
 	)
