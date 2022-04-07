@@ -24,7 +24,7 @@ const Home = () => {
 				</span>	
 			</div>
 		</div>
-  );
+  )
 };
 
 export default Home;

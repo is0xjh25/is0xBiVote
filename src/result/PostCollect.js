@@ -17,13 +17,13 @@ const SinglePost = (props) => {
 			} else if (e.target.value === 'false') {
 				setIsUpvoted(true);
 				// call api (userID, postID, e.target.value)
-			}
-		}
-	}
+			};
+		};
+	};
 
 	// delete post and refresh
 	const handleOnDelete = () => {
-	}
+	};
 
 	useEffect(() => {
 		setIsUpvoted(upvoted);
@@ -70,9 +70,7 @@ const SinglePost = (props) => {
 									<span>
 										<button type='submit' className='btn btn-outline-danger shadow' onClick={handleOnDelete}>DELETE</button>
 									</span>
-								) : (
-									null
-								)
+								) : null
 							}
 						</>
 					)
@@ -89,7 +87,7 @@ const SinglePost = (props) => {
 			</div>
 		</div>
 	)
-}
+};
 
 const PostCollect = (props) => {
 	const { status, type, info } = props;

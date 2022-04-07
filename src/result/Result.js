@@ -11,7 +11,7 @@ const demoTitle = {
 	voteID: 1,
 	name: "Do aliens exists?",
 	type: "mystery", 
-	status: "progressing"
+	status: "progressing" //closed
 }
 
 const demoAnalysis = {
@@ -24,7 +24,7 @@ const demoAnalysis = {
 	changeMind: 50,
 	inspiredByOthers: 10,
 	hardToTell: 4,
-	status: "progressing"
+	status: "progressing" //closed
 }
 
 const demoPost = {
@@ -112,7 +112,7 @@ const Result = () => {
 	};
 
 	useEffect(() => {
-		if (!isValidID(id)) navigate('./history');
+		if (!isValidID(id)) navigate('/history');
 		// fetch data
 		// if expiry status = finish else status = ongoing
 	}, []);
@@ -126,6 +126,6 @@ const Result = () => {
 			</div>
 		</div>
 	)
-}
+};
 
 export default Result;

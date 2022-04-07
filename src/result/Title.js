@@ -14,6 +14,6 @@ const Title = (props) => {
 			</div>
 		</div>
 	)
-}
+};
 
 export default Title;

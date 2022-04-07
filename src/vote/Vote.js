@@ -8,7 +8,7 @@ const demoVote = {
 	voteType: "mystery",
 	end: "2022-04-08 00:00:01",
 	preStatus: "start"
-};
+}
 
 const Vote = () => {
 
@@ -64,7 +64,7 @@ const Vote = () => {
 				) : page === 'voteTwo' ? (
 
 				) : page === 'result' ? (
-
+					<Result/>
 				) : null
 			} */}
 		</>

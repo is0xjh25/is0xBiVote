@@ -15,7 +15,7 @@ const Login = () => {
 		return () => {
 			setPage();
 		}
-	}, [])
+	}, []);
 
 	return (
 		<div id='login-frame'>
@@ -37,7 +37,7 @@ const Login = () => {
 				Developed by - is0xjh25
 			</div>
 		</div>
-  );
-}
+  )
+};
 
 export default Login;

@@ -25,7 +25,7 @@ const Footer = () => {
 				<img id='footer-logo-image' src={Favicon} alt="is0-favicon"/>
 			</div>
 		</div>
-  );
-}
+  )
+};
 
 export default Footer;

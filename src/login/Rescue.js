@@ -22,6 +22,6 @@ const Rescue = (props) => {
 			</div>
 		</div>
 	)
-}
+};
 
 export default Rescue;

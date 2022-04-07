@@ -25,6 +25,6 @@ const Main = (props) => {
 			</div>
 		</div>
 	)
-}
+};
 
 export default Main;

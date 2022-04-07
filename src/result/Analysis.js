@@ -40,13 +40,13 @@ const Analysis = (props) => {
 				{
 					info.status === 'progressing' ? (
 						<button type='submit' className='btn btn-outline-warning shadow' onClick={()=>navigate('/')}>HOME</button>
-					) : (
+					) : info.status === 'closed' ? (
 						<button type='submit' className='btn btn-outline-warning shadow' onClick={()=>navigate('/history')}>BACK</button>
-					)
+					) : null
 				}
 			</div>
 		</div>
 	)
-}
+};
 
 export default Analysis;

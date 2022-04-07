@@ -48,7 +48,7 @@ const History = (props) => {
 	const handleOnChange = (e) => {
 		if (e.target.id === 'history-search-keyword') {
 			setKeyword(e.target.value);
-		}
+		};
 	};
 
 	const handleOnSubmit = (e) => {
@@ -67,7 +67,7 @@ const History = (props) => {
 				keyword: keyword,
 				list: demoVote
 			})
-		}
+		};
 	};
 
 	useEffect(() => {
@@ -130,7 +130,7 @@ const History = (props) => {
 				}
 			</div>
 		</div>
-  );
+  )
 };
 
 export default History;

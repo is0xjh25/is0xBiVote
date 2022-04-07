@@ -14,8 +14,8 @@ const Post = (props) => {
 	const handleOnChange = (e) => {
 		if (e.target.name === 'btnradio') {
 			setPage(e.target.value);
-		} 
-	}
+		};
+	};
 
 	useEffect(() => {
 		
@@ -54,13 +54,13 @@ const Post = (props) => {
 						<PostCollect type={'yes'} info={yesPost}/>
 					) : page === 'no' ? (
 						<PostCollect type={'no'} info={noPost}/>
-					) : (
+					) : page === 'owned' ? (
 						<PostCollect type={'owned'} info={ownedPost}/>
-					)
+					) : null
 				}
 			</div>
 		</div>
 	)
-}
+};
 
 export default Post;

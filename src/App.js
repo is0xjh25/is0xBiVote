@@ -14,32 +14,32 @@ class App extends Component {
   
   constructor(props) {
     super(props);
-    this.state= { 
+    this.state = { 
       user: null,
       history: {
         startDate: null,
         keyword: null,
         list: null,
       }
-    };
-  }
+    }
+  };
   
  componentDidMount() {
     // this.setUser(checkAuthorized());
     this.setUser("1234567890");
-  }
+  };
 
   componentWillUnmount() {
     this.setUser("");
-  }
+  };
 
   setHistory = (data) => {
     this.setState({history: data});
-  }
+  };
 
   setUser = (u) => {
     this.setState({user: u});
-  }
+  };
 
   render() {
     return (
@@ -70,7 +70,7 @@ class App extends Component {
         { window.location.pathname !== '/login' ? <footer><Footer/></footer> : null }
       </>
     );
-  }
+  };
 };
 
 export default App;
