@@ -83,7 +83,7 @@ const History = (props) => {
 			setSelected();
 			setFirstVisit();
     }
-  }, [])
+  }, []);
 
 	return (
 		<div id='history-frame'>
@@ -131,6 +131,6 @@ const History = (props) => {
 			</div>
 		</div>
   );
-}
+};
 
 export default History;
