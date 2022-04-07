@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import Title from './Title.js';
-import Post from './Post.js';
+import Title from '../components/Title.js';
+import Post from '../post/Post.js';
 import Analysis from './Analysis.js';
 import './Result.css';
 
 // 記得拆分...
 const demoTitle = {
 	voteID: 1,
-	name: "Do aliens exists?",
-	type: "mystery", 
-	status: "progressing" //closed
+	voteName: "Do aliens exists?",
+	voteType: "mystery", 
+	voteStatus: "progressing" //closed
 }
 
 const demoAnalysis = {
@@ -25,7 +25,7 @@ const demoAnalysis = {
 	changeMind: 50,
 	inspiredByOthers: 10,
 	hardToTell: 4,
-	status: "progressing" //closed
+	voteStatus: "progressing" //closed
 }
 
 const demoPost = {

@@ -150,6 +150,11 @@ tbody tr td button:hover {
 
 /* Mobile & Tablet */
 @media screen and (max-width: 1080px) {
+
+	#history-result {
+		min-height: 48vh;
+	}
+
 	#history-search-bar {
 		flex-direction: column;
 		font-size: calc(var(--mobile-font-size) * 1.2);

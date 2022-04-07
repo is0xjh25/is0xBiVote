@@ -9,6 +9,7 @@
 	--negative: #C60202;
 	--neutral: #ffc107;
 	--link: #0085FF;
+	--sub: #A0A0A0;
 	--main-font: "Impact";
 	--sub-font: "Ubuntu", sans-serif;
 	--desktop-font-size: 3vw;
@@ -16,10 +17,13 @@
 }
 
 /* Boostrap Color Theme */
+.text-danger {
+	color: var(--negative);
+}
 .btn, .btn:hover {
 	color: var(--secondary);
 	font-weight: bold;
-	border: 0.2vw solid;
+	border: 0.3vw solid;
 }
 
 .btn-primary {
@@ -33,18 +37,22 @@
 }
 
 .btn-outline-success {
+	color: var(--positive);
 	border-color: var(--positive);
 }
 
 .btn-outline-success:hover {
+	color: var(--secondary);
 	background-color: var(--positive);
 }
 
 .btn-outline-danger {
+	color: var(--negative);
 	border-color: var(--negative);
 }
 
 .btn-outline-danger:hover {
+	color: var(--secondary);
 	background-color: var(--negative);
 }
 

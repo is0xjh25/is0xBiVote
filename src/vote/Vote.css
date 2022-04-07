@@ -1,0 +1,213 @@
+#vote-entry-frame {
+	display: grid;
+	grid-template-columns: 49% 49%;
+	grid-row: auto auto;
+	grid-column-gap: 2%;
+	grid-row-gap: 4%;
+	width: 90%;
+	height: 90%;
+	margin: 2% auto;
+	padding: 1%;
+}
+
+#vote-entry-frame h2 {
+	display: none;
+}
+
+.vote-options {
+	font-size: calc(var(--desktop-font-size) * 1.5);
+	font-weight: bold;
+	border: 0.5vw solid;
+	border-radius: 1vw;
+}
+
+#vote-world {
+	color: var(--primary);
+	background-color: var(--secondary);
+}
+
+#vote-world:hover {
+	color: var(--neutral);
+	background-color: var(--primary);
+	border-color: var(--neutral) ;
+}
+
+#vote-mystery {
+	color: var(--secondary);
+	background-color: var(--primary);
+}
+
+#vote-mystery:hover {
+	color: var(--neutral);
+	background-color: var(--primary);
+	border-color: var(--neutral) ;
+}
+
+#vote-sport {
+	color: var(--secondary);
+	background-color: var(--primary);
+}
+
+#vote-sport:hover {
+	color: var(--neutral);
+	background-color: var(--primary);
+	border-color: var(--neutral) ;
+}
+
+#vote-entertainment {
+	color: var(--primary);
+	background-color: var(--secondary);
+}
+
+#vote-entertainment:hover {
+	color: var(--neutral);
+	background-color: var(--primary);
+	border-color: var(--neutral) ;
+}
+
+#vote-pick-frame {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+	height: 100%;
+}
+
+.vote-pick-section {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.vote-pick-section[name='info'] {
+	justify-content: space-around;
+}
+
+.vote-pick-section > button {
+	width: 25vw;
+	height: 25vw;
+	font-family: var(--main-font);
+	font-size: calc(var(--desktop-font-size) * 4);
+}
+
+.vote-pick-sub-button-set {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100%;
+}
+
+.vote-pick-sub-button-set button {
+	color: var(--sub);
+	background-color: transparent;
+	text-decoration: underline;
+	border: none;
+}
+
+.vote-pick-sub-button-set button:hover {
+	color: var(--link);
+	background-color: transparent;
+	text-decoration: underline;
+	border: none;
+}
+
+#vote-pick-mobile {
+	display:none;
+}
+
+/* Tablet */
+@media screen and (max-width: 1080px) {
+	#vote-entry-frame {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-evenly;
+		height: 50vh;
+		padding: 2.5% 2.5% 2.5% 2.5%;
+		background-color: transparent;
+	}
+
+	#vote-entry-frame h2 {
+		display: block;
+		color: var(--secondary);
+	}
+
+	.vote-options {
+		width: 80%;
+		border: 0.5vh solid;
+		border-color: var(--neutral);
+	}
+	
+	#vote-sport {
+		color: var(--primary);
+		background-color: var(--secondary);
+	}
+	
+	#vote-entertainment {
+		color: var(--secondary);
+		background-color: var(--primary);
+	}	
+
+	#vote-pick-desktop {
+		display: none;
+	}
+
+	#vote-pick-mobile {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		min-height: 72.5vh;
+	}
+
+	.vote-pick-main-button-set {
+		flex: 2;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+		width: 100%;
+	}
+
+	.vote-pick-main-button-set > button {
+		width: 40vw;
+		height: 40vw;
+		font-family: var(--main-font);
+		font-size: calc(var(--mobile-font-size) * 4);
+	}
+
+	.vote-pick-section[name='info'] {
+		flex: 2;
+		justify-content: space-evenly;
+		font-size: calc(var(--mobile-font-size) * 1.25);
+	}
+}
+
+/* Mobile */
+@media screen and (max-width: 700px) {
+	#vote-entry-frame {
+		min-height: 60vh;
+		padding: 2.5% 2.5% 2.5% 2.5%;
+	}
+
+	.vote-options {
+		font-size: calc(var(--mobile-font-size) * 1.2);
+		width: 80%;
+		border: 0.5vh solid;
+		border-color: var(--neutral);
+	}
+	
+	#vote-sport {
+		color: var(--primary);
+		background-color: var(--secondary);
+	}
+	
+	#vote-entertainment {
+		color: var(--secondary);
+		background-color: var(--primary);
+	}
+}

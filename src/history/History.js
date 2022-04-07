@@ -27,11 +27,6 @@ const demoVote = [
 		name: "Earth is flat.",
 		date: "April 8 2022"
 	},
-	{
-		id: 5,
-		name: "Pinapple on piazza?",
-		date: "April 8 2022"
-	}
 ]
 
 const History = (props) => {

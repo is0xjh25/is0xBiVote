@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './VoteEntry.css';
+import './Vote.css';
 
 const VoteEntry = () => {
 

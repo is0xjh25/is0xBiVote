@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { countDown } from '../utilities/Utilities.js';
-import './Analysis.css';
+import './Result.css';
 
 const Analysis = (props) => {
 	
@@ -24,10 +24,13 @@ const Analysis = (props) => {
 	return (
 		<div className='analysis-section'>
 			{
-				info.status === 'closed' ? (
+				info.voteStatus === 'closed' ? (
 					<>
 						<div className='analysis-row'>
 							<span className='analysis-data-text'>{info.startTime}</span> to <span className='analysis-data-text'>{info.endTime}</span>
+						</div>
+						<div className='analysis-row analysis-data-desktop'>
+							<span>Your Vote: <span className='analysis-data-text'>{info.userVote.toUpperCase()}</span></span>
 						</div>
 						<div className='analysis-row'>
 							<div className='progress'>
@@ -54,13 +57,16 @@ const Analysis = (props) => {
 							<span>Hard To Tell: <span className='analysis-data-text'>{info.hardToTell}</span></span>
 						</div>
 					</>
-				) : info.status === 'progressing' ? (
+				) : info.voteStatus === 'progressing' ? (
 					<>
 						<div className='analysis-row'>
 							<span className='analysis-data-text'>{info.startTime}</span> to <span className='analysis-data-text'>{info.endTime}</span>
 						</div>
 						<div className='analysis-row'>
 							<span>Time Remaining: <span className='analysis-data-text'>{dueTime}</span></span>
+						</div>
+						<div className='analysis-row analysis-data-desktop'>
+							<span>Your Vote: <span className='analysis-data-text'>{info.userVote.toUpperCase()}</span></span>
 						</div>
 						<div className='analysis-row'>
 							<span>Leading Side: <span className='analysis-data-text'>{info.leading.toUpperCase()}</span></span>
@@ -80,9 +86,9 @@ const Analysis = (props) => {
 			}
 			<div className='analysis-row'>
 				{
-					info.status === 'progressing' ? (
+					info.voteStatus === 'progressing' ? (
 						<button type='submit' className='btn btn-outline-warning shadow' onClick={()=>navigate('/vote')}>MENU</button>
-					) : info.status === 'closed' ? (
+					) : info.voteStatus === 'closed' ? (
 						<button type='submit' className='btn btn-outline-warning shadow' onClick={()=>navigate('/history')}>BACK</button>
 					) : null
 				}
