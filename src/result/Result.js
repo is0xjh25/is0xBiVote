@@ -16,10 +16,11 @@ const demoTitle = {
 
 const demoAnalysis = {
 	userVote: "Yes",
-	start: "12/12/2021",
-	end: "19/12/2021",
+	startTime: "April 7 2022",
+	endTime: "April 8 2022",
 	yes: 199,
 	no: 50,
+	leading: "yes",
 	notInterested: 5,
 	changeMind: 50,
 	inspiredByOthers: 10,
@@ -121,8 +122,8 @@ const Result = () => {
 		<div id='result-frame'>
 			<Title info={demoTitle}/>
 			<div className='main-section'>
-				<Post info={demoPost}/>
 				<Analysis info={demoAnalysis}/>
+				<Post info={demoPost}/>
 			</div>
 		</div>
 	)

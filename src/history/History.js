@@ -10,27 +10,27 @@ const demoVote = [
 	{
 		id: 1,
 		name: "Do aliens exists?",
-		date: "12/03/2021"
+		date: "April 8 2022"
 	},
 	{
 		id: 2,
 		name: "Is Messi better than Ronaldo?",
-		date: "11/03/2021"
+		date: "April 8 2022"
 	},
 	{
 		id: 3,
 		name: "Cat or Dog?",
-		date: "12/02/2021"
+		date: "April 8 2022"
 	},
 	{
 		id: 4,
 		name: "Earth is flat.",
-		date: "11/01/2021"
+		date: "April 8 2022"
 	},
 	{
 		id: 5,
 		name: "Pinapple on piazza?",
-		date: "12/03/2020"
+		date: "April 8 2022"
 	}
 ]
 

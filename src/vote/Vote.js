@@ -1,13 +1,15 @@
 import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router';
+import Result from '../result/Result.js';
 import './VoteEntry.css';
 
 const demoVote = {
+	voteID: 1,
 	voteName: "Is the Loch Ness Monster real?",
 	voteType: "mystery",
-	end: "2022-04-08 00:00:01",
-	preStatus: "start"
+	endTime: "April 8 2022 00:00:00",
+	preStatus: "voteTwo"
 }
 
 const Vote = () => {
@@ -28,16 +30,17 @@ const Vote = () => {
 			navigate('/vote');
 		};
 
+
 		// call api .then
+
+		if (demoVote.preStatus === 'voteTwo') navigate(`/history/${demoVote.voteID}`)
+
 		switch(demoVote.preStatus) {
 			case 'start':
 				setPage('voteOne');
 				break;
 			case 'voteOne':
 				setPage('reading');
-				break;
-			case 'voteTwo':
-				setPage('result');
 				break;
 			default:
 				setPage('voteOne');
@@ -53,20 +56,13 @@ const Vote = () => {
 		}
 	}, []);
 
-
 	return (
 		<>
-			{/* {
-				page === 'voteOne' ? (
-
-				) : page === 'reading' ? (
-
-				) : page === 'voteTwo' ? (
-
-				) : page === 'result' ? (
+			{
+ 				page === 'result' ? (
 					<Result/>
 				) : null
-			} */}
+			}
 		</>
 	)
 };

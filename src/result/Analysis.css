@@ -36,6 +36,12 @@
 
 /* Mobile & Tablet */
 @media screen and (max-width: 1080px) {
+	.analysis-row:first-child {
+		border-top-style: solid;
+		border-top-width: calc(var(--desktop-font-size) * 0.1);
+		border-color: var(--link);
+	}
+	
 	.analysis-row {
 		flex-direction: column;
 		width: 90%;
