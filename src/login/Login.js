@@ -10,8 +10,8 @@ const Login = () => {
 	const [page, setPage] = useState('');
 
 	useEffect(() => {
+		// initialize
 		setPage('main')
-
 		return () => {
 			setPage();
 		}

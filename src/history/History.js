@@ -8,24 +8,24 @@ import './History.css';
 
 const demoVote = [
 	{
-		id: 1,
-		name: "Do aliens exists?",
-		date: "April 8 2022"
+		voteID: 1,
+		voteName: "Do aliens exists?",
+		startTime: "April 8 2022"
 	},
 	{
-		id: 2,
-		name: "Is Messi better than Ronaldo?",
-		date: "April 8 2022"
+		voteID: 2,
+		voteName: "Is Messi better than Ronaldo?",
+		startTime: "April 8 2022"
 	},
 	{
-		id: 3,
-		name: "Cat or Dog?",
-		date: "April 8 2022"
+		voteID: 3,
+		voteName: "Cat or Dog?",
+		startTime: "April 8 2022"
 	},
 	{
-		id: 4,
-		name: "Earth is flat.",
-		date: "April 8 2022"
+		voteID: 4,
+		voteName: "Earth is flat.",
+		startTime: "April 8 2022"
 	},
 ]
 
@@ -47,16 +47,16 @@ const History = (props) => {
 	};
 
 	const handleOnSubmit = (e) => {
-		if (e.target.name === 'date') {
+		if (e.target.name === 'startTime') {
+			// call api
 			setHistory({
 				startDate: startDate,
 				keyword: null,
 				list: demoVote
 			})
 		} else if (e.target.name === 'keyword') {
-			setList(list);
+			// call api 注意 set list 要用 then 和 demoVote
 			setList(demoVote);
-			//注意 set list 要用 then.
 			setHistory({
 				startDate: new Date(),
 				keyword: keyword,
@@ -66,7 +66,9 @@ const History = (props) => {
 	};
 
 	useEffect(() => {
-
+		// initialize
+		setFirstVisit(true);
+		
 		if (history.startDate) setStartDate(history.startDate);
 		if (history.keyword) setKeyword(history.keyword);
 		if (history.list) setList(history.list);
@@ -85,9 +87,9 @@ const History = (props) => {
 			<div id='history-search-bar'>
 				<div className='history-search-item'>
 					<div className='history-search-item-sub'>
-						<DatePicker id='history-date-picker' selected={startDate} onChange={(date)=>setStartDate(date)}/>
+						<DatePicker id='history-date-picker' selected={startDate} onChange={(startTime)=>setStartDate(startTime)}/>
 					</div>
-					<button name='date' type='submit' className='btn btn-outline-info shadow' onClick={(e)=> {setFirstVisit(false);handleOnSubmit(e)}}>SEARCH</button>
+					<button name='startTime' type='submit' className='btn btn-outline-info shadow' onClick={(e)=> {setFirstVisit(false);handleOnSubmit(e)}}>SEARCH</button>
 				</div>
 				<div className='history-search-item'>
 					<div className='history-search-item-sub'>
@@ -109,10 +111,10 @@ const History = (props) => {
 							</thead>
 							<tbody>
 							{list.map(vote => (  
-								<tr key={vote.id}>
-									<td className='table-date' scope='row'>{vote.date}</td>
-									<td className='table-topic'>{vote.name}</td>
-									<td className='table-detail'><button onClick={()=>navigate(`/history/${vote.id}`)}><MdFindInPage/></button></td>
+								<tr key={vote.voteID}>
+									<td className='table-date' scope='row'>{vote.startTime}</td>
+									<td className='table-topic'>{vote.voteName}</td>
+									<td className='table-detail'><button onClick={()=>navigate(`/history/${vote.voteID}`)}><MdFindInPage/></button></td>
 								</tr>
 							))}
 							</tbody>

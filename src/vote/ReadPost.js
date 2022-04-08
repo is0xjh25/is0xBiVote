@@ -6,17 +6,17 @@ import './Vote.css';
 const ReadPost = (props) => {
 	
 	const { info, status, handleOnSubmit} = props;
-	const [dueTime, setDueTime] = useState('');
+	const [endTime, setEndTime] = useState('');
 
 	useEffect(() => {
-		
+		// initialize
 		const interval = setInterval(() => {
-			setDueTime(countDown(info.endTime));
+			setEndTime(countDown(info.endTime));
 		}, 1000);
 
 		return () => {
 			clearInterval(interval);
-			setDueTime();
+			setEndTime();
 		}
 	}, []);
 
@@ -25,7 +25,7 @@ const ReadPost = (props) => {
 			<div id='vote-read-post-info'>
 				<span className='vote-title'><strong>Reading Time</strong></span>
 				<span>Clock is ticking...</span>
-				<span>{dueTime}</span>
+				<span>{endTime}</span>
 				<button type='submit' className='btn btn-outline-warning shadow' name={status} onClick={handleOnSubmit}>NEXT</button>
 			</div>
 			<Post info={info} ownedFN={false}/>

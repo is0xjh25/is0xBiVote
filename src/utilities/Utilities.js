@@ -1,3 +1,115 @@
+/* Validation */
+const handleOnValidation = (type, info) => {
+
+  let formIsValid = true;
+  let alertMessage = "";
+  let check = {};
+
+  switch(type) {
+    case 'main':
+      if (!info.password) {
+        alertMessage = "password cannot be empty";
+        formIsValid = false;
+      } else if (!info.username) {
+        alertMessage = "username cannot be empty";
+        formIsValid = false;
+      };
+      break;
+    case 'rescue':
+      check = emailValidation(info.email);
+      if (!check.valid) {
+        alertMessage = check.message;
+        formIsValid = false;
+      } 
+      break;
+    case 'register':
+      check = passwordValidation(info.password, info.passwordTwo);
+      if (!check.valid) {
+        alertMessage = check.message;
+        formIsValid = false;
+      }
+      check = usernameValidation(info.username);
+      if (!check.valid) {
+        alertMessage = check.message;
+        formIsValid = false;
+      }  
+      check = emailValidation(info.email);
+      if (!check.valid) {
+        alertMessage = check.message;
+        formIsValid = false;
+      } 
+      break;
+    case 'profile':
+      check = passwordValidation(info.password, info.passwordTwo);
+      if (!check.valid) {
+        alertMessage = check.message;
+        formIsValid = false;
+      }
+      check = emailValidation(info.email);
+      if (!check.valid) {
+        alertMessage = check.message;
+        formIsValid = false;
+      }  
+      break;
+    default:
+      break;
+  }
+  
+  return {valid: formIsValid, message: alertMessage};
+};
+
+function usernameValidation (u) {
+  
+  if (!u) {
+    return {valid: false, message: "username cannot be empty"};
+  } else if (typeof u !== 'undefined') {
+    let regex = /^[A-Za-z\d,-]{1,12}$/;
+    if (!regex.test(u)) {
+      return {valid: false, message: "username should have not greater than 12 characters without special character except '-'"}; 
+    } 
+    // else if (userExist(u)) {
+    //   return {valid: false, message: "The username has been registered"}; 
+    // }
+  }
+
+  return {valid: true, message: "valid username"};
+}
+
+function emailValidation (e) {
+  
+  if (!e) {
+    return {valid: false, message: "email cannot be empty"};
+  } else if (typeof e !== 'undefined') {
+    let lastAtPos = e.lastIndexOf('@');
+    let lastDotPos = e.lastIndexOf('.');
+    if (!(lastAtPos < lastDotPos && lastAtPos > 0 && e.indexOf('@@') === -1 && lastDotPos > 2 && (e.length - lastDotPos) > 2)) {
+      return {valid: false, message: "invalid email"}; 
+    } 
+    // else if (emailExist(e)) {
+    //   return {valid: false, message: "The email has been registered"}; 
+    // }
+  }
+
+  return {valid: true, message: "valid email"};
+}
+
+function passwordValidation (p1, p2) {
+  
+  if (!p1 || !p2) {
+    return {valid: false, message: "password cannot be empty"};
+  } else if (typeof p1 !== 'undefined' && typeof p2 !== 'undefined') {
+    let regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}$/;
+    if (!regex.test(p1)) {
+      return {valid: false, message: "password needs to between 8 to 32 characters mixture of letters and numbers"};
+    } else if ( p1 !== p2) {
+      return {valid: false, message: "password do not match"};
+    };
+  };
+
+  return {valid: true, message: "valid password"};
+}
+
+/* Timer */
 function countDown(endTime) {
   
 	let now = new Date().getTime();
@@ -13,5 +125,6 @@ function countDown(endTime) {
 };
 
 export {
+  handleOnValidation,
 	countDown,
 };

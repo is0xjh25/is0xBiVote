@@ -26,6 +26,7 @@ const SinglePost = (props) => {
 	};
 
 	useEffect(() => {
+		// initialize
 		setIsUpvoted(upvoted);
 
 		return () => {

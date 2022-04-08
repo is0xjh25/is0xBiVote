@@ -11,7 +11,7 @@ const Profile = () => {
 	const [password, setPassword] = useState('');
 
 	useEffect(() => {
-		
+		// initialize
 		setPage('main');
 		setUsername("is0xjh25")
 		setEmail("is0.jimhsiao@gmail.com");
@@ -32,7 +32,7 @@ const Profile = () => {
       setEmail();
       setPassword();
     }
-  }, [])
+  }, []);
 
 	return (
 		<>
@@ -44,7 +44,7 @@ const Profile = () => {
 				)
 			}
 		</>
-  );
-}
+  )
+};
 
 export default Profile;

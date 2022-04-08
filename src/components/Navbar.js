@@ -1,8 +1,8 @@
 import React from 'react';
-import Logo from '../images/Bivote-logo.png';
 import { MdHowToVote, MdHistoryEdu, MdAccountBox } from 'react-icons/md';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { CgDarkMode } from 'react-icons/cg';
+import Logo from '../images/Bivote-logo.png';
 import './Navbar.css';
 
 const NavBar = (props) => {

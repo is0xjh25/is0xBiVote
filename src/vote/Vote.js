@@ -11,8 +11,8 @@ const demoVote = {
 	voteName: "Is the Loch Ness Monster real?",
 	voteType: "mystery",
 	voteStatus: "progressing",
-	endTime: "April 8 2022 00:00:00",
-	preStatus: "start"
+	endTime: "April 9 2022 00:00:00",
+	preStatus: "voteOne"
 }
 
 const demoPost = {
@@ -97,7 +97,7 @@ const Vote = () => {
 	const [vote1, setVote1] = useState('');
 	const [vote2, setVote2] = useState('');
 	const [post, setPost] = useState('');
-	const [dueTime, setDueTime] = useState('');
+	const [endTime, setEndTime] = useState('');
 	const [info, setInfo] = useState({});
 
 	const handleOnSubmit = (e) => {
@@ -148,7 +148,7 @@ const Vote = () => {
 			setVote1();
 			setVote2();
 			setPost();
-			setDueTime();
+			setEndTime();
 			setInfo();
 		}
 	}, []);

@@ -7,17 +7,17 @@ const Analysis = (props) => {
 	
 	const { info } = props;
 	const navigate = useNavigate();
-	const [dueTime, setDueTime] = useState('');
+	const [endTime, setEndTime] = useState('');
 
 	useEffect(() => {
-		
+		// initialize
 		const interval = setInterval(() => {
-			setDueTime(countDown(info.endTime));
+			setEndTime(countDown(info.endTime));
 		}, 1000);
 
 		return () => {
 			clearInterval(interval);
-			setDueTime();
+			setEndTime();
 		}
 	}, []);
 
@@ -63,7 +63,7 @@ const Analysis = (props) => {
 							<span className='analysis-data-text'>{info.startTime}</span> to <span className='analysis-data-text'>{info.endTime}</span>
 						</div>
 						<div className='analysis-row'>
-							<span>Time Remaining: <span className='analysis-data-text'>{dueTime}</span></span>
+							<span>Time Remaining: <span className='analysis-data-text'>{endTime}</span></span>
 						</div>
 						<div className='analysis-row analysis-data-desktop'>
 							<span>Your Vote: <span className='analysis-data-text'>{info.userVote.toUpperCase()}</span></span>

@@ -26,7 +26,7 @@ class App extends Component {
   
  componentDidMount() {
     // this.setUser(checkAuthorized());
-    this.setUser("1234567890");
+    this.setUser("123456789012");
   };
 
   componentWillUnmount() {

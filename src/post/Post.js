@@ -18,7 +18,7 @@ const Post = (props) => {
 	};
 
 	useEffect(() => {
-		
+		// initialize
 		setPage('yes');
 		setYesPost(info.yesPost);
 		setNoPost(info.noPost);
