@@ -33,9 +33,6 @@ const Login = () => {
 					) : null 
 				}
 			</div>
-			<div id='login-bot'>
-				Developed by - is0xjh25
-			</div>
 		</div>
   )
 };

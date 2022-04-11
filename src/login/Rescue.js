@@ -36,19 +36,23 @@ const Rescue = (props) => {
 	}, []);
 	
 	return (
-		<div className='login-form'>
-			<h2>FORGOT PASSWORD</h2>
-			<div className='form-group'>
+		<>
+			<div className='login-section'>
+				<h2>FORGOT PASSWORD</h2>
+			</div>
+			<div className='login-section'>
 				<label htmlFor='rescue-email'>email</label>
-				<input type='email' className='form-control' aria-describedby='emailHelp' id='rescue-email' name='email' onChange={handleOnChange}/>
+				<input type='email' aria-describedby='emailHelp' id='rescue-email' name='email' onChange={handleOnChange}/>
 				<small id='emailHelp' className='form-text text-muted'>Verification will be sent to the inbox</small>
 			</div>
-			<button type='submit' className='btn btn-outline-warning shadow login-submit' onClick={handleOnSubmit}>CONFIRM</button>
-			<div className='login-nav'>
+			<div className='login-section'>
+				<button type='submit' className='btn btn-outline-warning shadow login-submit' onClick={handleOnSubmit}>CONFIRM</button>
+			</div>
+			<div className='login-section login-nav'>
 				<NavLink to='/login' onClick={()=>setPage('main')}>{"Login!"}</NavLink>
 				<NavLink to='/login' onClick={()=>setPage('register')}>{"New Voter!"}</NavLink>
 			</div>
-		</div>
+		</>
 	)
 };
 

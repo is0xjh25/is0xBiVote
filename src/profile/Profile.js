@@ -15,7 +15,7 @@ const Profile = () => {
 		setPage('main');
 		setUsername("is0xjh25")
 		setEmail("is0.jimhsiao@gmail.com");
-		setPassword("123");
+		setPassword("*********");
 		
     // const cookie= getCookie('token');
 

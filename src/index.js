@@ -7,7 +7,7 @@ import './App.css';
 import App from './App.js';
 
 render(
-  <SnackbarProvider maxSnack={2} 
+  <SnackbarProvider hideIconVariant maxSnack={3} 
   anchorOrigin={{
     vertical: 'bottom',
     horizontal: 'center',

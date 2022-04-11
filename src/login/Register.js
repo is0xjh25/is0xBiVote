@@ -48,33 +48,37 @@ const Rescue = (props) => {
 	}, []);
 	
 	return (
-		<div className='login-form'>
-			<h2>REGISTER</h2>
-			<div className='form-group'>
+		<>
+			<div className='login-section'>
+				<h2>REGISTER</h2>
+			</div>
+			<div className='login-section'>
 				<label htmlFor='register-email'>email</label>
-				<input type='email' className='form-control' aria-describedby='emailHelp' id='register-email' name='email' onChange={handleOnChange}/>
+				<input type='email' aria-describedby='emailHelp' id='register-email' name='email' onChange={handleOnChange}/>
 				<small id='emailHelp' className='form-text text-muted'>Verification will be sent to the inbox</small>
 			</div>
-			<div className='form-group'>
+			<div className='login-section'>
 				<label htmlFor='register-username'>username</label>
-				<input type='text' className='form-control' aria-describedby='usernameHelp' id='register-username' name='username' onChange={handleOnChange}/>
+				<input type='text' aria-describedby='usernameHelp' maxLength='12' id='register-username' name='username' onChange={handleOnChange}/>
 				<small id='usernameHelp' className='form-text text-muted'>Username is unchangeable</small>
 			</div>
-			<div className='form-group'>
+			<div className='login-section'>
 				<label htmlFor='register-password'>password</label>
-				<input type='password' className='form-control' aria-describedby='passwordHelp' id='register-password' name='password' onChange={handleOnChange}/>
+				<input type='password' aria-describedby='passwordHelp' id='register-password' name='password' maxLength='32' onChange={handleOnChange}/>
 				<small id='passwordHelp' className='form-text text-muted'>At least 8 characters mixture of letters and numbers</small>
 			</div>
-			<div className='form-group'>
+			<div className='login-section'>
 				<label htmlFor='register-password-confirm'>confirm password</label>
-				<input type='password' className='form-control' id='register-password-confirm' name='passwordTwo' onChange={handleOnChange}/>
+				<input type='password' id='register-password-confirm' name='passwordTwo' maxLength='32' onChange={handleOnChange}/>
 			</div>
-			<button type='submit' className='btn btn-outline-warning shadow login-submit' onClick={handleOnSubmit}>CONFIRM</button>
-			<div className='login-nav'>
+			<div className='login-section'>
+				<button type='submit' className='btn btn-outline-warning shadow login-submit' onClick={handleOnSubmit}>CONFIRM</button>
+			</div>
+			<div className='login-section login-nav'>
 				<NavLink to='/login' onClick={()=>setPage('main')}>{"Login!"}</NavLink>
 				<NavLink to='/login' onClick={()=>setPage('rescue')}>{"Forgot Password?"}</NavLink>
 			</div>
-		</div>
+		</>
 	)
 };
 

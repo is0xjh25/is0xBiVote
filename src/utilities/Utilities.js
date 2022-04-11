@@ -80,9 +80,8 @@ function emailValidation (e) {
   if (!e) {
     return {valid: false, message: "email cannot be empty"};
   } else if (typeof e !== 'undefined') {
-    let lastAtPos = e.lastIndexOf('@');
-    let lastDotPos = e.lastIndexOf('.');
-    if (!(lastAtPos < lastDotPos && lastAtPos > 0 && e.indexOf('@@') === -1 && lastDotPos > 2 && (e.length - lastDotPos) > 2)) {
+    let regex = /[\w+\-.]+@[a-z\d]+(\.[a-z\d]+)*\.[a-z]+/;
+    if (!regex.test(e)) {
       return {valid: false, message: "invalid email"}; 
     } 
     // else if (emailExist(e)) {

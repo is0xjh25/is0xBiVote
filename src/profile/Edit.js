@@ -59,11 +59,11 @@ const Edit = (props) => {
 				</div>
 				<div className='profile-section'>
 					<label htmlFor='profile-password'>password</label>
-					<input name='password' type='password' id='profile-password' value={passwordTemp} onChange={handleOnChange}/>
+					<input name='password' type='password' id='profile-password' maxLength='32' value={passwordTemp} onChange={handleOnChange}/>
 				</div>
 				<div className='profile-section'>
 					<label htmlFor='profile-password'>confirm password</label>
-					<input name='passwordTwo' type='password' id='profile-password' value={passwordTempTwo} onChange={handleOnChange}/>
+					<input name='passwordTwo' type='password' id='profile-password' value={passwordTempTwo} maxLength='32' onChange={handleOnChange}/>
 				</div>
 			</div>
 			<div id='profile-right-edit'>
