@@ -9,6 +9,7 @@ import Result from './result/Result.js';
 import Login from './login/Login.js';
 import VoteEntry from './vote/VoteEntry.js';
 import Vote from './vote/Vote.js';
+import NotFound from './components/NotFound.js'
 
 class App extends Component {
   
@@ -56,6 +57,7 @@ class App extends Component {
                   <Route exact path='/history/:id' element={<Result/>}/>
                   <Route exact path='/vote' element={<VoteEntry/>}/>
                   <Route exact path='/vote/:id' element={<Vote/>}/>
+                  <Route path="*" element={<NotFound/>}/>
                 </Routes>
               </main>
             ) : (

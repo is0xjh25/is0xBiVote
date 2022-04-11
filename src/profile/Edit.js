@@ -48,7 +48,7 @@ const Edit = (props) => {
       setPasswordTemp();
 			setPasswordTempTwo();
     }
-  }, [])
+  }, [email, password])
 
 	return ( 
 		<div id='profile-frame'>
