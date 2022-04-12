@@ -1,4 +1,4 @@
-import { getCookie, setCookie, checkUnauthorized } from "./Utilities.js";
+import { getCookie, setCookie, checkAuthorized } from "./Utilities.js";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 // Login page signin
@@ -11,8 +11,9 @@ function login(username, password) {
 
 	return fetch(`${BASE_URL}/login`, info)
 	.then(res => {
+		// console.log(res.headers.get('Authorization'));
 		if (res.ok) {
-			setCookie('token', res.headers.get("Authorization"), 1);
+			setCookie('token', res.headers.get('Authorization'), 1);
 		};
 		return res;
 	})
@@ -30,7 +31,7 @@ function rescue(email) {
     return new Promise((resolve) => {
     fetch(BASE_URL + "/user/resetPassword", info)
         .then(res => {
-            if(checkUnauthorized(res)) {
+            if(checkAuthorized(res)) {
                 return;
             }
             res.json().then(bodyRes=>{resolve(bodyRes);});
@@ -56,7 +57,7 @@ function register(email, password, firstName, lastName, phone) {
     return new Promise((resolve) => {
         fetch(BASE_URL + "/user", info)
         .then(res => {
-            if(checkUnauthorized(res)) {
+            if(checkAuthorized(res)) {
                 return;
             }
             res.json().then(bodyRes=>{resolve(bodyRes);});
@@ -75,7 +76,7 @@ function logout() {
     return new Promise((resolve) => {
         fetch(BASE_URL + "/user/logout", info)
         .then(res => {
-            if(checkUnauthorized(res)) {
+            if(checkAuthorized(res)) {
                 return;
             }
             res.json().then(bodyRes=>{resolve(bodyRes);});
@@ -92,7 +93,7 @@ function handleVerify() {
     return new Promise((resolve) => {
         fetch(BASE_URL + "/user/verify", info)
         .then(res => {
-            if(checkUnauthorized(res)) {
+            if(checkAuthorized(res)) {
                 return;
             }
             res.json().then(bodyRes=>{resolve(bodyRes);});

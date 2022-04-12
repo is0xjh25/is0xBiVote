@@ -29,7 +29,6 @@ const Main = (props) => {
 			let ok;
 			login(username, password)
 			.then(res => {
-				console.log(res.ok);
 				ok = res.ok;
 				return res.json();
 			}).then(json => {
