@@ -18,22 +18,24 @@ const Login = () => {
 	}, []);
 
 	return (
-		<div id='login-frame'>
-			<div id='login-left'>
-				<img id='login-logo-image' src={Favicon} alt="BiVote-favicon"/>
+		<main style={{height: '100vh', top:0}}>
+			<div id='login-frame'>
+				<div id='login-left'>
+					<img id='login-logo-image' src={Favicon} alt="BiVote-favicon"/>
+				</div>
+				<div id='login-right'>
+					{
+						page === 'main' ? (
+							<Main setPage={setPage}/>
+						) : page === 'register' ? (
+							<Register setPage={setPage}/>
+						) : page === 'rescue' ? (
+							<Rescue setPage={setPage}/>
+						) : null 
+					}
+				</div>
 			</div>
-			<div id='login-right'>
-				{
-					page === 'main' ? (
-						<Main setPage={setPage}/>
-					) : page === 'register' ? (
-						<Register setPage={setPage}/>
-					) : page === 'rescue' ? (
-						<Rescue setPage={setPage}/>
-					) : null 
-				}
-			</div>
-		</div>
+		</main>
   )
 };
 

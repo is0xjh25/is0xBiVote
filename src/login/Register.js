@@ -53,14 +53,14 @@ const Rescue = (props) => {
 				<h2>REGISTER</h2>
 			</div>
 			<div className='login-section'>
-				<label htmlFor='register-email'>email</label>
-				<input type='email' aria-describedby='emailHelp' id='register-email' name='email' onChange={handleOnChange}/>
-				<small id='emailHelp' className='form-text text-muted'>Verification will be sent to the inbox</small>
-			</div>
-			<div className='login-section'>
 				<label htmlFor='register-username'>username</label>
 				<input type='text' aria-describedby='usernameHelp' maxLength='12' id='register-username' name='username' onChange={handleOnChange}/>
 				<small id='usernameHelp' className='form-text text-muted'>Username is unchangeable</small>
+			</div>
+			<div className='login-section'>
+				<label htmlFor='register-email'>email</label>
+				<input type='email' aria-describedby='emailHelp' id='register-email' name='email' onChange={handleOnChange}/>
+				<small id='emailHelp' className='form-text text-muted'>Verification will be sent to the inbox</small>
 			</div>
 			<div className='login-section'>
 				<label htmlFor='register-password'>password</label>

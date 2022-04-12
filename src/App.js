@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import NavBar from './components/Navbar.js';
-import Footer from './components/Footer.js';
 import Home from './home/Home.js';
 import Profile from './profile/Profile.js';
 import History from './history/History.js';
@@ -44,35 +42,23 @@ class App extends Component {
 
   render() {
     return (
-      <>
-        { window.location.pathname !== '/login' ? <header><NavBar user={this.state.user}/></header> : null }
-        <Router>
-          { 
-            window.location.pathname !== '/login' ? (
-              <main>
-                <Routes>
-                  <Route exact path='/' element={<Home/>}/>
-                  <Route exact path='/profile' element={<Profile/>}/>
-                  <Route exact path='/history' element={<History history={this.state.history} setHistory={this.setHistory}/>}/>
-                  <Route exact path='/history/:id' element={<Result/>}/>
-                  <Route exact path='/vote' element={<VoteEntry/>}/>
-                  <Route exact path='/vote/:id' element={<Vote/>}/>
-                  <Route path="*" element={<NotFound/>}/>
-                </Routes>
-              </main>
-            ) : (
-              <main style={{height: '100vh', top:0}}>
-                <Routes>
-                  <Route exact path='/login' element={<Login/>} />
-                </Routes>
-              </main>
-            )
-          }
-        </Router>
-        { window.location.pathname !== '/login' ? <footer><Footer/></footer> : null }
-      </>
+      <Router>
+        <Routes>
+          <Route exact path="/login" element={<Login/>}/>
+          <Route exact path='/' element={<Home/>}/>
+          <Route exact path='/profile' element={<Profile/>}/>
+          <Route exact path='/history' element={<History history={this.state.history} setHistory={this.setHistory}/>}/>
+          <Route exact path='/history/:id' element={<Result/>}/>
+          <Route exact path='/vote' element={<VoteEntry/>}/>
+          <Route exact path='/vote/:id' element={<Vote/>}/>
+          <Route path="*" element={<NotFound/>}/>
+        </Routes>
+      </Router>
     );
   };
 };
+
+// <main style={{height: '100vh', top:0}}>
+
 
 export default App;

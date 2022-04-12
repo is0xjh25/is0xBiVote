@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import NavBar from '../components/Navbar.js';
+import Footer from '../components/Footer.js';
 import Main from './Main';
 import Edit from './Edit';
 import './Profile.css';
@@ -36,13 +38,21 @@ const Profile = () => {
 
 	return (
 		<>
-			{ 
-				page === 'main' ? (
-					<Main setPage={setPage} username={username} email={email} password={password}/> 
-				) : ( 
-					<Edit setPage={setPage} setEmail={setEmail} setPassword={setPassword} username={username} email={email} password={password}/> 
-				)
-			}
+			<header>
+				<NavBar/>
+			</header>
+			<main>
+				{ 
+					page === 'main' ? (
+						<Main setPage={setPage} username={username} email={email} password={password}/> 
+					) : ( 
+						<Edit setPage={setPage} setEmail={setEmail} setPassword={setPassword} username={username} email={email} password={password}/> 
+					)
+				}
+			</main>
+			<footer>
+				<Footer/>
+			</footer> 
 		</>
   )
 };

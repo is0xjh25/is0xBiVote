@@ -67,9 +67,6 @@ function usernameValidation (u) {
     if (!regex.test(u)) {
       return {valid: false, message: "username should have not greater than 12 characters without special character except '-'"}; 
     } 
-    // else if (userExist(u)) {
-    //   return {valid: false, message: "The username has been registered"}; 
-    // }
   }
 
   return {valid: true, message: "valid username"};
@@ -83,10 +80,7 @@ function emailValidation (e) {
     let regex = /[\w+\-.]+@[a-z\d]+(\.[a-z\d]+)*\.[a-z]+/;
     if (!regex.test(e)) {
       return {valid: false, message: "invalid email"}; 
-    } 
-    // else if (emailExist(e)) {
-    //   return {valid: false, message: "The email has been registered"}; 
-    // }
+    }
   }
 
   return {valid: true, message: "valid email"};

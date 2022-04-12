@@ -23,13 +23,13 @@ const Main = (props) => {
 			</div>
 			<div id='profile-right-main'>
 				<div className='profile-section'>
-					Total Upvotes: <span className='text-warning'>1155</span>
-				</div>
-				<div className='profile-section'>
 					Total Votes: <span className='text-warning'>20</span>
 				</div>
 				<div className='profile-section'>
 					Times Being Majority: <span className='text-warning'>9</span>
+				</div>
+				<div className='profile-section'>
+					Total Upvotes: <span className='text-warning'>1155</span>
 				</div>
 				<div className='profile-section profile-button-set'>
 					<button type='submit' className='btn btn-outline-info shadow' id='profile-edit' onClick={()=>setPage('edit')}>EDIT</button>

@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/Navbar.js';
+import Footer from '../components/Footer.js';
 import Title from '../components/Title.js';
 import Post from '../post/Post.js';
 import Analysis from './Analysis.js';
@@ -11,13 +13,13 @@ const demoTitle = {
 	voteID: 1,
 	voteName: "Do aliens exists?",
 	voteType: "mystery", 
-	voteStatus: "closed" //closed
+	voteStatus: "progressing" //closed
 }
 
 const demoAnalysis = {
 	userVote: "Yes",
 	startTime: "April 7 2022",
-	endTime: "April 8 2022",
+	endTime: "April 20 2022",
 	yes: 199,
 	no: 50,
 	leading: "yes",
@@ -119,13 +121,23 @@ const Result = () => {
 	}, []);
 
 	return (
-		<div id='result-frame'>
-			<Title info={demoTitle}/>
-			<div className='main-section'>
-				<Analysis info={demoAnalysis}/>
-				<Post info={demoPost} ownedFN={true}/>
-			</div>
-		</div>
+		<>
+			<header>
+				<NavBar/>
+			</header>
+			<main>
+				<div id='result-frame'>
+					<Title info={demoTitle}/>
+					<div className='main-section'>
+						<Analysis info={demoAnalysis}/>
+						<Post info={demoPost} ownedFN={true}/>
+					</div>
+				</div>
+			</main>
+			<footer>
+				<Footer/>
+			</footer> 
+		</>
 	)
 };
 
