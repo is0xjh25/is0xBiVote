@@ -3,12 +3,13 @@ import { NavLink, useNavigate} from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { handleOnValidation } from '../utilities/Utilities.js';
 import { login } from  '../api/Login.js';
+import { checkAuthorized } from '../api/Utilities.js';
 
 const Main = (props) => {
 	
 	const { setPage } = props;
-	const navigate = useNavigate();
 	const { enqueueSnackbar } = useSnackbar();
+	const navigate = useNavigate();
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -26,23 +27,21 @@ const Main = (props) => {
 		if (!check.valid) {
 			enqueueSnackbar(check.message, {variant:'warning'}); 
 		} else {
-			let ok;
 			login(username, password)
 			.then(res => {
-				ok = res.ok;
-				return res.json();
-			}).then(json => {
-				if (ok) {
-					enqueueSnackbar(json.success, {variant:'success'});
-					navigate('/');
-				} else {
-					enqueueSnackbar(json.error, {variant:'error'});
-				};
+				console.log(res)
 			})
 		};
 	};
 
 	useEffect(() => {
+
+		(async () => {
+			const auth =  await checkAuthorized();
+			console.log(auth);
+			if (auth.login) navigate('/');
+	 	})();
+
 		return () => {
 			setUsername();
 			setPassword();

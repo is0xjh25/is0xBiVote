@@ -1,23 +1,31 @@
-import { getCookie, setCookie, checkAuthorized } from "./Utilities.js";
+import { getCookie, setCookie, deleteCookie, checkAuthorized } from "./Utilities.js";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 // Login page signin
 function login(username, password) {
+	
+	const url = `${BASE_URL}/login`;
 	const info = {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({"user": {"username": username, "password": password}})
 	};
-
-	return fetch(`${BASE_URL}/login`, info)
+	
+	return fetch(url, info)
 	.then(res => {
-		// console.log(res.headers.get('Authorization'));
-		if (res.ok) {
-			setCookie('token', res.headers.get('Authorization'), 1);
-		};
-		return res;
+		if (res.ok) setCookie('token', res.headers.get('Authorization'), 1);
+		return res.json()
+		.then(body => {
+			console.log(body.user.username);
+			if (res.ok) setCookie('username', body.user.username, 1);
+			return {
+				ok: res.ok,
+				status: res.status,
+				body: body
+			}
+		})
 	})
-}
+};
 
 // Request email for reset passward
 function rescue(email) {
@@ -67,44 +75,12 @@ function register(email, password, firstName, lastName, phone) {
 
 // Logout
 function logout() {
-
-    const info = {
-        method: 'POST',
-        headers: {'Authorization': getCookie('token')},
-    };
-
-    return new Promise((resolve) => {
-        fetch(BASE_URL + "/user/logout", info)
-        .then(res => {
-            if(checkAuthorized(res)) {
-                return;
-            }
-            res.json().then(bodyRes=>{resolve(bodyRes);});
-        })
-    })
-}
-
-function handleVerify() {
-    const info = {
-        method: 'POST',
-        headers: {'Authorization': getCookie('token')},
-    };
-
-    return new Promise((resolve) => {
-        fetch(BASE_URL + "/user/verify", info)
-        .then(res => {
-            if(checkAuthorized(res)) {
-                return;
-            }
-            res.json().then(bodyRes=>{resolve(bodyRes);});
-        })
-    })
+	deleteCookie('token');
 }
 
 export {
-    login,
-    rescue,
-    register,
-    logout,
-    handleVerify
+	login,
+	rescue,
+	register,
+	logout
 }

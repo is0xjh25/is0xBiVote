@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdHowToVote, MdHistoryEdu, MdAccountBox } from 'react-icons/md';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { CgDarkMode } from 'react-icons/cg';
+import { getCookie } from '../api/Utilities.js';
 import Logo from '../images/Bivote-logo.png';
 import './Navbar.css';
 
-const NavBar = (props) => {
+const NavBar = () => {
 	
-	const { user } = props;
+	const[username, setUsername] = useState('')
+
+	useEffect(() => {
+		setUsername(getCookie('username'));
+
+		return () => {
+			setUsername();
+		};
+	}, [])
 
   return (
 		<div id='navbar-frame'>
@@ -29,7 +38,7 @@ const NavBar = (props) => {
 				</span>
 				<div className='navbar-link' style={{flex: 3, textAlign: 'end'}}>
 					<a href='/profile'>
-						{props.user}
+						{username}
 						<MdAccountBox/>				
 					</a>
 				</div>
@@ -59,7 +68,7 @@ const NavBar = (props) => {
 					<a className='dropdown-item' href='#'>MODE<CgDarkMode/></a>
 					<a className='dropdown-item' href='/vote'>VOTE<MdHowToVote/></a>
 					<a className='dropdown-item' href='/history'>HISTORY<MdHistoryEdu/></a>
-					<a className='dropdown-item' href='/profile'>{user}<MdAccountBox/></a>
+					<a className='dropdown-item' href='/profile'>{username}<MdAccountBox/></a>
 				</div>
 			</div>
 		</div>

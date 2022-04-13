@@ -1,39 +1,60 @@
 import Cookies from 'js-cookie';
-
-const ACCOUNT = "token";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 // set cookie when login
 function setCookie(name, value, days) {
-	Cookies.set(`${name}`, `${value}`, { expires: days }, { secure: true }, { SameSite: 'None' })
+	if (name == 'token') {
+		Cookies.set(`${name}`, "Bearer " + `${value}`, { expires: days }, { secure: true }, { SameSite: 'None' });
+	} else {
+		Cookies.set(`${name}`, `${value}`, { expires: days }, { secure: true }, { SameSite: 'None' });
+	}
 	return name;
-}
+};
 
 function getCookie(name) {
 	const cookie = Cookies.get(`${name}`);
 	if (cookie) return cookie;
   return "";
-}
+};
 
 // deletes the token of the user
 function deleteCookie(name) {
-    Cookies.remove(`${name}`);
-}
+  Cookies.remove(`${name}`);
+};
 
 // check if a user is not logged in, and redirects to login page
 function checkAuthorized() {
     
-	const user = getCookie(ACCOUNT);
+	const token = getCookie('token');
    
-	if (user) {
-      return user;
-    } else {
-      return "";
-    }
-}
+	if (token) {
+		
+		const url = `${BASE_URL}/profile`;
+		const info = {
+			method: 'GET',
+			headers: {'Content-Type': 'application/json', 'Authorization': token},
+		};
+
+		let ok
+		return fetch(url, info)
+		.then(res => {
+			if (res.ok) {
+				ok = true;
+			}
+			return res.json();
+		})
+		.then(json => {
+			if (ok) return {login: true, data: json};
+			return {login: false, message: "please log in"};
+		})
+	} else {
+		return {login: false, message: "please log in"};
+	};
+};
 
 export {
 	setCookie,
 	getCookie,
 	deleteCookie,
-	checkAuthorized,
+	checkAuthorized
 }

@@ -14,7 +14,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      user: null,
       history: {
         startDate: null,
         keyword: null,
@@ -25,19 +24,14 @@ class App extends Component {
   
  componentDidMount() {
     // this.setUser(checkAuthorized());
-    this.setUser("123456789012");
   };
 
   componentWillUnmount() {
-    this.setUser("");
+    this.setHistory(null);
   };
 
   setHistory = (data) => {
     this.setState({history: data});
-  };
-
-  setUser = (u) => {
-    this.setState({user: u});
   };
 
   render() {
