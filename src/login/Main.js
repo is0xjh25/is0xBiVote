@@ -29,23 +29,28 @@ const Main = (props) => {
 		} else {
 			login(username, password)
 			.then(res => {
-				console.log(res)
-			})
+				if (res.ok) {
+					enqueueSnackbar(res.body.message, {variant:'success'});
+					navigate('/'); 
+				} else {
+					enqueueSnackbar(res.body.message, {variant:'error'});
+				};
+			});
 		};
 	};
 
 	useEffect(() => {
 
+		// initialize
 		(async () => {
 			const auth =  await checkAuthorized();
-			console.log(auth);
 			if (auth.login) navigate('/');
 	 	})();
 
 		return () => {
 			setUsername();
 			setPassword();
-		}
+		};
 	}, []);
 
 	return (

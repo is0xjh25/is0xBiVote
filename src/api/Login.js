@@ -16,7 +16,6 @@ function login(username, password) {
 		if (res.ok) setCookie('token', res.headers.get('Authorization'), 1);
 		return res.json()
 		.then(body => {
-			console.log(body.user.username);
 			if (res.ok) setCookie('username', body.user.username, 1);
 			return {
 				ok: res.ok,

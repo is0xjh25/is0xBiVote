@@ -8,15 +8,16 @@ import './Navbar.css';
 
 const NavBar = () => {
 	
-	const[username, setUsername] = useState('')
+	const[username, setUsername] = useState('');
 
 	useEffect(() => {
+		
 		setUsername(getCookie('username'));
 
 		return () => {
 			setUsername();
 		};
-	}, [])
+	}, []);
 
   return (
 		<div id='navbar-frame'>

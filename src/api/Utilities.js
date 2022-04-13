@@ -7,7 +7,7 @@ function setCookie(name, value, days) {
 		Cookies.set(`${name}`, "Bearer " + `${value}`, { expires: days }, { secure: true }, { SameSite: 'None' });
 	} else {
 		Cookies.set(`${name}`, `${value}`, { expires: days }, { secure: true }, { SameSite: 'None' });
-	}
+	};
 	return name;
 };
 
@@ -46,7 +46,7 @@ function checkAuthorized() {
 		.then(json => {
 			if (ok) return {login: true, data: json};
 			return {login: false, message: "please log in"};
-		})
+		});
 	} else {
 		return {login: false, message: "please log in"};
 	};
@@ -57,4 +57,4 @@ export {
 	getCookie,
 	deleteCookie,
 	checkAuthorized
-}
+};
