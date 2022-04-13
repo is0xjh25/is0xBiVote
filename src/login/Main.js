@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate} from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { handleOnValidation } from '../utilities/Utilities.js';
-import { login } from  '../api/Login.js';
+import { login } from '../api/Profile.js';
 import { checkAuthorized } from '../api/Utilities.js';
+import { handleOnValidation } from '../utilities/Utilities.js';
 
 const Main = (props) => {
 	

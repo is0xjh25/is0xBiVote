@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MdHowToVote, MdHistoryEdu, MdAccountBox } from 'react-icons/md';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { logout } from '../api/Login.js';
+import { logout } from '../api/Profile.js';
 import { getCookie } from '../api/Utilities.js';
 import Logo from '../images/Bivote-logo.png';
 import './Navbar.css';
