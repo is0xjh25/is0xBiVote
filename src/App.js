@@ -52,7 +52,4 @@ class App extends Component {
   };
 };
 
-// <main style={{height: '100vh', top:0}}>
-
-
 export default App;

@@ -16,7 +16,9 @@
 	float: right;
 	display: flex;
 	flex-direction: row;
-	width: 60%;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 50%;
 	height: 90%;
 }
 
@@ -25,12 +27,11 @@
 }
 
 .navbar-link {
-	flex: 2;
 	display: flex;
 	position: relative;
 	top: 10%;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 }
 
 #navbar-logo {
@@ -83,7 +84,20 @@
 	color: var(--negative);
 }
 
-#navbar-left a:hover span {
+#navbar-left button:hover {
+	border-color: var(--link);
+}
+
+#navbar-left button:hover span {
+	color: var(--link);
+}
+
+#navbar-right button {
+	background-color: transparent;
+	border-style: none;
+}
+
+#navbar-right button:hover {
 	color: var(--link);
 }
 
@@ -117,15 +131,21 @@
 		justify-content: center;
 	}
 
-	.dropdown-item {
-		text-align: center;
-		font-size: calc(var(--mobile-font-size) * 1.3);
-	}
-
-	#navbar-dropdown button {
+	#dropdownMenuButton {
 		display: block;
 		color: var(--secondary);
 		font-size: calc(var(--mobile-font-size) * 0.5);
+		font-weight: 900;
+		border-width: 2px;
+	}
+
+	.dropdown-selection {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		color: var(--primary);
+		font-size: calc(var(--mobile-font-size) * 1.5);
 		font-weight: 900;
 		border-width: 2px;
 	}

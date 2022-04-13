@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MdHowToVote, MdHistoryEdu, MdAccountBox } from 'react-icons/md';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { CgDarkMode } from 'react-icons/cg';
+import { FaSignOutAlt } from 'react-icons/fa';
+import { logout } from '../api/Login.js';
 import { getCookie } from '../api/Utilities.js';
 import Logo from '../images/Bivote-logo.png';
 import './Navbar.css';
 
 const NavBar = () => {
 	
+  const navigate = useNavigate();
 	const[username, setUsername] = useState('');
+
+	const handleLogout = () => {
+		logout();
+		navigate('/login');
+	};
 
 	useEffect(() => {
 		
@@ -22,14 +30,14 @@ const NavBar = () => {
   return (
 		<div id='navbar-frame'>
 			<div id='navbar-left'>
-				<a id='navbar-logo' href='/'>
+				<button id='navbar-logo' onClick={()=>navigate('/')}>
 					<img id='navbar-logo-image' src={Logo} alt="BiVote-logo"/>
 					<span id='navbar-logo-text'>
 						<span>B</span>
 						<span>i</span>
 						Vote
 					</span>
-				</a>
+				</button>
 			</div>
 			<div id='navbar-right'>
 				<span id='navbar-title'>
@@ -37,28 +45,28 @@ const NavBar = () => {
 					<span>i</span>
 					Vote
 				</span>
-				<div className='navbar-link' style={{flex: 3, textAlign: 'end'}}>
-					<a href='/profile'>
-						{username}
-						<MdAccountBox/>				
-					</a>
-				</div>
 				<div className='navbar-link'>
-					<a href='/vote'>
+					<button onClick={()=>navigate('/vote')}>
 						VOTE
 						<MdHowToVote/>
-					</a>
+					</button>
 				</div>
 				<div className='navbar-link'>
-					<a href='/history'>
+					<button onClick={()=>navigate('/history')}>
 						HISTORY
 						<MdHistoryEdu/>
-					</a>
+					</button>
 				</div>
-				<div className='navbar-link' style={{flex: 1, textAlign: 'center'}}>
-					<a href='#'>
-						<CgDarkMode/>				
-					</a>
+				<div className='navbar-link'>
+					<button onClick={()=>navigate('/profile')}>
+						{username}
+						<MdAccountBox/>				
+					</button>
+				</div>
+				<div className='navbar-link'>
+					<button onClick={()=>handleLogout()}>
+						<FaSignOutAlt/>
+					</button>
 				</div>
 			</div>
 			<div id='navbar-dropdown' className='dropdown'>
@@ -66,10 +74,10 @@ const NavBar = () => {
 					<AiOutlineMenu/>
 				</button>
 				<div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuButton'>
-					<a className='dropdown-item' href='#'>MODE<CgDarkMode/></a>
-					<a className='dropdown-item' href='/vote'>VOTE<MdHowToVote/></a>
-					<a className='dropdown-item' href='/history'>HISTORY<MdHistoryEdu/></a>
-					<a className='dropdown-item' href='/profile'>{username}<MdAccountBox/></a>
+					<button className='dropdown-item dropdown-selection' onClick={()=>navigate('/vote')}><MdHowToVote/>VOTE</button>
+					<button className='dropdown-item dropdown-selection' onClick={()=>navigate('/history')}><MdHistoryEdu/>HISTORY</button>
+					<button className='dropdown-item dropdown-selection' onClick={()=>navigate('/profile')}><MdAccountBox/>{username}</button>
+					<button className='dropdown-item dropdown-selection' onClick={()=>handleLogout()}><FaSignOutAlt/>LOGOUT</button>
 				</div>
 			</div>
 		</div>

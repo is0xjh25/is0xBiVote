@@ -75,6 +75,7 @@ function register(email, password, firstName, lastName, phone) {
 // Logout
 function logout() {
 	deleteCookie('token');
+	deleteCookie('username');
 }
 
 export {
