@@ -13,7 +13,6 @@ const Login = () => {
 	const [page, setPage] = useState('');
 
 	useEffect(() => {
-
 		// check logged in
 		(async () => {
 			const auth =  await checkAuthorized();

@@ -25,13 +25,15 @@
 	font-weight: bold;
 }
 
-#home-frame a {
+#home-frame button {
+	background-color: transparent;
+	border-style: none;
 	color: var(--neutral);
-	font-style: oblique;
 }
 
-#home-frame a:hover {
+#home-frame button:hover {
 	color: var(--link);
+	font-style: oblique;
 }
 
 /* Tablet */
