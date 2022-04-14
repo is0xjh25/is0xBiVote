@@ -1,4 +1,4 @@
-import { getCookie, setCookie, deleteCookie, checkAuthorized } from "./Utilities.js";
+import { getCookie, setCookie, deleteCookie } from "./Utilities.js";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 // login
@@ -41,21 +41,21 @@ function login(username, password) {
 // request email for reset passward
 function rescue(email) {
 
-	const info = {
-		method: 'POST',
-		headers: {'Content-Type': 'application/json'},
-		body: JSON.stringify({"email": email})
-	};
+	// const info = {
+	// 	method: 'POST',
+	// 	headers: {'Content-Type': 'application/json'},
+	// 	body: JSON.stringify({"email": email})
+	// };
 
-	return new Promise((resolve) => {
-	fetch(BASE_URL + "/user/resetPassword", info)
-			.then(res => {
-					if(checkAuthorized(res)) {
-							return;
-					}
-					res.json().then(bodyRes=>{resolve(bodyRes);});
-			})
-	})
+	// return new Promise((resolve) => {
+	// fetch(BASE_URL + "/user/resetPassword", info)
+	// 		.then(res => {
+	// 				if(checkAuthorized(res)) {
+	// 						return;
+	// 				}
+	// 				res.json().then(bodyRes=>{resolve(bodyRes);});
+	// 		})
+	// })
 }
 
 // create a new user
@@ -86,7 +86,7 @@ function register(username, email, password) {
 				setCookie('token', res.headers.get('Authorization'), 1);
 				setCookie('username', body.user.username, 1);
 			}
-			
+
 			return {
 				ok: res.ok,
 				status: res.status,
@@ -97,7 +97,7 @@ function register(username, email, password) {
 }
 
 // get user profile information
-function info() {
+function getProfile() {
 
 	const url = `${BASE_URL}/profile`;
 	const info = {
@@ -119,7 +119,7 @@ function info() {
 }
 
 // edit user profile
-function edit(username, email, password) {
+function editProfile(username, email, password) {
 
 	const url = `${BASE_URL}/profile`;
 	const info = {
@@ -160,7 +160,7 @@ export {
 	login,
 	rescue,
 	register,
-	info,
-	edit,
+	getProfile,
+	editProfile,
 	logout
 }
