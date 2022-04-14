@@ -23,7 +23,7 @@ const handleOnValidation = (type, info) => {
       } 
       break;
     case 'register':
-      check = passwordValidation(info.password, info.passwordTwo);
+      check = passwordValidation('create', info.password, info.passwordTwo);
       if (!check.valid) {
         alertMessage = check.message;
         formIsValid = false;
@@ -40,7 +40,7 @@ const handleOnValidation = (type, info) => {
       } 
       break;
     case 'profile':
-      check = passwordValidation(info.password, info.passwordTwo);
+      check = passwordValidation('update', info.password, info.passwordTwo);
       if (!check.valid) {
         alertMessage = check.message;
         formIsValid = false;
@@ -86,18 +86,30 @@ function emailValidation (e) {
   return {valid: true, message: "valid email"};
 }
 
-function passwordValidation (p1, p2) {
-  
-  if (!p1 || !p2) {
-    return {valid: false, message: "password cannot be empty"};
-  } else if (typeof p1 !== 'undefined' && typeof p2 !== 'undefined') {
-    let regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}$/;
-    if (!regex.test(p1)) {
-      return {valid: false, message: "password needs to between 8 to 32 characters mixture of letters and numbers"};
-    } else if ( p1 !== p2) {
-      return {valid: false, message: "password do not match"};
+function passwordValidation (type, p1, p2) {
+  if (type === 'create') {
+    if (!p1 || !p2) {
+      return {valid: false, message: "password cannot be empty"};
+    } else if (typeof p1 !== 'undefined' && typeof p2 !== 'undefined') {
+      let regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}$/;
+      if (!regex.test(p1)) {
+        return {valid: false, message: "password needs to between 8 to 32 characters mixture of letters and numbers"};
+      } else if ( p1 !== p2) {
+        return {valid: false, message: "password do not match"};
+      };
     };
-  };
+  } else if (type === 'update') {
+    if (!p1 || !p2) {
+      return {valid: true, message: "valid password"};
+    } else if (typeof p1 !== 'undefined' && typeof p2 !== 'undefined') {
+      let regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}$/;
+      if (!regex.test(p1)) {
+        return {valid: false, message: "password needs to between 8 to 32 characters mixture of letters and numbers"};
+      } else if ( p1 !== p2) {
+        return {valid: false, message: "password do not match"};
+      };
+    };
+  }
 
   return {valid: true, message: "valid password"};
 }

@@ -115,7 +115,7 @@ function getProfile() {
 }
 
 // edit user profile
-function editProfile(username, email, password) {
+function editProfile(email, password) {
 
 	const url = `${BASE_URL}/profile`;
 	const info = {
@@ -125,7 +125,6 @@ function editProfile(username, email, password) {
 			{
 				"user":
 				{
-					"username": username,
 					"email": email, 
 					"password": password 
 				}
