@@ -23,12 +23,10 @@ function login(username, password) {
 	.then(res => {
 		return res.json()
 		.then(body => {
-			
 			if (res.ok) {
 				setCookie('token', res.headers.get('Authorization'), 1);
 				setCookie('username', body.user.username, 1);
 			};
-
 			return {
 				ok: res.ok,
 				status: res.status,
@@ -81,12 +79,10 @@ function register(username, email, password) {
 	.then(res => {
 		return res.json()
 		.then(body => {
-			
 			if (res.ok) {
 				setCookie('token', res.headers.get('Authorization'), 1);
 				setCookie('username', body.user.username, 1);
 			}
-
 			return {
 				ok: res.ok,
 				status: res.status,

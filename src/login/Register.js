@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink, useNavigate} from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import { register } from '../api/Profile.js';
 import { handleOnValidation } from '../utilities/Utilities.js';
-import { NavLink } from 'react-router-dom';
 
 const Rescue = (props) => {
 
-	const { enqueueSnackbar } = useSnackbar();
 	const { setPage } = props;
+	const { enqueueSnackbar } = useSnackbar();
+	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -30,15 +32,27 @@ const Rescue = (props) => {
 		if (!check.valid) {
 			enqueueSnackbar(check.message, {variant:'warning'}); 
 		} else {
-			console.log(password);
-			// call api register(username, email, password)
-			// success or fail
-			// success -> store token, navigate('/home'), snackbar
-			// fail -> snackbar
+			register(username, email, password)
+			.then(res => {
+				if (res.ok) {
+					enqueueSnackbar(res.body.message, {variant:'success'});
+					navigate('/'); 
+				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+					enqueueSnackbar("server error, please try again later", {variant:'error'});
+				} else {
+					enqueueSnackbar(res.body.message, {variant:'error'});
+				};
+			});
 		};
 	};
 
 	useEffect(() => {
+		// initialize
+		setEmail();
+		setUsername();
+		setPassword();
+		setPasswordTwo();
+
 		return () => {
 			setEmail();
 			setUsername();
