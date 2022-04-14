@@ -33,9 +33,9 @@ function login(username, password) {
 				ok: res.ok,
 				status: res.status,
 				body: body
-			}
-		})
-	})
+			};
+		});
+	});
 };
 
 // request email for reset passward

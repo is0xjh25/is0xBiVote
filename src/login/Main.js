@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate} from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { login } from '../api/Profile.js';
-import { checkAuthorized } from '../api/Utilities.js';
 import { handleOnValidation } from '../utilities/Utilities.js';
 
 const Main = (props) => {
@@ -40,13 +39,10 @@ const Main = (props) => {
 	};
 
 	useEffect(() => {
-
 		// initialize
-		(async () => {
-			const auth =  await checkAuthorized();
-			if (auth.login) navigate('/');
-	 	})();
-
+		setUsername('');
+		setPassword();
+		
 		return () => {
 			setUsername();
 			setPassword();

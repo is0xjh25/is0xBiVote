@@ -35,20 +35,16 @@ function checkAuthorized() {
 			headers: {'Content-Type': 'application/json', 'Authorization': token},
 		};
 
-		let ok
 		return fetch(url, info)
 		.then(res => {
 			if (res.ok) {
-				ok = true;
-			}
-			return res.json();
-		})
-		.then(json => {
-			if (ok) return {login: true, data: json};
-			return {login: false, message: "please log in"};
+				return {login: true, message: "already login"};
+			} else {
+				return {login: false, message: "please login first"};
+			};
 		});
 	} else {
-		return {login: false, message: "please log in"};
+		return {login: false, message: "please login first"};
 	};
 };
 

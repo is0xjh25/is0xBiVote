@@ -1,25 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { MdHowToVote, MdHistoryEdu, MdAccountBox } from 'react-icons/md';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { logout } from '../api/Profile.js';
-import { getCookie } from '../api/Utilities.js';
+import { getCookie, checkAuthorized } from '../api/Utilities.js';
 import Logo from '../images/Bivote-logo.png';
 import './Navbar.css';
 
 const NavBar = () => {
 	
+	const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 	const[username, setUsername] = useState('');
 
 	const handleLogout = () => {
 		logout();
 		navigate('/login');
+		enqueueSnackbar("logout successfully", {variant:'success'}); 
 	};
 
 	useEffect(() => {
-		
+		// check logged in
+		(async () => {
+			const auth =  await checkAuthorized();
+			if (!auth.login) {
+				navigate('/login');
+				enqueueSnackbar(auth.message, {variant:'warning'});
+			}; 
+		})();
+
+		// initialize
 		setUsername(getCookie('username'));
 
 		return () => {
