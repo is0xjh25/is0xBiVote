@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import NavBar from '../components/Navbar.js';
 import Footer from '../components/Footer.js';
 import Title from '../components/Title.js';
 import Post from '../post/Post.js';
 import Analysis from './Analysis.js';
+import { checkAuthorized } from '../api/Utilities.js';
 import './Result.css';
 
 // 記得拆分...
@@ -105,6 +107,7 @@ const demoPost = {
 
 const Result = () => {
 	
+	const { enqueueSnackbar } = useSnackbar();
 	const navigate = useNavigate();
 	const { id } = useParams();
 
@@ -115,6 +118,15 @@ const Result = () => {
 	};
 
 	useEffect(() => {
+		// check logged in
+		(async () => {
+			const auth =  await checkAuthorized();
+			if (!auth.login) {
+				navigate('/login');
+				enqueueSnackbar(auth.message, {variant:'warning'});
+			}; 
+		})();
+
 		if (!isValidID(id)) navigate('/history');
 		// fetch data
 		// if expiry status = finish else status = ongoing

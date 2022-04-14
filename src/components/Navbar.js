@@ -22,17 +22,10 @@ const NavBar = () => {
 	};
 
 	useEffect(() => {
-		// check logged in
-		(async () => {
-			const auth =  await checkAuthorized();
-			if (!auth.login) {
-				navigate('/login');
-				enqueueSnackbar(auth.message, {variant:'warning'});
-			}; 
-		})();
-
 		// initialize
-		setUsername(getCookie('username'));
+		let name = getCookie('username');
+		if (name == '') name = 'Guest';
+		setUsername(name);
 
 		return () => {
 			setUsername();

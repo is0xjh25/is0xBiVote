@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import NavBar from '../components/Navbar.js';
 import Footer from '../components/Footer.js';
 import Title from '../components/Title.js';
@@ -94,6 +95,7 @@ const demoPost = {
 const Vote = () => {
 
 	const { id } = useParams();
+	const { enqueueSnackbar } = useSnackbar();
 	const navigate = useNavigate();
 	const [page, setPage] = useState('');
 	const [vote1, setVote1] = useState('');
@@ -120,6 +122,14 @@ const Vote = () => {
 	};
 
 	useEffect(() => {
+		// check logged in
+		// (async () => {
+		// 	const auth =  await checkAuthorized();
+		// 	if (!auth.login) {
+		// 		navigate('/login');
+		// 		enqueueSnackbar(auth.message, {variant:'warning'});
+		// 	}; 
+		// })();
 
 		// find or create by
 		// wrong path
