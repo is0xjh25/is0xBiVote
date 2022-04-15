@@ -16,9 +16,9 @@ const ReadPost = (props) => {
 
 		return () => {
 			clearInterval(interval);
-			setEndTime();
+			setEndTime('');
 		};
-	}, [vote, post]);
+	}, [vote]);
 
 	return (
 		<>

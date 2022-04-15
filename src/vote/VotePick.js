@@ -15,7 +15,7 @@ const VotePick = (props) => {
 
 		return () => {
 			clearInterval(interval);
-			setDueTime();
+			setDueTime('');
 		};
 	}, [vote]);
 

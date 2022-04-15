@@ -32,7 +32,7 @@ const Main = (props) => {
 					enqueueSnackbar(res.body.message, {variant:'success'});
 					navigate('/'); 
 				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
-					enqueueSnackbar("server error, please try again later", {variant:'error'});
+					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 				} else {
 					enqueueSnackbar(res.body.message, {variant:'error'});
 				};
@@ -41,13 +41,10 @@ const Main = (props) => {
 	};
 
 	useEffect(() => {
-		// initialize
-		setUsername('');
-		setPassword();
 		
 		return () => {
-			setUsername();
-			setPassword();
+			setUsername('');
+			setPassword('');
 		};
 	}, []);
 

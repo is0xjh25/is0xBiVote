@@ -23,24 +23,29 @@ const Profile = () => {
 	const [statistics, setStatistics] = useState({});
 
 	const handleInitialize = () => {
-		getProfile()
-		.then(res => {
-			if (res.ok) {
-				setUsername(res.body.user.username);
-				setEmail(res.body.user.email);
-				setOldEmail(res.body.user.email);
-				setPassword("");
-				setPasswordTwo("");
-				setStatistics(res.body.user.statistics);
-			} else if (res.status === 403) {
+		(async () => {
+			const auth =  await checkAuthorized();
+			if (!auth.login) {
 				navigate('/login');
-				enqueueSnackbar(res.body.message, {variant:'warning'});
-			} else if ([500, 501, 502, 503, 504].includes(res.status)) {
-				enqueueSnackbar("server error, please try again later", {variant:'error'});
+				enqueueSnackbar(auth.message, {variant:'warning'});
 			} else {
-				enqueueSnackbar(res.body.message, {variant:'error'});
-			};
-		});
+				getProfile()
+				.then(res => {
+					if (res.ok) {
+						setUsername(res.body.user.username);
+						setEmail(res.body.user.email);
+						setOldEmail(res.body.user.email);
+						setPassword("");
+						setPasswordTwo("");
+						setStatistics(res.body.user.statistics);
+					} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+						enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
+					} else {
+						enqueueSnackbar(res.body.message, {variant:'error'});
+					};
+				});
+			}; 
+		})();
 	}
 
 	const handleOnChange = (e) => {
@@ -68,11 +73,8 @@ const Profile = () => {
 					setPassword("");
 					setPasswordTwo("");
 					enqueueSnackbar(res.body.message, {variant:'success'});
-				} else if (res.status === 403) {
-					navigate('/login');
-					enqueueSnackbar(res.body.message, {variant:'warning'});
 				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
-					enqueueSnackbar("server error, please try again later", {variant:'error'});
+					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 				} else {
 					enqueueSnackbar(res.body.message, {variant:'error'});
 				};
@@ -88,31 +90,23 @@ const Profile = () => {
 	const handleLogout = () => {
 		logout();
 		navigate('/login');
-		enqueueSnackbar("logout successfully", {variant:'success'}); 
+		enqueueSnackbar("Log out successfully.", {variant:'success'}); 
 	};
 
 	useEffect(() => {
-		// check logged in
-		(async () => {
-			const auth =  await checkAuthorized();
-			if (!auth.login) {
-				navigate('/login');
-				enqueueSnackbar(auth.message, {variant:'warning'});
-			}; 
-		})();
 
 		// initialize
-		setPage('main');
 		handleInitialize();
+		setPage('main');
 
     return () => {
-      setPage();
-      setUsername();
-      setEmail();
-			setOldEmail();
-      setPassword();
-      setPasswordTwo();
-			setStatistics();
+      setPage('');
+      setUsername('');
+      setEmail('');
+			setOldEmail('');
+      setPassword('');
+      setPasswordTwo('');
+			setStatistics({});
     }
   }, []);
 

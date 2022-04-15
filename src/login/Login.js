@@ -23,7 +23,7 @@ const Login = () => {
 		setPage('main');
 		
 		return () => {
-			setPage();
+			setPage('');
 		}
 	}, []);
 

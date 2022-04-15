@@ -58,13 +58,14 @@ const Vote = () => {
 							}
 							enqueueSnackbar(res.body.message, {variant:'success'});
 						} else if ([500, 501, 502, 503, 504].includes(res.status)) {
-							enqueueSnackbar("server error, please try again later", {variant:'error'});
+							enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 						} else {
 							enqueueSnackbar(res.body.message, {variant:'error'});
 						};
 					});
 				} else {
 					navigate(`/history/${info.body.vote.id}`)
+					enqueueSnackbar("VIEW MODE. If you want to join the vote, please log in.", {variant:'warning'});
 				};
 			})();
 		});

@@ -30,10 +30,10 @@ const Post = (props) => {
 		setOwnedPost(post.owned);
 
 		return () => {
-			setPage();
-			setYesPost();
-			setNoPost();
-			setOwnedPost();
+			setPage('');
+			setYesPost([]);
+			setNoPost([]);
+			setOwnedPost({});
 		};
 	}, [post]);
 

@@ -8,10 +8,10 @@ const handleOnValidation = (type, info) => {
   switch(type) {
     case 'main':
       if (!info.password) {
-        alertMessage = "password cannot be empty";
+        alertMessage = "Password cannot be empty.";
         formIsValid = false;
       } else if (!info.username) {
-        alertMessage = "username cannot be empty";
+        alertMessage = "Username cannot be empty.";
         formIsValid = false;
       };
       break;
@@ -44,7 +44,7 @@ const handleOnValidation = (type, info) => {
 
     case 'profile':
       if (info.email === info.oldEmail && !info.password && !info.passwordTwo) {
-        alertMessage = "nothing is changed";
+        alertMessage = "Nothing is changed.";
         formIsValid = false;
         break;
       } else if (info.email !== info.oldEmail && !info.password && !info.passwordTwo){
@@ -79,47 +79,47 @@ const handleOnValidation = (type, info) => {
 function usernameValidation (u) {
   
   if (!u) {
-    return {valid: false, message: "username cannot be empty"};
+    return {valid: false, message: "Username cannot be empty."};
   } else if (typeof u !== 'undefined') {
     let regex = /^[A-Za-z\d,-]{1,12}$/;
     if (!regex.test(u)) {
-      return {valid: false, message: "username should have not greater than 12 characters without special character except '-'"}; 
+      return {valid: false, message: "Username should have not greater than 12 characters without special character except '-'."}; 
     } 
   }
 
-  return {valid: true, message: "valid username"};
+  return {valid: true, message: "Valid username."};
 }
 
 function emailValidation (e) {
   
   if (!e) {
-    return {valid: false, message: "email cannot be empty"};
+    return {valid: false, message: "Email cannot be empty."};
   } else if (typeof e !== 'undefined') {
     let regex = /[\w+\-.]+@[a-z\d]+(\.[a-z\d]+)*\.[a-z]+/;
     if (!regex.test(e)) {
-      return {valid: false, message: "invalid email"}; 
+      return {valid: false, message: "Invalid email."}; 
     }
   }
 
-  return {valid: true, message: "valid email"};
+  return {valid: true, message: "Valid email."};
 }
 
 function passwordValidation (p1, p2) {
 
   if (!p1) {
-    return {valid: false, message: "password cannot be empty"};
+    return {valid: false, message: "Password cannot be empty."};
   } else if (!p2) {
-    return {valid: false, message: "password needs to be confirmed"};
+    return {valid: false, message: "Password needs to be confirmed."};
   } else if (typeof p1 !== 'undefined' && typeof p2 !== 'undefined') {
     let regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}$/;
     if (!regex.test(p1)) {
-      return {valid: false, message: "password needs to between 8 to 32 characters mixture of letters and numbers"};
+      return {valid: false, message: "Password needs to between 8 to 32 characters mixture of letters and numbers."};
     } else if ( p1 !== p2) {
-      return {valid: false, message: "password do not match"};
+      return {valid: false, message: "Password do not match."};
     };
   };
 
-  return {valid: true, message: "valid password"};
+  return {valid: true, message: "Valid password."};
 }
 
 /* Timer */

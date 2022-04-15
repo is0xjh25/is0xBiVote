@@ -32,7 +32,7 @@ const SinglePost = (props) => {
 	// post new content for current user
 	const handleOnPost = () => {
 		if (content === "") {
-			enqueueSnackbar("write down something before you post", {variant:'warning'});
+			enqueueSnackbar("Write down something before you post.", {variant:'warning'});
 		} else {
 			newPost(id, content)
 			.then(res => {
@@ -40,9 +40,9 @@ const SinglePost = (props) => {
 					enqueueSnackbar(res.body.message, {variant:'success'});
 					refresh();
 				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
-					enqueueSnackbar("server error, please try again later", {variant:'error'});
+					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 				} else if (res.status === 401) {
-						enqueueSnackbar(res.body.message, {variant:'warning'});
+					enqueueSnackbar(res.body.message, {variant:'warning'});
 				} else {
 					enqueueSnackbar(res.body.message, {variant:'error'});
 				};
@@ -58,7 +58,7 @@ const SinglePost = (props) => {
 				enqueueSnackbar(res.body.message, {variant:'success'});
 				refresh();
 			} else if ([500, 501, 502, 503, 504].includes(res.status)) {
-				enqueueSnackbar("server error, please try again later", {variant:'error'});
+				enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 			} else {
 				enqueueSnackbar(res.body.message, {variant:'error'});
 			};
@@ -70,8 +70,8 @@ const SinglePost = (props) => {
 		if (post !== null) setIsUpvoted(post.upvoted);
 		
 		return () => {
-			setContent();
-			setIsUpvoted();
+			setContent("");
+			setIsUpvoted(false);
 		}
 	}, []);
 

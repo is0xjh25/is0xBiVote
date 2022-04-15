@@ -17,7 +17,7 @@ const Analysis = (props) => {
 
 		return () => {
 			clearInterval(interval);
-			setEndTime();
+			setEndTime('');
 		};
 	}, [vote]);
 

@@ -18,7 +18,7 @@ const NavBar = () => {
 	const handleLogout = () => {
 		logout();
 		navigate('/login');
-		enqueueSnackbar("logout successfully", {variant:'success'}); 
+		enqueueSnackbar("Log out successfully.", {variant:'success'}); 
 	};
 
 	useEffect(() => {
@@ -28,7 +28,7 @@ const NavBar = () => {
 		setUsername(name);
 
 		return () => {
-			setUsername();
+			setUsername('');
 		};
 	}, []);
 
