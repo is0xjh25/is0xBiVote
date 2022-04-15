@@ -8,9 +8,9 @@ const Title = (props) => {
 	return (
 		<div className='title-section'>
 			<div className='title'>
-				<span id='title-id'># {info.voteID}</span>
-				<span id='title-status'><strong>{info.voteStatus.toUpperCase()}</strong></span>
-				<span id='title-type-name'>[{info.voteType.toUpperCase()}] <strong>{info.voteName}</strong></span>
+				<span id='title-id'># {info.id}</span>
+				<span id='title-status'><strong>{info.status.toUpperCase()}</strong></span>
+				<span id='title-type-name'>[{info.category.toUpperCase()}] <strong>{info.name}</strong></span>
 			</div>
 		</div>
 	)

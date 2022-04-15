@@ -5,7 +5,7 @@ import './Post.css';
 
 const Post = (props) => {
 
-	const { info, ownedFN } = props;
+	const { info, post, ownedFN } = props;
 	const[page, setPage] = useState('');
 	const[yesPost, setYesPost] = useState([]);
 	const[noPost, setNoPost] = useState([]);
@@ -20,9 +20,9 @@ const Post = (props) => {
 	useEffect(() => {
 		// initialize
 		setPage('yes');
-		setYesPost(info.yesPost);
-		setNoPost(info.noPost);
-		setOwnedPost(info.ownedPost);
+		setYesPost(post.yes);
+		setNoPost(post.no);
+		setOwnedPost(post.owned);
 
 		return () => {
 			setPage();

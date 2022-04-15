@@ -26,6 +26,9 @@ input[type=radio] {
 }
 
 #post-main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	height: 85%;
 	padding-top: 5%;
 	overflow: scroll;
@@ -49,6 +52,13 @@ input[type=radio] {
 	border-style: solid;
 	border-width:  0 0 calc(var(--desktop-font-size) * 0.1) 0;
 	border-color: var(--link);
+}
+
+.single-post-poster {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .single-post-poster span {
@@ -94,10 +104,12 @@ input[type=radio] {
 	pointer-events: none;
 }
 
-.single-post-content {
+.single-post-content p {
 	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
 	margin: auto;
-	padding-top: 2%;
+	padding: 2%;
 	word-break: break-word;
 }
 

@@ -8,15 +8,15 @@ const VotePick = (props) => {
 	const [dueTime, setDueTime] = useState('');
 
 	useEffect(() => {
-		
+		// for counting time
 		const interval = setInterval(() => {
-			setDueTime(countDown(info.endTime));
+			setDueTime(countDown(info.end_time));
 		}, 1000);
 
 		return () => {
 			clearInterval(interval);
 			setDueTime();
-		}
+		};
 	}, []);
 
 	return (
@@ -36,10 +36,10 @@ const VotePick = (props) => {
 					<span>Clock is ticking...</span>
 					<span>{dueTime}</span>
 					<span className='vote-pick-sub-button-set'>
-						<button type='submit' className='' name={status} value={'noIdea'} onClick={handleOnSubmit}>no idea</button>
+						<button type='submit' name={status} value={'no_opinion'} onClick={handleOnSubmit}>no idea</button>
 						{
 							status === 'voteOne' ? (
-								<button type='submit' className='' name={status} value={'notInterested'} onClick={handleOnSubmit}>not interested</button>
+								<button type='submit' name={status} value={'not_interested'} onClick={handleOnSubmit}>not interested</button>
 							) : null
 						}
 					</span>
@@ -64,8 +64,8 @@ const VotePick = (props) => {
 					<span>Clock is ticking...</span>
 					<span>{dueTime}</span>
 					<span className='vote-pick-sub-button-set'>
-						<button type='submit' name={status} value={'noIdea'} onClick={handleOnSubmit}>no idea</button>
-						<button type='submit' name={status} value={'notInterested'} onClick={handleOnSubmit}>not interested</button>
+						<button type='submit' name={status} value={'no_opinion'} onClick={handleOnSubmit}>no idea</button>
+						<button type='submit' name={status} value={'not_interested'} onClick={handleOnSubmit}>not interested</button>
 					</span>
 				</div>
 			</div>

@@ -7,90 +7,9 @@ import Footer from '../components/Footer.js';
 import Title from '../components/Title.js';
 import VotePick from './VotePick';
 import ReadPost from './ReadPost';
+import { getVote, getVoteRecord, updateVoteRecord } from '../api/Vote.js';
+import { checkAuthorized } from '../api/Utilities.js';
 import './Vote.css';
-
-const demoVote = {
-	voteID: 1,
-	voteName: "Is the Loch Ness Monster real?",
-	voteType: "mystery",
-	voteStatus: "progressing",
-	endTime: "April 20 2022 00:00:00",
-	preStatus: "start"
-} 
-
-const demoPost = {
-	endTime: "April 12 2022 00:00:00",
-	yesPost: 
-	[
-		{
-			postID: 1,
-			poster: "yunchi",
-			content: "tjhiuqhwuiehqwejnmasndmnsd,mnqjweiquwoeim,asd,.mkqwjeljqweajsdbnuiqhweuiqw eiuhasjdhaksjhduiyquiwye89qwye89qwyeuuashdjasdljkbzxnmcjzx c8asue89qwueiqwuejkashdkjhqwuiwye8qwu",
-			upvoteCount: 234,
-			upvoted: true
-		},
-		{
-			postID: 2,
-			poster: "harry",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: true
-		},
-		{
-			postID: 3,
-			poster: "harry",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: true
-		},
-		{
-			postID: 4,
-			poster: "harry",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: true
-		},
-		{
-			postID: 5,
-			poster: "harry",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: true
-		},
-		{
-			postID: 6,
-			poster: "harry",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: true
-		}
-	],
-	noPost:
-	[
-		{
-			postID: 3,
-			poster: "demo",
-			content: "tjhiuqhwuiehqwejnmasndmnsd,mnqjweiquwoeim,asd,.mkqwjeljqweajsdbnuiqhweuiqw eiuhasjdhaksjhduiyquiwye89qwye89qwyeuuashdjasdljkbzxnmcjzx c8asue89qwueiqwuejkashdkjhqwuiwye8qwu",
-			upvoteCount: 234,
-			upvoted: true
-		},
-		{
-			postID: 4,
-			poster: "unknow",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: false
-		}
-	],
-	ownedPost:
-	{
-		postID: 2,
-		poster: "harry",
-		content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-		upvoteCount: 555,
-		upvoted: null
-	}
-}
 
 const Vote = () => {
 
@@ -100,59 +19,108 @@ const Vote = () => {
 	const [page, setPage] = useState('');
 	const [vote1, setVote1] = useState('');
 	const [vote2, setVote2] = useState('');
-	const [post, setPost] = useState('');
 	const [endTime, setEndTime] = useState('');
-	const [info, setInfo] = useState({});
+	const [info, setInfo] = useState({id: '', status: '', category: '', start_time: '', end_tiem: ''});
+	const [post, setPost] = useState({yes:[], no:[], owned:{}});
+	const [record, setRecord] = useState({id: '', user_id: '', vote_id: '', vote_one: '', vote_two: '', status: ''});
+
+	const handleInitialize = () => {
+		getVote(id)
+		.then(res => {
+			if (res.ok) {
+				setInfo(res.body.vote);
+				setPost(res.body.post);
+				enqueueSnackbar(res.body.message, {variant:'success'});
+				return res;
+			} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+				enqueueSnackbar("server error, please try again later", {variant:'error'});
+			} else {
+				enqueueSnackbar(res.body.message, {variant:'error'});
+			};
+		})
+		.then(info => {
+			console.log(info);
+			// check logged in
+			(async () => {
+				const auth =  await checkAuthorized();
+				if (auth.login) {
+					getVoteRecord(id)
+					.then(res => {
+						if (res.ok) {
+							setRecord(res.body.vote_record);
+							// set page
+							if (res.body.vote_record.status === 'vote_two') navigate(`/history/${info.body.vote.id}`);
+							switch(res.body.vote_record.status) {
+								case 'start':
+									setPage('voteOne');
+									break;
+								case 'vote_one':
+									setPage('reading');
+									break;
+								default:
+									setPage('voteOne');
+							}
+							enqueueSnackbar(res.body.message, {variant:'success'});
+						} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+							enqueueSnackbar("server error, please try again later", {variant:'error'});
+						} else {
+							enqueueSnackbar(res.body.message, {variant:'error'});
+						};
+					});
+				} else {
+					navigate(`/history/${info.body.vote.id}`)
+				}
+			})();
+		});
+	}
 
 	const handleOnSubmit = (e) => {
 		if (e.target.name === 'voteOne') {
-			if (e.target.value === 'notInterested') {
-				//api preStatus: voteOne voteOne: e.target.value voteTwo: e.target.value
-				navigate(`/history/${demoVote.voteID}`)
+			if (e.target.value === 'not_interested') {
+				updateVoteRecord({id: info.id, data: {vote_one: 'not_interested', vote_two: 'not_interested', status:'vote_two'}})
+				.then(res => {
+					if (res.ok) {
+						navigate(`/history/${info.id}`);
+						enqueueSnackbar(res.body.message, {variant:'success'});
+					} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+						enqueueSnackbar("server error, please try again later", {variant:'error'});
+					} else {
+						enqueueSnackbar(res.body.message, {variant:'error'});
+					};
+				});
 			} else {
-				//api preStatus: voteOne voteOne: e.target.value
-				setPage('reading');
-			}
+				updateVoteRecord({id: info.id, data: {vote_one: e.target.value, status:'vote_one'}})
+				.then(res => {
+					if (res.ok) {
+						setPage('reading');
+						enqueueSnackbar(res.body.message, {variant:'success'});
+					} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+						enqueueSnackbar("server error, please try again later", {variant:'error'});
+					} else {
+						enqueueSnackbar(res.body.message, {variant:'error'});
+					};
+				});
+			};
 		} else if (e.target.name === 'reading') {
 			setPage('voteTwo');
 		} else if (e.target.name === 'voteTwo') {
-			//api preStatus: voteTwo voteTwo: e.target.value
-			navigate(`/history/${demoVote.voteID}`)
-		}
+			updateVoteRecord({id: info.id, data: {vote_two: e.target.value, status:'vote_two'}})
+			.then(res => {
+				if (res.ok) {
+					navigate(`/history/${info.id}`)
+					enqueueSnackbar(res.body.message, {variant:'success'});
+				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+					enqueueSnackbar("server error, please try again later", {variant:'error'});
+				} else {
+					enqueueSnackbar(res.body.message, {variant:'error'});
+				};
+			});
+		};
 	};
 
 	useEffect(() => {
-		// check logged in
-		// (async () => {
-		// 	const auth =  await checkAuthorized();
-		// 	if (!auth.login) {
-		// 		navigate('/login');
-		// 		enqueueSnackbar(auth.message, {variant:'warning'});
-		// 	}; 
-		// })();
-
-		// find or create by
-		// wrong path
-		if (!['world', 'mystery', 'sport', 'entertainment'].includes(id)) {
-			navigate('/vote');
-		};
-
-		// call api .then
-
-		if (demoVote.preStatus === 'voteTwo') navigate(`/history/${demoVote.voteID}`)
-
-		switch(demoVote.preStatus) {
-			case 'start':
-				setPage('voteOne');
-				break;
-			case 'voteOne':
-				setPage('reading');
-				break;
-			default:
-				setPage('voteOne');
-		}
-
-		setInfo(demoVote);
+		// initialize
+		handleInitialize();
 		
 		return () => {
 			setPage();
@@ -161,7 +129,7 @@ const Vote = () => {
 			setPost();
 			setEndTime();
 			setInfo();
-		}
+		};
 	}, []);
 
 	return (
@@ -171,13 +139,13 @@ const Vote = () => {
 			</header>
 			<main>
 				<div id='vote-frame'>
-					<Title info={demoVote}/>
+					<Title info={info}/>
 					<div className='main-section'>
 						{	
 							page === 'voteOne' ? (
 								<VotePick info={info} status={page} handleOnSubmit={handleOnSubmit}/>
 							) : page === 'reading' ? (
-								<ReadPost info={demoPost} status={page} handleOnSubmit={handleOnSubmit}/>
+								<ReadPost info={info} post={post} status={page} handleOnSubmit={handleOnSubmit}/>
 							) :	page === 'voteTwo' ? (
 								<VotePick info={info} status={page} handleOnSubmit={handleOnSubmit}/>
 							) : null

@@ -6,7 +6,7 @@ import './Post.css';
 const SinglePost = (props) => {
 	
 	const { type, info} = props;
-	const {	postID, poster, content, upvoteCount, upvoted } = info;
+	const {	id, user_id, vote_id, content, vote_two, poster, upvotes, upvoted } = info;
 	const [isUpvoted, setIsUpvoted] = useState();
 
 	const handleOnChange = (e) => {
@@ -49,7 +49,7 @@ const SinglePost = (props) => {
 						<>
 							<span>@{poster}</span>
 							<span>
-								{upvoteCount}
+								{upvotes}
 								{
 									isUpvoted === null ? (
 										<button className='upvote-button' disabled>
@@ -98,9 +98,9 @@ const PostCollect = (props) => {
 				type === 'owned' ? (
 					<SinglePost type={type} info={info}/>
 				) : isEmpty(info) ? (
-					<p>NO POSTS FOUND</p>
+					<span>NO POSTS FOUND</span>
 				) : (
-					info.map(e => <SinglePost key={e.postID} type={type} info={e}/>)
+					info.map(e => <SinglePost key={e.id} type={type} info={e}/>)
 				)
 			}
 		</>
