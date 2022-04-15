@@ -18,7 +18,7 @@ const VoteEntry = () => {
 			if (res.ok) {
 				setVotes(res.body.vote_entries);
 			} else if ([500, 501, 502, 503, 504].includes(res.status)) {
-				enqueueSnackbar("SERVER ERROR, please try again later.", {variant:'error'});
+				enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 			} else {
 				enqueueSnackbar(res.body.message, {variant:'error'});
 			};
