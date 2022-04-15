@@ -137,7 +137,31 @@ function countDown(endTime) {
  	return days + "D " + hours + "H "+ minutes + "M " + seconds + "S ";
 };
 
+/* Convert UTC time */
+function  dateTimeHandler (isoString) {
+  let months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+  let utc = (new Date(isoString)).toUTCString();
+  return months[(new Date(utc).getMonth())] + " " + ordinal_suffix_of(new Date(utc).getDate()) + " . " + new Date(utc).getFullYear();
+}
+
+/* Helpler function */
+function ordinal_suffix_of(i) {
+  var j = i % 10,
+      k = i % 100;
+  if (j == 1 && k != 11) {
+      return i + "st";
+  }
+  if (j == 2 && k != 12) {
+      return i + "nd";
+  }
+  if (j == 3 && k != 13) {
+      return i + "rd";
+  }
+  return i + "th";
+}
+
 export {
   handleOnValidation,
 	countDown,
+  dateTimeHandler
 };

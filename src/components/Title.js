@@ -3,14 +3,14 @@ import './Title.css';
 
 const Title = (props) => {
 	
-	const { info } = props;
+	const { vote } = props;
 
 	return (
 		<div className='title-section'>
 			<div className='title'>
-				<span id='title-id'># {info.id}</span>
-				<span id='title-status'><strong>{info.status.toUpperCase()}</strong></span>
-				<span id='title-type-name'>[{info.category.toUpperCase()}] <strong>{info.name}</strong></span>
+				<span id='title-id'># {vote.id}</span>
+				<span id='title-status'><strong>{vote.status.toUpperCase()}</strong></span>
+				<span id='title-type-name'>[{vote.category.toUpperCase()}] <strong>{vote.name}</strong></span>
 			</div>
 		</div>
 	)

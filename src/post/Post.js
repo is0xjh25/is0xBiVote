@@ -5,7 +5,7 @@ import './Post.css';
 
 const Post = (props) => {
 
-	const { info, post, ownedFN } = props;
+	const { post, ownedFN } = props;
 	const[page, setPage] = useState('');
 	const[yesPost, setYesPost] = useState([]);
 	const[noPost, setNoPost] = useState([]);
@@ -30,7 +30,7 @@ const Post = (props) => {
 			setNoPost();
 			setOwnedPost();
 		};
-	}, []);
+	}, [post]);
 
 	return (
 		<div className='post-section'>
@@ -55,11 +55,11 @@ const Post = (props) => {
 			<div id='post-main'>
 				{
 					page === 'yes' ? (
-						<PostCollect type={'yes'} info={yesPost}/>
+						<PostCollect type={'yes'} post={yesPost}/>
 					) : page === 'no' ? (
-						<PostCollect type={'no'} info={noPost}/>
+						<PostCollect type={'no'} post={noPost}/>
 					) : page === 'owned' ? (
-						<PostCollect type={'owned'} info={ownedPost}/>
+						<PostCollect type={'owned'} post={ownedPost}/>
 					) : null
 				}
 			</div>

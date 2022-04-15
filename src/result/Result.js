@@ -7,129 +7,63 @@ import Footer from '../components/Footer.js';
 import Title from '../components/Title.js';
 import Post from '../post/Post.js';
 import Analysis from './Analysis.js';
+import { getVote, getVoteRecord } from '../api/Vote.js';
 import { checkAuthorized } from '../api/Utilities.js';
 import './Result.css';
 
-// 記得拆分...
-const demoTitle = {
-	voteID: 1,
-	voteName: "Do aliens exists?",
-	voteType: "mystery", 
-	voteStatus: "progressing" //closed
-}
-
-const demoAnalysis = {
-	userVote: "Yes",
-	startTime: "April 7 2022",
-	endTime: "April 20 2022",
-	yes: 199,
-	no: 50,
-	leading: "yes",
-	notInterested: 5,
-	changeMind: 50,
-	inspiredByOthers: 10,
-	hardToTell: 4,
-	voteStatus: "closed" //closed
-}
-
-const demoPost = {
-	yesPost: 
-	[
-		{
-			postID: 1,
-			poster: "yunchi",
-			content: "tjhiuqhwuiehqwejnmasndmnsd,mnqjweiquwoeim,asd,.mkqwjeljqweajsdbnuiqhweuiqw eiuhasjdhaksjhduiyquiwye89qwye89qwyeuuashdjasdljkbzxnmcjzx c8asue89qwueiqwuejkashdkjhqwuiwye8qwu",
-			upvoteCount: 234,
-			upvoted: true
-		},
-		{
-			postID: 2,
-			poster: "harry",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: true
-		},
-		{
-			postID: 3,
-			poster: "harry",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: true
-		},
-		{
-			postID: 4,
-			poster: "harry",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: true
-		},
-		{
-			postID: 5,
-			poster: "harry",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: true
-		},
-		{
-			postID: 6,
-			poster: "harry",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: true
-		}
-	],
-	noPost:
-	[
-		{
-			postID: 3,
-			poster: "demo",
-			content: "tjhiuqhwuiehqwejnmasndmnsd,mnqjweiquwoeim,asd,.mkqwjeljqweajsdbnuiqhweuiqw eiuhasjdhaksjhduiyquiwye89qwye89qwyeuuashdjasdljkbzxnmcjzx c8asue89qwueiqwuejkashdkjhqwuiwye8qwu",
-			upvoteCount: 234,
-			upvoted: true
-		},
-		{
-			postID: 4,
-			poster: "unknow",
-			content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-			upvoteCount: 555,
-			upvoted: false
-		}
-	],
-	ownedPost:
-	{
-		postID: 2,
-		poster: "harry",
-		content: "tjhiuqhwuiehqwejnmasndmnsdzxjchiuahsduihqwiuehuiqwhejnaskdjnkjzxnciuuiayeiuqwyheiuqhweihasjkndkjnasdjnqijwhniuqwyeuiyqwiueyiuashdjkashbnmxcbjhqwuiehy89qweyu98qwuy9 ahsdjhqwjehuiqwyeuiqwyhejhasdjkhasiudhi8qwye87qwyekabdjkhaghj",
-		upvoteCount: 555,
-		upvoted: null
-	}
-}
-
 const Result = () => {
-	
+
+	const { id } = useParams();
 	const { enqueueSnackbar } = useSnackbar();
 	const navigate = useNavigate();
-	const { id } = useParams();
+	const [vote, setVote] = useState({id: '', status: '', category: '', start_time: '', end_tiem: ''});
+	const [post, setPost] = useState({yes:[], no:[], owned:{}});
+	const [userVote, setUserVote] = useState(null);
 
-	const isValidID = (id) => {
-		id = parseInt(id);
-		if (isNaN(id)) return false;
-		return id < 10;
+	const handleInitialize = () => {
+		getVote(id)
+		.then(res => {
+			if (res.ok) {
+				setVote(res.body.vote);
+				setPost(res.body.post);
+				enqueueSnackbar(res.body.message, {variant:'success'});
+				return res;
+			} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+				enqueueSnackbar("server error, please try again later", {variant:'error'});
+			} else {
+				enqueueSnackbar(res.body.message, {variant:'error'});
+			};
+		})
+		.then(info => {
+			// check logged in
+			(async () => {
+				const auth =  await checkAuthorized();
+				if (auth.login) {
+					getVoteRecord(id)
+					.then(res => {
+						if (res.ok) {
+							setUserVote(res.body.vote_record.vote_two);
+							enqueueSnackbar(res.body.message, {variant:'success'});
+						} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+							enqueueSnackbar("server error, please try again later", {variant:'error'});
+						} else {
+							enqueueSnackbar(res.body.message, {variant:'error'});
+						};
+					});
+				};
+			})();
+		});
 	};
 
 	useEffect(() => {
-		// check logged in
-		(async () => {
-			const auth =  await checkAuthorized();
-			if (!auth.login) {
-				navigate('/login');
-				enqueueSnackbar(auth.message, {variant:'warning'});
-			}; 
-		})();
-
-		if (!isValidID(id)) navigate('/history');
-		// fetch data
-		// if expiry status = finish else status = ongoing
+		// initialize
+		handleInitialize();
+		
+		return () => {
+			setPost();
+			setVote();
+			setUserVote();
+		};
 	}, []);
 
 	return (
@@ -139,10 +73,10 @@ const Result = () => {
 			</header>
 			<main>
 				<div id='result-frame'>
-					<Title info={demoTitle}/>
+					<Title vote={vote}/>
 					<div className='main-section'>
-						<Analysis info={demoAnalysis}/>
-						<Post info={demoPost} ownedFN={true}/>
+						<Analysis vote={vote} userVote={userVote}/>
+						<Post post={post} ownedFN={true}/>
 					</div>
 				</div>
 			</main>

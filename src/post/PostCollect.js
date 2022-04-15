@@ -5,8 +5,8 @@ import './Post.css';
 
 const SinglePost = (props) => {
 	
-	const { type, info} = props;
-	const {	id, user_id, vote_id, content, vote_two, poster, upvotes, upvoted } = info;
+	const { type, post} = props;
+	const {	id, user_id, vote_id, content, vote_two, poster, upvotes, upvoted } = post;
 	const [isUpvoted, setIsUpvoted] = useState();
 
 	const handleOnChange = (e) => {
@@ -38,7 +38,7 @@ const SinglePost = (props) => {
 		<div className='single-post'>
 			<div className='single-post-poster' type={type}>
 				{
-					isEmpty(info) ? (
+					isEmpty(post) ? (
 						<>
 							<span>SHOUT OUT LOUD !!!</span>
 							<span>
@@ -67,7 +67,7 @@ const SinglePost = (props) => {
 								} 
 							</span>
 							{
-								type === 'owned' && !isEmpty(info) ? (
+								type === 'owned' && !isEmpty(post) ? (
 									<span>
 										<button type='submit' className='btn btn-outline-danger shadow' onClick={handleOnDelete}>DELETE</button>
 									</span>
@@ -79,7 +79,7 @@ const SinglePost = (props) => {
 			</div>
 			<div className='single-post-content'>
 				{
-					isEmpty(info) ? (
+					isEmpty(post) ? (
   					<textarea className="form-control" rows="4" id="post-new-post"></textarea>
 					) : (
 						<p>{content}</p>
@@ -91,16 +91,16 @@ const SinglePost = (props) => {
 };
 
 const PostCollect = (props) => {
-	const { status, type, info } = props;
+	const { status, type, post } = props;
 	return (
 		<>
 			{	
 				type === 'owned' ? (
-					<SinglePost type={type} info={info}/>
-				) : isEmpty(info) ? (
+					<SinglePost type={type} post={post}/>
+				) : isEmpty(post) ? (
 					<span>NO POSTS FOUND</span>
 				) : (
-					info.map(e => <SinglePost key={e.id} type={type} info={e}/>)
+					post.map(e => <SinglePost key={e.id} type={type} post={e}/>)
 				)
 			}
 		</>

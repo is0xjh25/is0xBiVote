@@ -17,10 +17,7 @@ const Vote = () => {
 	const { enqueueSnackbar } = useSnackbar();
 	const navigate = useNavigate();
 	const [page, setPage] = useState('');
-	const [vote1, setVote1] = useState('');
-	const [vote2, setVote2] = useState('');
-	const [endTime, setEndTime] = useState('');
-	const [info, setInfo] = useState({id: '', status: '', category: '', start_time: '', end_tiem: ''});
+	const [vote, setVote] = useState({id: '', status: '', category: '', start_time: '', end_tiem: ''});
 	const [post, setPost] = useState({yes:[], no:[], owned:{}});
 	const [record, setRecord] = useState({id: '', user_id: '', vote_id: '', vote_one: '', vote_two: '', status: ''});
 
@@ -28,7 +25,7 @@ const Vote = () => {
 		getVote(id)
 		.then(res => {
 			if (res.ok) {
-				setInfo(res.body.vote);
+				setVote(res.body.vote);
 				setPost(res.body.post);
 				enqueueSnackbar(res.body.message, {variant:'success'});
 				return res;
@@ -39,7 +36,6 @@ const Vote = () => {
 			};
 		})
 		.then(info => {
-			console.log(info);
 			// check logged in
 			(async () => {
 				const auth =  await checkAuthorized();
@@ -69,7 +65,7 @@ const Vote = () => {
 					});
 				} else {
 					navigate(`/history/${info.body.vote.id}`)
-				}
+				};
 			})();
 		});
 	}
@@ -77,10 +73,10 @@ const Vote = () => {
 	const handleOnSubmit = (e) => {
 		if (e.target.name === 'voteOne') {
 			if (e.target.value === 'not_interested') {
-				updateVoteRecord({id: info.id, data: {vote_one: 'not_interested', vote_two: 'not_interested', status:'vote_two'}})
+				updateVoteRecord({id: vote.id, data: {vote_one: 'not_interested', vote_two: 'not_interested', status:'vote_two'}})
 				.then(res => {
 					if (res.ok) {
-						navigate(`/history/${info.id}`);
+						navigate(`/history/${vote.id}`);
 						enqueueSnackbar(res.body.message, {variant:'success'});
 					} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 						enqueueSnackbar("server error, please try again later", {variant:'error'});
@@ -89,7 +85,7 @@ const Vote = () => {
 					};
 				});
 			} else {
-				updateVoteRecord({id: info.id, data: {vote_one: e.target.value, status:'vote_one'}})
+				updateVoteRecord({id: vote.id, data: {vote_one: e.target.value, status:'vote_one'}})
 				.then(res => {
 					if (res.ok) {
 						setPage('reading');
@@ -104,10 +100,10 @@ const Vote = () => {
 		} else if (e.target.name === 'reading') {
 			setPage('voteTwo');
 		} else if (e.target.name === 'voteTwo') {
-			updateVoteRecord({id: info.id, data: {vote_two: e.target.value, status:'vote_two'}})
+			updateVoteRecord({id: vote.id, data: {vote_two: e.target.value, status:'vote_two'}})
 			.then(res => {
 				if (res.ok) {
-					navigate(`/history/${info.id}`)
+					navigate(`/history/${vote.id}`)
 					enqueueSnackbar(res.body.message, {variant:'success'});
 				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 					enqueueSnackbar("server error, please try again later", {variant:'error'});
@@ -124,11 +120,9 @@ const Vote = () => {
 		
 		return () => {
 			setPage();
-			setVote1();
-			setVote2();
 			setPost();
-			setEndTime();
-			setInfo();
+			setVote();
+			setRecord();
 		};
 	}, []);
 
@@ -139,15 +133,15 @@ const Vote = () => {
 			</header>
 			<main>
 				<div id='vote-frame'>
-					<Title info={info}/>
+					<Title vote={vote}/>
 					<div className='main-section'>
 						{	
 							page === 'voteOne' ? (
-								<VotePick info={info} status={page} handleOnSubmit={handleOnSubmit}/>
+								<VotePick vote={vote} status={page} handleOnSubmit={handleOnSubmit}/>
 							) : page === 'reading' ? (
-								<ReadPost info={info} post={post} status={page} handleOnSubmit={handleOnSubmit}/>
+								<ReadPost vote={vote} post={post} status={page} handleOnSubmit={handleOnSubmit}/>
 							) :	page === 'voteTwo' ? (
-								<VotePick info={info} status={page} handleOnSubmit={handleOnSubmit}/>
+								<VotePick vote={vote} status={page} handleOnSubmit={handleOnSubmit}/>
 							) : null
 						}
 					</div>

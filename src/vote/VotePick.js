@@ -4,20 +4,20 @@ import './Vote.css';
 
 const VotePick = (props) => {
 	
-	const { info, status, handleOnSubmit} = props;
+	const { vote, status, handleOnSubmit} = props;
 	const [dueTime, setDueTime] = useState('');
 
 	useEffect(() => {
-		// for counting time
+		// for counting down
 		const interval = setInterval(() => {
-			setDueTime(countDown(info.end_time));
+			setDueTime(countDown(vote.end_time));
 		}, 1000);
 
 		return () => {
 			clearInterval(interval);
 			setDueTime();
 		};
-	}, []);
+	}, [vote]);
 
 	return (
 		<>

@@ -30,15 +30,16 @@ input[type=radio] {
 	flex-direction: column;
 	align-items: center;
 	height: 85%;
-	padding-top: 5%;
+	padding-top: 2.5%;
 	overflow: scroll;
 }
 
 .single-post {
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-start;
 	width: 90%;
-	margin: auto;
+	margin: 0 auto;
 	font-size: calc(var(--desktop-font-size) * 0.75);
 }
 
@@ -46,19 +47,11 @@ input[type=radio] {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 	padding: 0.5%;
 	font-size: larger;
 	border-style: solid;
 	border-width:  0 0 calc(var(--desktop-font-size) * 0.1) 0;
-	border-color: var(--link);
-}
-
-.single-post-poster {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
 }
 
 .single-post-poster span {
@@ -79,7 +72,7 @@ input[type=radio] {
 }
 
 .single-post-poster[type='owned'] {
-	border-color: var(--link);
+	border-color: transparent;
 }
 
 .upvote-button {
@@ -100,16 +93,15 @@ input[type=radio] {
 }
 
 .single-post-poster button > * {
-	font-size: calc(var(--desktop-font-size) * 0.8);
+	font-size: calc(var(--desktop-font-size) * 0.6);
 	pointer-events: none;
 }
 
-.single-post-content p {
+.single-post-content p, textarea {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
-	margin: auto;
-	padding: 2%;
+	margin: 2% auto;
 	word-break: break-word;
 }
 
