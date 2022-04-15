@@ -17,6 +17,7 @@ const Profile = () => {
 	const [page, setPage] = useState('');
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
+	const [oldEmail, setOldEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [passwordTwo, setPasswordTwo] = useState('');
 	const [statistics, setStatistics] = useState({});
@@ -27,6 +28,7 @@ const Profile = () => {
 			if (res.ok) {
 				setUsername(res.body.user.username);
 				setEmail(res.body.user.email);
+				setOldEmail(res.body.user.email);
 				setPassword("");
 				setPasswordTwo("");
 				setStatistics(res.body.user.statistics);
@@ -53,7 +55,7 @@ const Profile = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		let check = handleOnValidation('profile', {email: email, password: password, passwordTwo: passwordTwo});
+		let check = handleOnValidation('profile', {email: email, oldEmail: oldEmail, password: password, passwordTwo: passwordTwo});
 		if (!check.valid) {
 			enqueueSnackbar(check.message, {variant:'warning'}); 
 		} else {
@@ -107,6 +109,7 @@ const Profile = () => {
       setPage();
       setUsername();
       setEmail();
+			setOldEmail();
       setPassword();
       setPasswordTwo();
 			setStatistics();
