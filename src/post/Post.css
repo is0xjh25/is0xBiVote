@@ -72,7 +72,7 @@ input[type=radio] {
 }
 
 .single-post-poster[type='owned'] {
-	border-color: transparent;
+	border-color: var(--link);
 }
 
 .upvote-button {

@@ -1,13 +1,19 @@
 import React, { useState, useEffect }from 'react';
+import { useParams } from 'react-router';
+import { useSnackbar } from 'notistack';
 import { isEmpty } from 'lodash';
 import { BsLightbulbFill } from 'react-icons/bs';
+import { newPost, deletePost, newUpvote, deleteUpvote } from '../api/Post.js';
+import { checkAuthorized } from '../api/Utilities.js';
 import './Post.css';
 
 const SinglePost = (props) => {
 	
-	const { type, post} = props;
-	const {	id, user_id, vote_id, content, vote_two, poster, upvotes, upvoted } = post;
-	const [isUpvoted, setIsUpvoted] = useState();
+	const { post, type, refresh } = props;
+	const { id } = useParams();
+	const { enqueueSnackbar } = useSnackbar();
+	const [content, setContent] = useState("");
+	const [isUpvoted, setIsUpvoted] = useState(false);
 
 	const handleOnChange = (e) => {
 		if (e.target.name === 'upvote-button-option') {
@@ -18,18 +24,53 @@ const SinglePost = (props) => {
 				setIsUpvoted(true);
 				// call api (userID, postID, e.target.value)
 			};
+		} else if (e.target.name === 'post-content') {
+			setContent(e.target.value);
+		};
+	};
+
+	// post new content for current user
+	const handleOnPost = () => {
+		if (content === "") {
+			enqueueSnackbar("write down something before you post", {variant:'warning'});
+		} else {
+			newPost(id, content)
+			.then(res => {
+				if (res.ok) {
+					enqueueSnackbar(res.body.message, {variant:'success'});
+					refresh();
+				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+					enqueueSnackbar("server error, please try again later", {variant:'error'});
+				} else if (res.status === 401) {
+						enqueueSnackbar(res.body.message, {variant:'warning'});
+				} else {
+					enqueueSnackbar(res.body.message, {variant:'error'});
+				};
+			});
 		};
 	};
 
 	// delete post and refresh
 	const handleOnDelete = () => {
+		deletePost(id)
+		.then(res => {
+			if (res.ok) {
+				enqueueSnackbar(res.body.message, {variant:'success'});
+				refresh();
+			} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+				enqueueSnackbar("server error, please try again later", {variant:'error'});
+			} else {
+				enqueueSnackbar(res.body.message, {variant:'error'});
+			};
+		});
 	};
 
 	useEffect(() => {
 		// initialize
-		setIsUpvoted(upvoted);
-
+		if (post !== null) setIsUpvoted(post.upvoted);
+		
 		return () => {
+			setContent();
 			setIsUpvoted();
 		}
 	}, []);
@@ -42,14 +83,14 @@ const SinglePost = (props) => {
 						<>
 							<span>SHOUT OUT LOUD !!!</span>
 							<span>
-								<button type='submit' className='btn btn-outline-info shadow' onClick={handleOnDelete}>POST</button>
+								<button type='submit' className='btn btn-outline-warning shadow' onClick={handleOnPost}>POST</button>
 							</span>
 						</>
 					) : (
 						<>
-							<span>@{poster}</span>
+							<span>@{post.poster}</span>
 							<span>
-								{upvotes}
+								{post.upvotes}
 								{
 									isUpvoted === null ? (
 										<button className='upvote-button' disabled>
@@ -80,9 +121,9 @@ const SinglePost = (props) => {
 			<div className='single-post-content'>
 				{
 					isEmpty(post) ? (
-  					<textarea className="form-control" rows="4" id="post-new-post"></textarea>
+  					<textarea className="form-control" rows="4" id="post-new-post" name='post-content' onChange={handleOnChange}></textarea>
 					) : (
-						<p>{content}</p>
+						<p>{post.content}</p>
 					)
 				}
 			</div>
@@ -91,16 +132,16 @@ const SinglePost = (props) => {
 };
 
 const PostCollect = (props) => {
-	const { status, type, post } = props;
+	const { type, post, refresh } = props;
 	return (
 		<>
 			{	
 				type === 'owned' ? (
-					<SinglePost type={type} post={post}/>
+					<SinglePost type={type} post={post} refresh={refresh}/>
 				) : isEmpty(post) ? (
 					<span>NO POSTS FOUND</span>
 				) : (
-					post.map(e => <SinglePost key={e.id} type={type} post={e}/>)
+					post.map(e => <SinglePost key={e.id} type={type} post={e} refresh={refresh}/>)
 				)
 			}
 		</>

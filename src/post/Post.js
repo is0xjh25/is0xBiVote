@@ -5,7 +5,7 @@ import './Post.css';
 
 const Post = (props) => {
 
-	const { post, ownedFN } = props;
+	const { post, userPost, ownedFN, refresh } = props;
 	const[page, setPage] = useState('');
 	const[yesPost, setYesPost] = useState([]);
 	const[noPost, setNoPost] = useState([]);
@@ -19,7 +19,12 @@ const Post = (props) => {
 
 	useEffect(() => {
 		// initialize
-		setPage('yes');
+		if (!ownedFN) {
+			setPage('yes');
+		} else {
+			setPage('owned');
+		}
+
 		setYesPost(post.yes);
 		setNoPost(post.no);
 		setOwnedPost(post.owned);
@@ -36,7 +41,7 @@ const Post = (props) => {
 		<div className='post-section'>
 				<div className='btn-group' role='group' aria-label='Basic radio toggle button group' id='post-navigate-bar' onChange={handleOnChange}>
 					<span className='post-option'>
-						<input type='radio' className='btn-check' name='btnradio' id='btnradio1' autoComplete='off' value='yes' defaultChecked/>
+						<input type='radio' className='btn-check' name='btnradio' id='btnradio1' autoComplete='off' value='yes'/>
 						<span className='text-success'>YES</span>
 					</span>
 					<span className='post-option'>
@@ -55,11 +60,11 @@ const Post = (props) => {
 			<div id='post-main'>
 				{
 					page === 'yes' ? (
-						<PostCollect type={'yes'} post={yesPost}/>
+						<PostCollect type={'yes'} post={yesPost} refresh={refresh}/>
 					) : page === 'no' ? (
-						<PostCollect type={'no'} post={noPost}/>
+						<PostCollect type={'no'} post={noPost} refresh={refresh}/>
 					) : page === 'owned' ? (
-						<PostCollect type={'owned'} post={ownedPost}/>
+						<PostCollect type={'owned'} post={userPost} refresh={refresh}/>
 					) : null
 				}
 			</div>
