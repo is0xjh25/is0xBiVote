@@ -54,7 +54,8 @@ const Result = () => {
 					});
 				} else {
 					setOwnedFN(false);
-					enqueueSnackbar("VIEW MODE. If you want to join the vote, please log in.", {variant:'warning'});
+					enqueueSnackbar("If you would like to join the vote, please log in or create new account.", {variant:'info'});
+					enqueueSnackbar("VIEW MODE", {variant:'warning'});
 				};
 			})();
 		});
