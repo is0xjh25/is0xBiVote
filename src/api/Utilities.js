@@ -38,13 +38,13 @@ function checkAuthorized() {
 		return fetch(url, info)
 		.then(res => {
 			if (res.ok) {
-				return {login: true, message: "already login"};
+				return {login: true, message: "Already login."};
 			} else {
-				return {login: false, message: "please login first"};
+				return {login: false, message: "Please log in first."};
 			};
 		});
 	} else {
-		return {login: false, message: "please login first"};
+		return {login: false, message: "Please log in first."};
 	};
 };
 

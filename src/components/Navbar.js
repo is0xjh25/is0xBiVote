@@ -16,9 +16,9 @@ const NavBar = () => {
 	const[username, setUsername] = useState('');
 
 	const handleLogout = () => {
+		if (getCookie('token') || getCookie('username')) enqueueSnackbar("Log out successfully.", {variant:'success'}); 
 		logout();
 		navigate('/login');
-		enqueueSnackbar("Log out successfully.", {variant:'success'}); 
 	};
 
 	useEffect(() => {

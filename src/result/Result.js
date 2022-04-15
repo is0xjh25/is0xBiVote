@@ -21,6 +21,7 @@ const Result = () => {
 	const [post, setPost] = useState({yes:[], no:[]});
 	const [userVote, setUserVote] = useState(null);
 	const [userPost, setUserPost] = useState(null);
+	const [ownedFN, setOwnedFN] = useState(false);
 
 	const handleInitialize = () => {
 		getVote(id)
@@ -44,12 +45,16 @@ const Result = () => {
 						if (res.ok) {
 							setUserVote(res.body.vote_record.vote_two);
 							setUserPost(res.body.vote_record.owned_post);
+							setOwnedFN(true);
 						} else if ([500, 501, 502, 503, 504].includes(res.status)) {
-							enqueueSnackbar("server error, please try again later", {variant:'error'});
+							enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 						} else {
 							enqueueSnackbar(res.body.message, {variant:'error'});
 						};
 					});
+				} else {
+					setOwnedFN(false);
+					enqueueSnackbar("VIEW MODE. If you want to join the vote, please log in.", {variant:'warning'});
 				};
 			})();
 		});
@@ -69,6 +74,7 @@ const Result = () => {
 			setUserVote(null);
 			setUserPost(null);
 			setRefreshCount(0);
+			setOwnedFN(false);
 		};
 	}, [refreshCount]);
 
@@ -82,7 +88,7 @@ const Result = () => {
 					<Title vote={vote}/>
 					<div className='main-section'>
 						<Analysis vote={vote} userVote={userVote}/>
-						<Post post={post} userPost={userPost} ownedFN={true} refresh={refresh}/>
+						<Post post={post} userPost={userPost} ownedFN={ownedFN} refresh={refresh}/>
 					</div>
 				</div>
 			</main>

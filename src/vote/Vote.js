@@ -27,7 +27,6 @@ const Vote = () => {
 			if (res.ok) {
 				setVote(res.body.vote);
 				setPost(res.body.post);
-				enqueueSnackbar(res.body.message, {variant:'success'});
 				return res;
 			} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 				enqueueSnackbar("server error, please try again later", {variant:'error'});
@@ -56,7 +55,6 @@ const Vote = () => {
 								default:
 									setPage('voteOne');
 							}
-							enqueueSnackbar(res.body.message, {variant:'success'});
 						} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 							enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 						} else {
@@ -65,7 +63,6 @@ const Vote = () => {
 					});
 				} else {
 					navigate(`/history/${info.body.vote.id}`)
-					enqueueSnackbar("VIEW MODE. If you want to join the vote, please log in.", {variant:'warning'});
 				};
 			})();
 		});

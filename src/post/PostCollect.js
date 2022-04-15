@@ -41,8 +41,6 @@ const SinglePost = (props) => {
 					refresh();
 				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
-				} else if (res.status === 401) {
-					enqueueSnackbar(res.body.message, {variant:'warning'});
 				} else {
 					enqueueSnackbar(res.body.message, {variant:'error'});
 				};
