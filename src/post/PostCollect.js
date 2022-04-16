@@ -3,26 +3,65 @@ import { useParams } from 'react-router';
 import { useSnackbar } from 'notistack';
 import { isEmpty } from 'lodash';
 import { BsLightbulbFill } from 'react-icons/bs';
-import { newPost, deletePost, newUpvote, deleteUpvote } from '../api/Post.js';
-import { checkAuthorized } from '../api/Utilities.js';
+import { getPost, newPost, deletePost, newUpvote, deleteUpvote } from '../api/Post.js';
 import './Post.css';
 
 const SinglePost = (props) => {
 	
-	const { post, type, refresh } = props;
+	const { postID, type, authorized, refresh, setPage } = props;
 	const { id } = useParams();
 	const { enqueueSnackbar } = useSnackbar();
+	const [post, setPost] = useState({});
 	const [content, setContent] = useState("");
+	const [upvotes, setUpvotes] = useState(0);
 	const [isUpvoted, setIsUpvoted] = useState(false);
 
+	const handleInitialize = () => {
+		if (postID) {
+			getPost(postID)
+			.then(res => {
+				if (res.ok) {
+					setPost(res.body.post);
+					setContent(res.body.contetn);
+					setUpvotes(res.body.post.upvotes);
+					setIsUpvoted(res.body.post.upvoted);
+				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
+				} else {
+					enqueueSnackbar(res.body.message, {variant:'error'});
+				};
+			});
+		}
+	};
+
 	const handleOnChange = (e) => {
-		if (e.target.name === 'upvote-button-option') {
+		if (e.target.name === 'upvote-button-option' && authorized) {
 			if (e.target.value === 'true') {
 				setIsUpvoted(false);
-				// call api (userID, postID, e.target.value)
+				setUpvotes(upvotes => upvotes - 1);
+				deleteUpvote(post.id)
+				.then(res => {
+					if (res.ok) {
+						;
+					} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+						enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
+					} else {
+						enqueueSnackbar(res.body.message, {variant:'error'});
+					};
+				});
 			} else if (e.target.value === 'false') {
 				setIsUpvoted(true);
-				// call api (userID, postID, e.target.value)
+				setUpvotes(upvotes => upvotes + 1);
+				newUpvote(post.id)
+				.then(res => {
+					if (res.ok) {
+						;
+					} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+						enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
+					} else {
+						enqueueSnackbar(res.body.message, {variant:'error'});
+					};
+				});
 			};
 		} else if (e.target.name === 'post-content') {
 			setContent(e.target.value);
@@ -37,8 +76,8 @@ const SinglePost = (props) => {
 			newPost(id, content)
 			.then(res => {
 				if (res.ok) {
-					enqueueSnackbar(res.body.message, {variant:'success'});
 					refresh();
+					enqueueSnackbar(res.body.message, {variant:'success'});
 				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 				} else {
@@ -53,8 +92,8 @@ const SinglePost = (props) => {
 		deletePost(id)
 		.then(res => {
 			if (res.ok) {
-				enqueueSnackbar(res.body.message, {variant:'success'});
 				refresh();
+				enqueueSnackbar(res.body.message, {variant:'success'});
 			} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 				enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 			} else {
@@ -65,19 +104,20 @@ const SinglePost = (props) => {
 
 	useEffect(() => {
 		// initialize
-		if (post !== null) setIsUpvoted(post.upvoted);
+		handleInitialize();
 		
 		return () => {
 			setContent("");
+			setUpvotes(0);
 			setIsUpvoted(false);
-		}
+		};
 	}, []);
 
 	return (
 		<div className='single-post'>
 			<div className='single-post-poster' type={type}>
 				{
-					isEmpty(post) ? (
+					isEmpty(post) && type === 'owned' ? (
 						<>
 							<span>SHOUT OUT LOUD !!!</span>
 							<span>
@@ -88,9 +128,9 @@ const SinglePost = (props) => {
 						<>
 							<span>@{post.poster}</span>
 							<span>
-								{post.upvotes}
+								{upvotes}
 								{
-									isUpvoted === null ? (
+									!authorized ? (
 										<button className='upvote-button' disabled>
 											<BsLightbulbFill className='upvote-button-icon' type='disabled'/>
 										</button> 
@@ -118,7 +158,7 @@ const SinglePost = (props) => {
 			</div>
 			<div className='single-post-content'>
 				{
-					isEmpty(post) ? (
+					isEmpty(post) && type === 'owned' ? (
   					<textarea className="form-control" rows="4" id="post-new-post" name='post-content' onChange={handleOnChange}></textarea>
 					) : (
 						<p>{post.content}</p>
@@ -130,16 +170,16 @@ const SinglePost = (props) => {
 };
 
 const PostCollect = (props) => {
-	const { type, post, refresh } = props;
+	const { type, post, authorized, refresh } = props;
 	return (
 		<>
 			{	
 				type === 'owned' ? (
-					<SinglePost type={type} post={post} refresh={refresh}/>
+					<SinglePost type={type} postID={post} authorized={authorized} refresh={refresh}/>
 				) : isEmpty(post) ? (
 					<span>NO POSTS FOUND</span>
 				) : (
-					post.map(e => <SinglePost key={e.id} type={type} post={e} refresh={refresh}/>)
+					post.map(e => <SinglePost key={e} postID={e} type={type} authorized={authorized} refresh={refresh}/>)
 				)
 			}
 		</>

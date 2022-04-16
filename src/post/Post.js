@@ -5,7 +5,7 @@ import './Post.css';
 
 const Post = (props) => {
 
-	const { post, userPost, ownedFN, refresh } = props;
+	const { post, userPost, ownedFN, authorized, refresh } = props;
 	const[page, setPage] = useState('');
 	const[yesPost, setYesPost] = useState([]);
 	const[noPost, setNoPost] = useState([]);
@@ -20,10 +20,12 @@ const Post = (props) => {
 	useEffect(() => {
 		// initialize
 		if (!ownedFN) {
+			document.getElementById('btnradio1').defaultChecked = true;
 			setPage('yes');
 		} else {
+			document.getElementById('btnradio3').defaultChecked = true;
 			setPage('owned');
-		}
+		};
 
 		setYesPost(post.yes);
 		setNoPost(post.no);
@@ -35,7 +37,7 @@ const Post = (props) => {
 			setNoPost([]);
 			setOwnedPost({});
 		};
-	}, [post]);
+	}, [post, userPost, ownedFN, authorized]);
 
 	return (
 		<div className='post-section'>
@@ -60,11 +62,11 @@ const Post = (props) => {
 			<div id='post-main'>
 				{
 					page === 'yes' ? (
-						<PostCollect type={'yes'} post={yesPost} refresh={refresh}/>
+						<PostCollect type={'yes'} post={yesPost} authorized={authorized} refresh={refresh}/>
 					) : page === 'no' ? (
-						<PostCollect type={'no'} post={noPost} refresh={refresh}/>
+						<PostCollect type={'no'} post={noPost} authorized={authorized} refresh={refresh}/>
 					) : page === 'owned' ? (
-						<PostCollect type={'owned'} post={userPost} refresh={refresh}/>
+						<PostCollect type={'owned'} post={userPost} authorized={authorized} refresh={refresh}/>
 					) : null
 				}
 			</div>

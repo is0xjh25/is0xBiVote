@@ -20,7 +20,7 @@ function getWeeklyVotes() {
 			};
 		})
 	});	
-}
+};
 
 // get vote information
 function getVote(voteID) {
@@ -28,7 +28,7 @@ function getVote(voteID) {
 	const url = `${BASE_URL}/vote/${voteID}`;
 	const info = {
 		method: 'GET',
-		headers: {'Content-Type': 'application/json'},
+		headers: {'Content-Type': 'application/json', 'Authorization': getCookie('token')},
 	};
 
 	return fetch(url, info)
@@ -42,7 +42,7 @@ function getVote(voteID) {
 			};
 		})
 	});
-}
+};
 
 // get a personal vote record on a vote
 function getVoteRecord(voteID) {
@@ -64,7 +64,7 @@ function getVoteRecord(voteID) {
 			};
 		})
 	});
-}
+};
 
 // update a personal vote record on a vote
 function updateVoteRecord(req) {
@@ -91,11 +91,11 @@ function updateVoteRecord(req) {
 			};
 		})
 	});
-}
+};
 
 export {
 	getWeeklyVotes,
 	getVote,
 	getVoteRecord,
 	updateVoteRecord
-}
+};

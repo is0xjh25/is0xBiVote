@@ -16,12 +16,12 @@ const Result = () => {
 	const { id } = useParams();
 	const { enqueueSnackbar } = useSnackbar();
 	const navigate = useNavigate();
-  const [refreshCount, setRefreshCount] = useState(0);
 	const [vote, setVote] = useState({id: '', status: '', category: '', start_time: '', end_tiem: ''});
 	const [post, setPost] = useState({yes:[], no:[]});
 	const [userVote, setUserVote] = useState(null);
 	const [userPost, setUserPost] = useState(null);
-	const [ownedFN, setOwnedFN] = useState(false);
+	const [authorized, setAuthorized] = useState(false);
+	const [refreshCount, setRefreshCount] = useState(0);
 
 	const handleInitialize = () => {
 		getVote(id)
@@ -45,7 +45,7 @@ const Result = () => {
 						if (res.ok) {
 							setUserVote(res.body.vote_record.vote_two);
 							setUserPost(res.body.vote_record.owned_post);
-							setOwnedFN(true);
+							setAuthorized(true);
 						} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 							enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 						} else {
@@ -53,7 +53,7 @@ const Result = () => {
 						};
 					});
 				} else {
-					setOwnedFN(false);
+					setAuthorized(false);
 					enqueueSnackbar("If you would like to join the vote, please log in or create new account.", {variant:'info'});
 					enqueueSnackbar("VIEW MODE", {variant:'warning'});
 				};
@@ -63,7 +63,7 @@ const Result = () => {
 
 	const refresh = () => {
     setTimeout(() => {setRefreshCount(refreshCount+1);}, 1000);
-  }
+  };
 
 	useEffect(() => {
 		// initialize
@@ -74,8 +74,8 @@ const Result = () => {
 			setPost({yes:[], no:[]});
 			setUserVote(null);
 			setUserPost(null);
+			setAuthorized(false);
 			setRefreshCount(0);
-			setOwnedFN(false);
 		};
 	}, [refreshCount]);
 
@@ -89,7 +89,7 @@ const Result = () => {
 					<Title vote={vote}/>
 					<div className='main-section'>
 						<Analysis vote={vote} userVote={userVote}/>
-						<Post post={post} userPost={userPost} ownedFN={ownedFN} refresh={refresh}/>
+						<Post post={post} userPost={userPost} ownedFN={authorized} authorized={authorized} refresh={refresh}/>
 					</div>
 				</div>
 			</main>
