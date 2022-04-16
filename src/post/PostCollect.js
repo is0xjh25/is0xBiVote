@@ -103,6 +103,7 @@ const SinglePost = (props) => {
 	};
 
 	useEffect(() => {
+		console.log(authorized);
 		// initialize
 		handleInitialize();
 		
