@@ -14,10 +14,6 @@ yarn-error.log*
 .npm/
 yarn.lock
 .env
-node_modules/.cache/.eslintcache
-*.pack
-*.pack
-node_modules/.cache/.eslintcache
 *.pack
 
 # Logs

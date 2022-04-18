@@ -118,9 +118,9 @@ const Profile = () => {
 			<main>
 				{ 
 					page === 'main' ? (
-						<Main setPage={setPage} username={username} email={email} password={password} statistics={statistics} handleLogout={handleLogout}/> 
+						<Main setPage={setPage} username={username} email={email} statistics={statistics} handleLogout={handleLogout}/> 
 					) : ( 
-						<Edit setPage={setPage} username={username} email={email} password={password} passwordTwo={passwordTwo} handleDiscard={handleDiscard} handleOnChange={handleOnChange} handleSubmit={handleSubmit}/> 
+						<Edit username={username} email={email} password={password} passwordTwo={passwordTwo} handleDiscard={handleDiscard} handleOnChange={handleOnChange} handleSubmit={handleSubmit}/> 
 					)
 				}
 			</main>

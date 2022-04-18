@@ -3,7 +3,7 @@ import './Profile.css';
 
 const Main = (props) => {
 
-	const { setPage, username, email, password, statistics, handleLogout } = props;
+	const { setPage, username, email, statistics, handleLogout } = props;
 
 	return ( 
 		<div id='profile-frame'>

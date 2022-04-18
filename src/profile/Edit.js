@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Profile.css';
 
 const Edit = (props) => {
 
-	const { setPage, username, email, password, passwordTwo, handleDiscard, handleOnChange, handleSubmit } = props;
+	const { username, email, password, passwordTwo, handleDiscard, handleOnChange, handleSubmit } = props;
 
 	return ( 
 		<div id='profile-frame'>
