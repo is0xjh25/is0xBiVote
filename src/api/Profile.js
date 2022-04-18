@@ -1,5 +1,5 @@
 import { getCookie, setCookie, deleteCookie } from "./Utilities.js";
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = "https://bivote-server.herokuapp.com/api/v1";
 
 // login
 function login(username, password) {
