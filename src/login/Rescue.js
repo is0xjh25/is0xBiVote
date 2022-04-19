@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
+import { rescue } from '../api/Profile.js';
 import { handleOnValidation } from '../utilities/Utilities.js';
 import { NavLink } from 'react-router-dom';
 
@@ -21,11 +22,17 @@ const Rescue = (props) => {
 		if (!check.valid) {
 			enqueueSnackbar(check.message, {variant:'warning'}); 
 		} else {
-			console.log(email);
-			// call api rescue(email)
-			// success or fail
-			// success setPage('login'), snackbar
-			// fail -> snackbar
+			rescue(email)
+			.then(res => {
+				if (res.ok) {
+					enqueueSnackbar(res.body.message, {variant:'success'});
+					setPage('main');
+				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
+				} else {
+					enqueueSnackbar(res.body.message, {variant:'error'});
+				};
+			});
 		};
 	};
 

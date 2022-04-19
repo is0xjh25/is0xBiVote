@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router';
-import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import NavBar from '../components/Navbar.js';
 import Footer from '../components/Footer.js';
@@ -15,7 +14,6 @@ const Result = () => {
 
 	const { id } = useParams();
 	const { enqueueSnackbar } = useSnackbar();
-	const navigate = useNavigate();
 	const [vote, setVote] = useState({id: '', status: '', category: '', start_time: '', end_tiem: ''});
 	const [post, setPost] = useState({yes:[], no:[]});
 	const [userVote, setUserVote] = useState(null);

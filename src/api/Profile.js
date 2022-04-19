@@ -1,5 +1,5 @@
 import { getCookie, setCookie, deleteCookie } from "./Utilities.js";
-const BASE_URL = REACT_APP_BASE_URL;
+const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 // login
 function login(username, password) {
@@ -39,22 +39,34 @@ function login(username, password) {
 // request email for reset passward
 function rescue(email) {
 
-	// const info = {
-	// 	method: 'POST',
-	// 	headers: {'Content-Type': 'application/json'},
-	// 	body: JSON.stringify({"email": email})
-	// };
+	const url = `${BASE_URL}/forgot-password`;
+	const info = {
+		method: 'POST',
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify(
+			{
+				"user":
+				{
+					"email": email
+				}
+			}
+		)
+	};
 
-	// return new Promise((resolve) => {
-	// fetch(BASE_URL + "/user/resetPassword", info)
-	// 		.then(res => {
-	// 				if(checkAuthorized(res)) {
-	// 						return;
-	// 				}
-	// 				res.json().then(bodyRes=>{resolve(bodyRes);});
-	// 		})
-	// })
-}
+	return fetch(url, info)
+	.then(res => {
+		console.log(res);
+		return res.json()
+		.then(body => {
+		console.log(body);
+			return {
+				ok: res.ok,
+				status: res.status,
+				body: body
+			};
+		})
+	});
+};
 
 // create a new user
 function register(username, email, password) {
@@ -79,10 +91,6 @@ function register(username, email, password) {
 	.then(res => {
 		return res.json()
 		.then(body => {
-			if (res.ok) {
-				setCookie('token', res.headers.get('Authorization'), 1);
-				setCookie('username', body.user.username, 1);
-			}
 			return {
 				ok: res.ok,
 				status: res.status,

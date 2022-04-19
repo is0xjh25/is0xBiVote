@@ -8,7 +8,7 @@ import './Post.css';
 
 const SinglePost = (props) => {
 	
-	const { postID, type, authorized, refresh, setPage } = props;
+	const { postID, type, authorized, refresh } = props;
 	const { id } = useParams();
 	const { enqueueSnackbar } = useSnackbar();
 	const [post, setPost] = useState({});

@@ -1,5 +1,5 @@
 import { getCookie } from "./Utilities.js";
-const BASE_URL = REACT_APP_BASE_URL;
+const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 // get post information
 function getPost(id) {

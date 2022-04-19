@@ -1,10 +1,10 @@
 import Cookies from 'js-cookie';
-const BASE_URL = REACT_APP_BASE_URL;
+const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 // set cookie when login
 function setCookie(name, value, days) {
-	if (name == 'token') {
-		Cookies.set(`${name}`, "Bearer " + `${value}`, { expires: days }, { secure: true }, { SameSite: 'None' });
+	if (name === 'token') {
+		Cookies.set(`${name}`, `Bearer ${value}`, { expires: days }, { secure: true }, { SameSite: 'None' });
 	} else {
 		Cookies.set(`${name}`, `${value}`, { expires: days }, { secure: true }, { SameSite: 'None' });
 	};
@@ -26,26 +26,24 @@ function deleteCookie(name) {
 function checkAuthorized() {
     
 	const token = getCookie('token');
-   
-	if (token) {
-		
+
+	if (token !== '') {
 		const url = `${BASE_URL}/profile`;
 		const info = {
 			method: 'GET',
 			headers: {'Content-Type': 'application/json', 'Authorization': token},
 		};
 
-		return fetch(url, info)
-		.then(res => {
+		return fetch(url, info).then(res => {
 			if (res.ok) {
 				return {login: true, message: "Already login."};
-			} else {
-				return {login: false, message: "Please log in first."};
 			};
+			
+			return {login: false, message: "Please log in first."};
 		});
-	} else {
-		return {login: false, message: "Please log in first."};
 	};
+
+	return {login: false, message: "Please log in first."};
 };
 
 export {

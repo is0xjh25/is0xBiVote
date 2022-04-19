@@ -19,7 +19,6 @@ const Vote = () => {
 	const [page, setPage] = useState('');
 	const [vote, setVote] = useState({id: '', status: '', category: '', start_time: '', end_tiem: ''});
 	const [post, setPost] = useState({yes:[], no:[], owned:{}});
-	const [record, setRecord] = useState({id: '', user_id: '', vote_id: '', vote_one: '', vote_two: '', status: ''});
 
 	const handleInitialize = () => {
 		getVote(id)
@@ -42,7 +41,6 @@ const Vote = () => {
 					getVoteRecord(id)
 					.then(res => {
 						if (res.ok) {
-							setRecord(res.body.vote_record);
 							// set page
 							if (res.body.vote_record.status === 'vote_two') navigate(`/history/${info.body.vote.id}`);
 							switch(res.body.vote_record.status) {
@@ -120,7 +118,6 @@ const Vote = () => {
 			setPage();
 			setPost();
 			setVote();
-			setRecord();
 		};
 	}, []);
 

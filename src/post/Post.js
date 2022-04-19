@@ -1,5 +1,4 @@
 import React, { useState, useEffect }from 'react';
-import { useNavigate } from 'react-router-dom';
 import PostCollect from './PostCollect';
 import './Post.css';
 
@@ -9,7 +8,6 @@ const Post = (props) => {
 	const[page, setPage] = useState('');
 	const[yesPost, setYesPost] = useState([]);
 	const[noPost, setNoPost] = useState([]);
-	const[ownedPost, setOwnedPost] = useState({});
 
 	const handleOnChange = (e) => {
 		if (e.target.name === 'btnradio') {
@@ -29,13 +27,11 @@ const Post = (props) => {
 
 		setYesPost(post.yes);
 		setNoPost(post.no);
-		setOwnedPost(post.owned);
 
 		return () => {
 			setPage('');
 			setYesPost([]);
 			setNoPost([]);
-			setOwnedPost({});
 		};
 	}, [post, userPost, ownedFN, authorized]);
 

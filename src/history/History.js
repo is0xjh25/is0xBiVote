@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { MdFindInPage } from 'react-icons/md';
@@ -13,13 +12,11 @@ import './History.css';
 const History = (props) => {
 	
 	const { history, setHistory } = props; 
-	const { id } = useParams();
 	const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 	const [list, setList] = useState([]);
 	const [keyword, setKeyword] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
-	const [selected, setSelected] = useState(new Date());
 	const [firstVisit, setFirstVisit] = useState(false);
 
 	const handleInitialize = () => {
@@ -82,7 +79,6 @@ const History = (props) => {
       setList([]);
 			setKeyword('');
 			setStartDate(new Date());
-			setSelected(new Date());
 			setFirstVisit(true);
     }
   }, []);
@@ -122,7 +118,7 @@ const History = (props) => {
 									<tbody>
 									{list.map(vote => (  
 										<tr key={vote.id}>
-											<td className='table-date' scope='row'>{new Date(vote.start_time).toDateString().replace(/^\S+\s/,'')}</td>
+											<td className='table-date'>{new Date(vote.start_time).toDateString().replace(/^\S+\s/,'')}</td>
 											<td className='table-topic'>{vote.name}</td>
 											<td className='table-detail'><button onClick={()=>navigate(`/history/${vote.id}`)}><MdFindInPage/></button></td>
 										</tr>

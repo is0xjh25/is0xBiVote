@@ -5,7 +5,7 @@ import { MdHowToVote, MdHistoryEdu, MdAccountBox } from 'react-icons/md';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { logout } from '../api/Profile.js';
-import { getCookie, checkAuthorized } from '../api/Utilities.js';
+import { getCookie } from '../api/Utilities.js';
 import Logo from '../images/Bivote-logo.png';
 import './Navbar.css';
 
@@ -24,7 +24,7 @@ const NavBar = () => {
 	useEffect(() => {
 		// initialize
 		let name = getCookie('username');
-		if (name == '') name = 'Guest';
+		if (name === '') name = 'Guest';
 		setUsername(name);
 
 		return () => {
