@@ -1,5 +1,5 @@
 import { getCookie } from "./Utilities.js";
-const BASE_URL = "https://bivote-server.herokuapp.com/api/v1";
+const BASE_URL = REACT_APP_BASE_URL;
 
 function getWeeklyVotes() {
 	
