@@ -93,9 +93,53 @@ function updateVoteRecord(req) {
 	});
 };
 
+function searchByDate(date) {
+
+	const url = `${BASE_URL}/search-date/${date}`;
+	const info = {
+		method: 'GET',
+		headers: {'Content-Type': 'application/json'},
+	};
+
+	return fetch(url, info)
+	.then(res => {
+		return res.json()
+		.then(body => {
+			return {
+				ok: res.ok,
+				status: res.status,
+				body: body
+			};
+		})
+	});
+};
+
+function searchByKeyword(keyword) {
+
+	const url = `${BASE_URL}/search-keyword/${keyword}`;
+	const info = {
+		method: 'GET',
+		headers: {'Content-Type': 'application/json'},
+	};
+
+	return fetch(url, info)
+	.then(res => {
+		return res.json()
+		.then(body => {
+			return {
+				ok: res.ok,
+				status: res.status,
+				body: body
+			};
+		})
+	});
+};
+
 export {
 	getWeeklyVotes,
 	getVote,
 	getVoteRecord,
-	updateVoteRecord
+	updateVoteRecord,
+	searchByDate,
+	searchByKeyword
 };

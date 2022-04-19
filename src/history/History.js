@@ -1,46 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { MdFindInPage } from 'react-icons/md';
 import DatePicker from 'react-datepicker';
 import NavBar from '../components/Navbar.js';
 import Footer from '../components/Footer.js';
+import { searchByDate, searchByKeyword } from '../api/Vote.js';
 import 'react-datepicker/dist/react-datepicker.css';
 import './History.css';
-
-const demoVote = [
-	{
-		voteID: 1,
-		voteName: "Do aliens exists?",
-		startTime: "April 8 2022"
-	},
-	{
-		voteID: 2,
-		voteName: "Is Messi better than Ronaldo?",
-		startTime: "April 8 2022"
-	},
-	{
-		voteID: 3,
-		voteName: "Cat or Dog?",
-		startTime: "April 8 2022"
-	},
-	{
-		voteID: 4,
-		voteName: "Earth is flat.",
-		startTime: "April 8 2022"
-	},
-]
 
 const History = (props) => {
 	
 	const { history, setHistory } = props; 
 	const { id } = useParams();
+	const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 	const [list, setList] = useState([]);
 	const [keyword, setKeyword] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
 	const [selected, setSelected] = useState(new Date());
 	const [firstVisit, setFirstVisit] = useState(false);
+
+	const handleInitialize = () => {
+		setFirstVisit(true);
+		if (history.startDate) setStartDate(history.startDate);
+		if (history.keyword) setKeyword(history.keyword);
+		if (history.list) setList(history.list);
+	}
 
 	const handleOnChange = (e) => {
 		if (e.target.id === 'history-search-keyword') {
@@ -50,37 +37,53 @@ const History = (props) => {
 
 	const handleOnSubmit = (e) => {
 		if (e.target.name === 'startTime') {
-			// call api
-			setHistory({
-				startDate: startDate,
-				keyword: null,
-				list: demoVote
-			})
+			searchByDate(startDate)
+			.then(res => {
+				if (res.ok) {
+					setList(res.body.history.result)
+					setHistory({
+						startDate: startDate,
+						keyword: null,
+						list: res.body.history.result
+					});
+					enqueueSnackbar(res.body.message, {variant:'success'});
+				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
+				} else {
+					enqueueSnackbar(res.body.message, {variant:'error'});
+				};
+			});
 		} else if (e.target.name === 'keyword') {
-			// call api 注意 set list 要用 then 和 demoVote
-			setList(demoVote);
-			setHistory({
-				startDate: new Date(),
-				keyword: keyword,
-				list: demoVote
-			})
+			searchByKeyword(keyword)
+			.then(res => {
+				if (res.ok) {
+					console.log(typeof(new Date(res.body.history.result[0].start_time)));
+					setList(res.body.history.result)
+					setHistory({
+						startDate: new Date(),
+						keyword: keyword,
+						list: res.body.history.result
+					});
+					enqueueSnackbar(res.body.message, {variant:'success'});
+				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
+					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
+				} else {
+					enqueueSnackbar(res.body.message, {variant:'error'});
+				};
+			});
 		};
 	};
 
 	useEffect(() => {
 		// initialize
-		setFirstVisit(true);
-		
-		if (history.startDate) setStartDate(history.startDate);
-		if (history.keyword) setKeyword(history.keyword);
-		if (history.list) setList(history.list);
+		handleInitialize();
 
     return () => {
-      setList();
-			setKeyword();
-			setStartDate();
-			setSelected();
-			setFirstVisit();
+      setList([]);
+			setKeyword('');
+			setStartDate(new Date());
+			setSelected(new Date());
+			setFirstVisit(true);
     }
   }, []);
 
@@ -118,10 +121,10 @@ const History = (props) => {
 									</thead>
 									<tbody>
 									{list.map(vote => (  
-										<tr key={vote.voteID}>
-											<td className='table-date' scope='row'>{vote.startTime}</td>
-											<td className='table-topic'>{vote.voteName}</td>
-											<td className='table-detail'><button onClick={()=>navigate(`/history/${vote.voteID}`)}><MdFindInPage/></button></td>
+										<tr key={vote.id}>
+											<td className='table-date' scope='row'>{new Date(vote.start_time).toDateString().replace(/^\S+\s/,'')}</td>
+											<td className='table-topic'>{vote.name}</td>
+											<td className='table-detail'><button onClick={()=>navigate(`/history/${vote.id}`)}><MdFindInPage/></button></td>
 										</tr>
 									))}
 									</tbody>
