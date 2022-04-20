@@ -1,6 +1,6 @@
 /* Import Font */
-@import url(https://fonts.googleapis.com/css?family=Ubuntu);
-@import url(https://fonts.googleapis.com/css?family=Impact);
+@import url(//fonts.googleapis.com/css?family=Ubuntu);
+@import url(//fonts.googleapis.com/css?family=Impact);
 
 :root {
 	--primary: #1C1C1C;

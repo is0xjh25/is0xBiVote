@@ -49,8 +49,6 @@ const Result = () => {
 							setAuthorized(true);
 						} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 							enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
-						} else {
-							enqueueSnackbar(res.body.message, {variant:'error'});
 						};
 					});
 				} else {
