@@ -43,7 +43,6 @@ const History = (props) => {
 						keyword: null,
 						list: res.body.history.result
 					});
-					enqueueSnackbar(res.body.message, {variant:'success'});
 				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 				} else {
@@ -60,7 +59,6 @@ const History = (props) => {
 						keyword: keyword,
 						list: res.body.history.result
 					});
-					enqueueSnackbar(res.body.message, {variant:'success'});
 				} else if ([500, 501, 502, 503, 504].includes(res.status)) {
 					enqueueSnackbar("SERVER ERROR. Please try again later.", {variant:'error'});
 				} else {
