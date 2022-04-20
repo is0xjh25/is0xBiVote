@@ -21,7 +21,7 @@ const Rescue = (props) => {
 			setUsername(e.target.value);
 		} else if (e.target.name === 'password') {
 			setPassword(e.target.value);
-		}else if (e.target.name === 'passwordTwo') {
+		} else if (e.target.name === 'passwordTwo') {
 			setPasswordTwo(e.target.value);
 		};
   };
@@ -88,7 +88,7 @@ const Rescue = (props) => {
 				<NavLink to='/login' onClick={()=>setPage('rescue')}>{"Forgot Password?"}</NavLink>
 			</div>
 		</>
-	)
+	);
 };
 
 export default Rescue;

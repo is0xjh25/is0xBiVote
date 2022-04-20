@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from 'react';
+import React, { useState, useEffect } from 'react';
 import PostCollect from './PostCollect';
 import './Post.css';
 
@@ -67,7 +67,7 @@ const Post = (props) => {
 				}
 			</div>
 		</div>
-	)
+	);
 };
 
 export default Post;

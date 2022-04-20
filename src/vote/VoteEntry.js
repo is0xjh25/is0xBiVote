@@ -23,7 +23,7 @@ const VoteEntry = () => {
 				enqueueSnackbar(res.body.message, {variant:'error'});
 			};
 		});
-	}
+	};
 	
 	useEffect(() => {
 		// initialize
@@ -60,7 +60,7 @@ const VoteEntry = () => {
 				<Footer/>
 			</footer> 
 		</>
-	)
+	);
 };
 
 export default VoteEntry;

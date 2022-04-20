@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useSnackbar } from 'notistack';
 import { isEmpty } from 'lodash';
@@ -31,7 +31,7 @@ const SinglePost = (props) => {
 					enqueueSnackbar(res.body.message, {variant:'error'});
 				};
 			});
-		}
+		};
 	};
 
 	const handleOnChange = (e) => {
@@ -183,7 +183,7 @@ const PostCollect = (props) => {
 				)
 			}
 		</>
-	)
+	);
 };
 
 export default PostCollect;

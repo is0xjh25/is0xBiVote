@@ -1,4 +1,4 @@
-import { getCookie, setCookie, deleteCookie } from "./Utilities.js";
+import { getCookie, setCookie, deleteCookie } from './Utilities.js';
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 // login
@@ -32,7 +32,7 @@ function login(username, password) {
 				status: res.status,
 				body: body
 			};
-		});
+		})
 	});
 };
 
@@ -55,10 +55,8 @@ function rescue(email) {
 
 	return fetch(url, info)
 	.then(res => {
-		console.log(res);
 		return res.json()
 		.then(body => {
-		console.log(body);
 			return {
 				ok: res.ok,
 				status: res.status,
@@ -98,7 +96,7 @@ function register(username, email, password) {
 			};
 		})
 	});
-}
+};
 
 // get user profile information
 function getProfile() {
@@ -120,7 +118,7 @@ function getProfile() {
 			};
 		})
 	});
-}
+};
 
 // edit user profile
 function editProfile(email, password) {
@@ -151,13 +149,13 @@ function editProfile(email, password) {
 			};
 		})
 	});
-}
+};
 
 // logout
 function logout() {
 	deleteCookie('token');
 	deleteCookie('username');
-}
+};
 
 export {
 	login,
@@ -166,4 +164,4 @@ export {
 	getProfile,
 	editProfile,
 	logout
-}
+};

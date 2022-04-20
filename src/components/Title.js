@@ -13,7 +13,7 @@ const Title = (props) => {
 				<span id='title-type-name'>[{vote.category.toUpperCase()}] <strong>{vote.name}</strong></span>
 			</div>
 		</div>
-	)
+	);
 };
 
 export default Title;

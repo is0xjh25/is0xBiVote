@@ -26,7 +26,7 @@ const NotFound = () => {
 				<Footer/>
 			</footer> 
 		</>
-	)
+	);
 };
 
 export default NotFound;

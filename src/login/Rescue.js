@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
+import { NavLink } from 'react-router-dom';
 import { rescue } from '../api/Profile.js';
 import { handleOnValidation } from '../utilities/Utilities.js';
-import { NavLink } from 'react-router-dom';
 
 const Rescue = (props) => {
 	
@@ -60,7 +60,7 @@ const Rescue = (props) => {
 				<NavLink to='/login' onClick={()=>setPage('register')}>{"New Voter!"}</NavLink>
 			</div>
 		</>
-	)
+	);
 };
 
 export default Rescue;

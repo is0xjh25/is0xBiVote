@@ -43,7 +43,7 @@ const ReadPost = (props) => {
 			</div>
 			<Post post={post} ownedFN={false} authorized={authorized}/>
 		</>
-	)
+	);
 };
 
 export default ReadPost;

@@ -1,4 +1,4 @@
-import { getCookie } from "./Utilities.js";
+import { getCookie } from './Utilities.js';
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 // get post information
@@ -21,7 +21,7 @@ function getPost(id) {
 			};
 		})
 	});
-}
+};
 
 // create a new post
 function newPost(voteID, content) {
@@ -51,7 +51,7 @@ function newPost(voteID, content) {
 			};
 		})
 	});
-}
+};
 
 // delete a post
 function deletePost(postID) {
@@ -73,7 +73,7 @@ function deletePost(postID) {
 			};
 		})
 	});
-}
+};
 
 // upvote a post
 function newUpvote(postID) {
@@ -95,7 +95,7 @@ function newUpvote(postID) {
 			};
 		})
 	});
-}
+};
 
 // upvote a post
 function deleteUpvote(postID) {
@@ -117,7 +117,7 @@ function deleteUpvote(postID) {
 			};
 		})
 	});
-}
+};
 
 export {
 	getPost,
@@ -125,4 +125,4 @@ export {
 	deletePost,
 	newUpvote,
 	deleteUpvote
-}
+};

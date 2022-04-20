@@ -37,7 +37,7 @@ const Analysis = (props) => {
 								{
 									vote.statistics.yes + vote.statistics.no <= 0 ? (
 										<div className='progress-bar bg-info progress-bar-striped progress-bar-animated' style={{width:'100%'}}>
-											wait for the first vote...
+											wait for the first YES/NO vote...
 										</div>
 									) : (
 										<>
@@ -83,12 +83,22 @@ const Analysis = (props) => {
 						</div>
 						<div className='analysis-row'>
 							<div className='progress'>
-								<div className='progress-bar bg-success progress-bar-striped progress-bar-animated' style={{width:`${vote.statistics.yes/(vote.statistics.yes+vote.statistics.no)*100}%`}}>
-									{vote.statistics.yes} YES
-								</div>
-								<div className='progress-bar bg-danger progress-bar-striped progress-bar-animated' style={{width:`${vote.statistics.no/(vote.statistics.yes+vote.statistics.no)*100}%`}}>
-									{vote.statistics.no} NO
-								</div>
+								{
+									vote.statistics.yes + vote.statistics.no <= 0 ? (
+										<div className='progress-bar bg-info progress-bar-striped progress-bar-animated' style={{width:'100%'}}>
+											wait for the first YES/NO vote...
+										</div>
+									) : (
+										<>
+											<div className='progress-bar bg-success progress-bar-striped progress-bar-animated' style={{width:`${vote.statistics.yes/(vote.statistics.yes+vote.statistics.no)*100}%`}}>
+												{vote.yes} YES
+											</div>
+											<div className='progress-bar bg-danger progress-bar-striped progress-bar-animated' style={{width:`${vote.statistics.no/(vote.statistics.yes+vote.statistics.no)*100}%`}}>
+												{vote.no} NO
+											</div>
+										</>
+									)
+								}
 							</div>
 						</div>
 					</>
@@ -104,7 +114,7 @@ const Analysis = (props) => {
 				}
 			</div>
 		</div>
-	)
+	);
 };
 
 export default Analysis;

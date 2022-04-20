@@ -43,7 +43,7 @@ const Home = () => {
 				<Footer/>
 			</footer> 
 		</>
-  )
+  );
 };
 
 export default Home;

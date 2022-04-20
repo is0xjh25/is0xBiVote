@@ -87,7 +87,7 @@ function usernameValidation (u) {
   }
 
   return {valid: true, message: "Valid username."};
-}
+};
 
 function emailValidation (e) {
   
@@ -101,7 +101,7 @@ function emailValidation (e) {
   }
 
   return {valid: true, message: "Valid email."};
-}
+};
 
 function passwordValidation (p1, p2) {
 
@@ -119,7 +119,7 @@ function passwordValidation (p1, p2) {
   };
 
   return {valid: true, message: "Valid password."};
-}
+};
 
 /* Timer */
 function countDown(endTime) {
@@ -141,7 +141,7 @@ function  dateTimeHandler (isoString) {
   let months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
   let utc = (new Date(isoString)).toUTCString();
   return months[(new Date(utc).getMonth())] + " " + ordinal_suffix_of(new Date(utc).getDate()) + " . " + new Date(utc).getFullYear();
-}
+};
 
 /* Helpler function */
 function ordinal_suffix_of(i) {
@@ -157,7 +157,7 @@ function ordinal_suffix_of(i) {
       return i + "rd";
   }
   return i + "th";
-}
+};
 
 export {
   handleOnValidation,

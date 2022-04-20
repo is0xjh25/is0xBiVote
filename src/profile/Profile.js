@@ -107,7 +107,7 @@ const Profile = () => {
       setPassword('');
       setPasswordTwo('');
 			setStatistics({});
-    }
+    };
   }, []);
 
 	return (
@@ -128,7 +128,7 @@ const Profile = () => {
 				<Footer/>
 			</footer> 
 		</>
-  )
+  );
 };
 
 export default Profile;

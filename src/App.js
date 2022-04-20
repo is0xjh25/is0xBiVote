@@ -22,10 +22,6 @@ class App extends Component {
     }
   };
   
- componentDidMount() {
-    // this.setUser(checkAuthorized());
-  };
-
   componentWillUnmount() {
     this.setHistory(null);
   };

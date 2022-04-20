@@ -69,7 +69,7 @@ const Main = (props) => {
 				<NavLink to='/login' onClick={()=>setPage('register')}>{"New Voter!"}</NavLink>
 			</div>
 		</>
-	)
+	);
 };
 
 export default Main;

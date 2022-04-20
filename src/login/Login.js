@@ -24,7 +24,7 @@ const Login = () => {
 		
 		return () => {
 			setPage('');
-		}
+		};
 	}, []);
 
 	return (
@@ -46,7 +46,7 @@ const Login = () => {
 				</div>
 			</div>
 		</main>
-  )
+  );
 };
 
 export default Login;

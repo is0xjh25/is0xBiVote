@@ -70,7 +70,7 @@ const VotePick = (props) => {
 				</div>
 			</div>
 		</>
-	)
+	);
 };
 
 export default VotePick;

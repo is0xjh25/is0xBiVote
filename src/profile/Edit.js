@@ -32,7 +32,7 @@ const Edit = (props) => {
 				</div>
 			</div>
 		</div>
-	)
+	);
 };
 
 export default Edit;

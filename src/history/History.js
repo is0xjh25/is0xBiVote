@@ -54,8 +54,7 @@ const History = (props) => {
 			searchByKeyword(keyword)
 			.then(res => {
 				if (res.ok) {
-					console.log(typeof(new Date(res.body.history.result[0].start_time)));
-					setList(res.body.history.result)
+					setList(res.body.history.result);
 					setHistory({
 						startDate: new Date(),
 						keyword: keyword,

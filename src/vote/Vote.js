@@ -31,6 +31,7 @@ const Vote = () => {
 				enqueueSnackbar("server error, please try again later", {variant:'error'});
 			} else {
 				enqueueSnackbar(res.body.message, {variant:'error'});
+				navigate('/');
 			};
 		})
 		.then(info => {
@@ -60,11 +61,11 @@ const Vote = () => {
 						};
 					});
 				} else {
-					navigate(`/history/${info.body.vote.id}`)
+					if (info !== undefined) navigate(`/history/${info.body.vote.id}`);
 				};
 			})();
 		});
-	}
+	};
 
 	const handleOnSubmit = (e) => {
 		if (e.target.name === 'voteOne') {

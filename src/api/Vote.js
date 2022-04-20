@@ -1,4 +1,4 @@
-import { getCookie } from "./Utilities.js";
+import { getCookie } from './Utilities.js';
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 function getWeeklyVotes() {
