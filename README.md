@@ -25,6 +25,8 @@ _BiVote_ is a pure debate forum for community. The application provides trending
   > Type in terminal: `npm start`
 - View in your browser
   > Go to `http://localhost:3000`
+- Read more about BiVote's server and database
+  > Navigate to [is0xBiVote-server](https://github.com/is0xjh25/is0xBiVote-server)
   
 ## Usage
 - **Login**
