@@ -1,6 +1,6 @@
 # [is0xBiVote](https://is0xbivote.web.app)
 <p align="left">
-  <img alt="Logo" src="src/images/BiVote-favicon.png" width="150" >
+  <img alt="Logo" src="src/images/bivote-favicon.png" width="150" >
 
 ## Table of Contents
 * [About the Application](#about-the-application)
