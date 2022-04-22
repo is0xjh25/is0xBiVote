@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
-import Favicon from '../images/Bivote-favicon.png';
+import Favicon from '../images/bivote-favicon.png';
 import Main from './Main.js';
 import Register from './Register.js';
 import Rescue from './Rescue.js';

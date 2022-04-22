@@ -6,7 +6,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { logout } from '../api/Profile.js';
 import { getCookie } from '../api/Utilities.js';
-import Logo from '../images/Bivote-logo.png';
+import Logo from '../images/bivote-logo.png';
 import './Navbar.css';
 
 const NavBar = () => {
